@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Yazlab_1
 {
-    internal class Tarifler
+    public class Tarifler
     {
         public int TarifID { get; set; }   
         public string TarifAdi { get; set; }  
