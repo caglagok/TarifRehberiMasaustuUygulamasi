@@ -14,9 +14,15 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+
             Tarif_Ekleme_Formu tarifEkleForm = new Tarif_Ekleme_Formu();
             tarifEkleForm.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        { 
+            Malzeme_Ekleme malzemeEkleForm = new Malzeme_Ekleme();
+            malzemeEkleForm.ShowDialog();
         }
     }
 }

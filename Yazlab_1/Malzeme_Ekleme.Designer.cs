@@ -1,6 +1,6 @@
 ﻿namespace Yazlab_1
 {
-    partial class Tarif_Ekleme_Formu
+    partial class Malzeme_Ekleme
     {
         /// <summary>
         /// Required designer variable.
@@ -28,92 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
+            button1 = new Button();
             textBox1 = new TextBox();
             numericUpDown1 = new NumericUpDown();
-            richTextBox1 = new RichTextBox();
-            comboBox1 = new ComboBox();
             numericUpDown2 = new NumericUpDown();
-            button1 = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
+            // button1
+            // 
+            button1.Location = new Point(96, 261);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // textBox1
             // 
-            textBox1.Location = new Point(29, 12);
+            textBox1.Location = new Point(40, 29);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 0;
+            textBox1.TabIndex = 1;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(29, 45);
+            numericUpDown1.Location = new Point(40, 196);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(150, 27);
-            numericUpDown1.TabIndex = 1;
+            numericUpDown1.TabIndex = 2;
             numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
-            // richTextBox1
+            // numericUpDown2
             // 
-            richTextBox1.Location = new Point(29, 166);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(245, 120);
-            richTextBox1.TabIndex = 2;
-            richTextBox1.Text = "";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
+            numericUpDown2.Location = new Point(40, 148);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(150, 27);
+            numericUpDown2.TabIndex = 3;
+            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(29, 78);
+            comboBox1.Location = new Point(39, 90);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 4;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // numericUpDown2
-            // 
-            numericUpDown2.Location = new Point(29, 121);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(150, 27);
-            numericUpDown2.TabIndex = 5;
-            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(539, 354);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 7;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Location = new Point(391, 78);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(366, 258);
-            flowLayoutPanel1.TabIndex = 8;
-            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
-            // 
-            // Tarif_Ekleme_Formu
+            // Malzeme_Ekleme
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(flowLayoutPanel1);
-            Controls.Add(button1);
-            Controls.Add(numericUpDown2);
             Controls.Add(comboBox1);
-            Controls.Add(richTextBox1);
+            Controls.Add(numericUpDown2);
             Controls.Add(numericUpDown1);
             Controls.Add(textBox1);
-            Name = "Tarif_Ekleme_Formu";
-            Text = "Tarif_Ekleme_Formu";
-            Load += Tarif_Ekleme_Formu_Load;
+            Controls.Add(button1);
+            Name = "Malzeme_Ekleme";
+            Text = "Malzeme_Ekleme";
+            Load += Malzeme_Ekleme_Load_1;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
@@ -122,12 +101,10 @@
 
         #endregion
 
+        private Button button1;
         private TextBox textBox1;
         private NumericUpDown numericUpDown1;
-        private RichTextBox richTextBox1;
-        private ComboBox comboBox1;
         private NumericUpDown numericUpDown2;
-        private Button button1;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private ComboBox comboBox1;
     }
 }

@@ -55,6 +55,40 @@ namespace Yazlab_1
                 }
             }
         }
+        public List<string> GetMalzemeler()
+        {
+            List<string> malzemeListesi = new List<string>();
+            using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT MalzemeAdi FROM Malzemeler ORDER BY MalzemeAdi"; // Malzemeleri alfabetik sıraya göre getir
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        malzemeListesi.Add(reader["MalzemeAdi"].ToString()); // Malzeme adını listeye ekle
+                    }
+                }
+            }
+            return malzemeListesi; // Malzeme listesini döndür
+        }
+        public int GetMalzemeID(string malzemeAdi)
+        {
+            using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
+            {
+                connection.Open();
+                string query = "SELECT MalzemeID FROM Malzemeler WHERE MalzemeAdi = @MalzemeAdi";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@MalzemeAdi", malzemeAdi);
+                    object result = command.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : -1; // Bulamazsa -1 döner
+                }
+            }
+        }
+
     }
 
 }
