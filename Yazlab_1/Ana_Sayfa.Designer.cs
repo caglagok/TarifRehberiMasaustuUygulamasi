@@ -36,9 +36,9 @@
             // 
             // tarif_ekle
             // 
-            tarif_ekle.Location = new Point(1029, 78);
+            tarif_ekle.Location = new Point(1049, 12);
             tarif_ekle.Name = "tarif_ekle";
-            tarif_ekle.Size = new Size(217, 113);
+            tarif_ekle.Size = new Size(89, 71);
             tarif_ekle.TabIndex = 0;
             tarif_ekle.Text = "+Tarif Ekle";
             tarif_ekle.UseVisualStyleBackColor = true;
@@ -46,9 +46,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(1055, 216);
+            button1.Location = new Point(1144, 12);
             button1.Name = "button1";
-            button1.Size = new Size(203, 114);
+            button1.Size = new Size(102, 71);
             button1.TabIndex = 1;
             button1.Text = "+Malzeme Ekle";
             button1.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@
             dataGridView1.Location = new Point(12, 78);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(994, 447);
+            dataGridView1.Size = new Size(1011, 447);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 

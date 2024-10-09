@@ -67,8 +67,9 @@ namespace Yazlab_1
                     LoadTarifler(); // Listeyi güncelle
                 }
             }
-          
-            }
+           
+
+        }
         }
     }
 

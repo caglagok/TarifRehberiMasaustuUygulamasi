@@ -35,6 +35,7 @@
             numericUpDown2 = new NumericUpDown();
             button1 = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
@@ -87,7 +88,7 @@
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 7;
-            button1.Text = "button1";
+            button1.Text = "tarifekle";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -99,11 +100,22 @@
             flowLayoutPanel1.TabIndex = 8;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
+            // button2
+            // 
+            button2.Location = new Point(625, 45);
+            button2.Name = "button2";
+            button2.Size = new Size(132, 29);
+            button2.TabIndex = 9;
+            button2.Text = "malzemeekle";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Tarif_Ekleme_Formu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button2);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(button1);
             Controls.Add(numericUpDown2);
@@ -129,5 +141,6 @@
         private NumericUpDown numericUpDown2;
         private Button button1;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Button button2;
     }
 }
