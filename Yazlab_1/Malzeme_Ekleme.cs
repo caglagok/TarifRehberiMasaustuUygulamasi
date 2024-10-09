@@ -12,11 +12,11 @@ namespace Yazlab_1
 {
     public partial class Malzeme_Ekleme : Form
     {
-        private Malzemeler malzeme;
+        private MalzemeMethodları malzeme;
         public Malzeme_Ekleme()
         {
             InitializeComponent();
-            malzeme = new Malzemeler();
+            malzeme = new MalzemeMethodları();
         }
 
 

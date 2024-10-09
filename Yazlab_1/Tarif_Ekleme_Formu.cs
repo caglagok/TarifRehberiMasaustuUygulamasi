@@ -12,12 +12,12 @@ namespace Yazlab_1
 {
     public partial class Tarif_Ekleme_Formu : Form
     {
-        private Malzemeler malzeme; // Malzemeler sınıfı için bir nesne
+        private MalzemeMethodları malzeme; // Malzemeler sınıfı için bir nesne
 
         public Tarif_Ekleme_Formu()
         {
             InitializeComponent();
-            malzeme = new Malzemeler(); // Malzemeler nesnesini oluştur
+            malzeme = new MalzemeMethodları(); // Malzemeler nesnesini oluştur
         }
 
 
@@ -31,7 +31,7 @@ namespace Yazlab_1
             comboBox1.Items.Add("Ara Yemek");
 
             // Malzemeleri çekmek için Malzemeler sınıfından bir nesne oluştur
-            Malzemeler malzeme = new Malzemeler();
+            MalzemeMethodları malzeme = new MalzemeMethodları();
             List<string> malzemeListesi = malzeme.GetMalzemeler(); // Malzemeleri getir
 
             // Malzemeleri FlowLayoutPanel'e ekle
