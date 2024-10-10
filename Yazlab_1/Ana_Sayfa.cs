@@ -11,7 +11,7 @@ namespace Yazlab_1
             InitializeComponent();
         }
 
-      
+
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadTarifler();
@@ -67,9 +67,41 @@ namespace Yazlab_1
                     LoadTarifler(); // Listeyi güncelle
                 }
             }
-           
+
 
         }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            // Seçilen düðümü almak için 'e.Node' kullanýlýr
+            TreeNode selectedNode = e.Node;
+
+            // Seçilen düðümün text'ini bir mesaj kutusunda gösteriyoruz
+            MessageBox.Show("Seçilen düðüm: " + selectedNode.Text);
+
+            // Örnek: Farklý düðümlere göre farklý iþlemler yapabilirsiniz
+            if (selectedNode.Text == "Tatlý")
+            {
+                // Tatlý kategorisine týklanýrsa yapýlacak iþlemler
+                MessageBox.Show("Tatlý kategorisine týkladýnýz!");
+            }
+            else if (selectedNode.Text == "Ana yemek")
+            {
+                // Ana yemek kategorisine týklanýrsa yapýlacak iþlemler
+                MessageBox.Show("Ana yemek kategorisine týkladýnýz!");
+            }
+            // Diðer düðümler için de benzer kontroller yapabilirsiniz
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
+}
 
