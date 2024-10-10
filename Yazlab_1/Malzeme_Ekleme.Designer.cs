@@ -33,65 +33,128 @@
             numericUpDown1 = new NumericUpDown();
             numericUpDown2 = new NumericUpDown();
             comboBox1 = new ComboBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(96, 261);
+            button1.BackColor = Color.IndianRed;
+            button1.Location = new Point(389, 251);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            button1.Text = "Tamam";
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(40, 29);
+            textBox1.BackColor = Color.RosyBrown;
+            textBox1.Location = new Point(332, 53);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
+            textBox1.Size = new Size(151, 27);
             textBox1.TabIndex = 1;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(40, 196);
+            numericUpDown1.BackColor = Color.RosyBrown;
+            numericUpDown1.Location = new Point(332, 190);
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(150, 27);
+            numericUpDown1.Size = new Size(151, 27);
             numericUpDown1.TabIndex = 2;
             numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // numericUpDown2
             // 
-            numericUpDown2.Location = new Point(40, 148);
+            numericUpDown2.BackColor = Color.RosyBrown;
+            numericUpDown2.Location = new Point(332, 142);
             numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(150, 27);
+            numericUpDown2.Size = new Size(151, 27);
             numericUpDown2.TabIndex = 3;
             numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // comboBox1
             // 
+            comboBox1.BackColor = Color.RosyBrown;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(39, 90);
+            comboBox1.Location = new Point(332, 97);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 4;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(197, 56);
+            label1.Name = "label1";
+            label1.Size = new Size(120, 20);
+            label1.TabIndex = 5;
+            label1.Text = "Malzemenin Adı:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(201, 100);
+            label2.Name = "label2";
+            label2.Size = new Size(116, 20);
+            label2.TabIndex = 6;
+            label2.Text = "Malzeme Birimi:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(231, 144);
+            label3.Name = "label3";
+            label3.Size = new Size(86, 20);
+            label3.TabIndex = 7;
+            label3.Text = "Birim Fiyatı:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(208, 192);
+            label4.Name = "label4";
+            label4.Size = new Size(109, 20);
+            label4.TabIndex = 8;
+            label4.Text = "Eklenen Miktar:";
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.IndianRed;
+            button2.Location = new Point(201, 251);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 9;
+            button2.Text = "Geri";
+            button2.UseVisualStyleBackColor = false;
+            // 
             // Malzeme_Ekleme
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.Linen;
+            ClientSize = new Size(695, 359);
+            Controls.Add(button2);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(numericUpDown2);
             Controls.Add(numericUpDown1);
             Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "Malzeme_Ekleme";
-            Text = "Malzeme_Ekleme";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Malzeme Ekleme";
             Load += Malzeme_Ekleme_Load_1;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
@@ -106,5 +169,10 @@
         private NumericUpDown numericUpDown1;
         private NumericUpDown numericUpDown2;
         private ComboBox comboBox1;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Button button2;
     }
 }
