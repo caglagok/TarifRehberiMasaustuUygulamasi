@@ -56,6 +56,7 @@
             button1.TabIndex = 0;
             button1.Text = "Geri";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -76,6 +77,7 @@
             pictureBox1.Size = new Size(302, 370);
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // label1
             // 
@@ -116,6 +118,7 @@
             listView2.Size = new Size(428, 207);
             listView2.TabIndex = 7;
             listView2.UseCompatibleStateImageBehavior = false;
+            listView2.SelectedIndexChanged += listView2_SelectedIndexChanged;
             // 
             // label4
             // 
@@ -139,6 +142,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(428, 226);
             dataGridView1.TabIndex = 9;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Malzeme
             // 
@@ -168,6 +172,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(186, 27);
             numericUpDown1.TabIndex = 11;
+            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // Tarif_Detay_Formu
             // 
@@ -187,6 +192,7 @@
             Controls.Add(button1);
             Name = "Tarif_Detay_Formu";
             Text = "Tarif_Detay_Formu";
+            Load += Tarif_Detay_Formu_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();

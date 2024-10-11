@@ -77,7 +77,16 @@ namespace Yazlab_1
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            // Eðer týklanan hücre, DataGridView'deki bir satýrda ise
+            if (e.RowIndex >= 0)
+            {
+                // Seçilen tarifin ID'sini al
+                int tarifID = (int)dataGridView1.Rows[e.RowIndex].Cells["TarifID"].Value;
 
+                // Tarif detay formunu aç
+                Tarif_Detay_Formu tarifDetayForm = new Tarif_Detay_Formu(tarifID);
+                tarifDetayForm.ShowDialog();
+            }
 
         }
 
@@ -89,12 +98,12 @@ namespace Yazlab_1
             if (selectedNodes.Contains(e.Node))
             {
                 selectedNodes.Remove(e.Node);
-                e.Node.BackColor = Color.White;
+                e.Node.BackColor = Color.White; // Seçim iptal edildiðinde rengi beyaz yap
             }
             else
             {
                 selectedNodes.Add(e.Node);
-                e.Node.BackColor = Color.LightGray;
+                e.Node.BackColor = Color.LightGray; // Seçildiðinde rengi açýk gri yap
             }
 
             ApplyFilters(); // Filtreleri uygula
@@ -104,29 +113,56 @@ namespace Yazlab_1
         private void ApplyFilters()
         {
             // Seçilen kategoriler
-            var selectedCategories = selectedNodes
+            List<string> selectedCategories = selectedNodes
                 .Where(node => node.Parent != null && node.Parent.Text == "Kategori")
-                .Select(node => node.Text).ToList();
+                .Select(node => node.Text)
+                .ToList();
 
-            // Seçilen maliyet aralýðý
-            var selectedCostRange = selectedNodes
-                .FirstOrDefault(node => node.Parent != null && node.Parent.Text == "Maliyet Aralýðý")?.Text;
+            // Seçilen maliyet aralýklarý
+            List<string> selectedCostRanges = selectedNodes
+                .Where(node => node.Parent != null && node.Parent.Text == "Maliyet Aralýðý")
+                .Select(node => node.Text)
+                .ToList();
 
-            // Seçilen malzeme sayýsý aralýðý
-            var selectedIngredientRange = selectedNodes
-                .FirstOrDefault(node => node.Parent != null && node.Parent.Text == "Malzeme Sayýsýna Göre")?.Text;
+            // Seçilen malzeme sayýsý aralýklarý
+            List<string> selectedIngredientRanges = selectedNodes
+                .Where(node => node.Parent != null && node.Parent.Text == "Malzeme Sayýsýna Göre")
+                .Select(node => node.Text)
+                .ToList();
 
             // Filtreyi uygulamak için arama fonksiyonunu çaðýr
-            List<Tarifler> filtrelenmisTarifler = TarifMethodlarý.SearchTarifler("", selectedCategories.FirstOrDefault(), selectedCostRange, selectedIngredientRange);
+            List<Tarifler> filtrelenmisTarifler = TarifMethodlarý.SearchTarifler(
+                "", // Arama terimi boþ
+                selectedCategories, // Kategoriler listesi
+                selectedCostRanges.Count > 0 ? string.Join(",", selectedCostRanges) : null, // Maliyet aralýðý
+                selectedIngredientRanges.Count > 0 ? string.Join(",", selectedIngredientRanges) : null // Malzeme sayýsý aralýðý
+            );
+
+            // Veri kaynaðýný güncelle
             dataGridView1.DataSource = filtrelenmisTarifler;
         }
 
+
+
         private void button2_Click(object sender, EventArgs e)
         {
+            // Kullanýcýdan alýnan arama terimini temizle
             string searchTerm = textBox1.Text.Trim();
-            List<Tarifler> aramaSonuclari = TarifMethodlarý.SearchTarifler(searchTerm, "", "", "");
+
+            // Arama terimi boþsa kullanýcýyý uyar
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                MessageBox.Show("Lütfen bir arama terimi girin.", "Uyarý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Tarife göre arama yap
+            List<Tarifler> aramaSonuclari = TarifMethodlarý.SearchTarifler(searchTerm, null, null, null);
+
+            // Veri kaynaðýný güncelle
             dataGridView1.DataSource = aramaSonuclari;
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
