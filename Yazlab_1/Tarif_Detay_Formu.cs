@@ -26,6 +26,7 @@ namespace Yazlab_1
             // Silme işleminden sonra formu güncelleyin veya başka bir işlem yapın
             MessageBox.Show("Tarif başarıyla silindi.");
             this.Close(); // İsterseniz formu kapatabilirsiniz
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -36,6 +37,22 @@ namespace Yazlab_1
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Bu formu kapat
+            this.Close();
+
+            // Ana Sayfa formuna geri dön
+            Ana_Sayfa anaSayfaForm = new Ana_Sayfa();
+            anaSayfaForm.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Bu formu kapat
+            this.Close();
         }
     }
 }

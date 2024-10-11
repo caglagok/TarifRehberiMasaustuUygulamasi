@@ -13,11 +13,13 @@ namespace Yazlab_1
     public partial class Tarif_Ekleme_Formu : Form
     {
         public MalzemeMethodları malzeme; // Malzemeler sınıfı için bir nesne
+        private Ana_Sayfa anaSayfaForm; // Ana Sayfa formuna referans
 
-        public Tarif_Ekleme_Formu()
+        public Tarif_Ekleme_Formu(Ana_Sayfa anaSayfa)
         {
             InitializeComponent();
             malzeme = new MalzemeMethodları(); // Malzemeler nesnesini oluştur
+            anaSayfaForm = anaSayfa; // Ana Sayfa formunu sakla
         }
 
 
@@ -47,7 +49,7 @@ namespace Yazlab_1
                 NumericUpDown miktarNumericUpDown = new NumericUpDown();
                 miktarNumericUpDown.Minimum = 0;
                 miktarNumericUpDown.Maximum = 100000; // Maksimum değer
-                miktarNumericUpDown.DecimalPlaces =2; // İstenirse ondalık basamak sayısını ayarlayın
+                miktarNumericUpDown.DecimalPlaces = 2; // İstenirse ondalık basamak sayısını ayarlayın
                 miktarNumericUpDown.Width = 90; // Genişliği ayarlayın
 
                 // Birim yazısı
@@ -64,45 +66,6 @@ namespace Yazlab_1
                 flowLayoutPanel1.Controls.Add(malzemePanel);
 
 
-                /*
-                // Kategori ekleme
-                comboBox1.Items.Add("Ana Yemek");
-                comboBox1.Items.Add("Çorba");
-                comboBox1.Items.Add("Salata");
-                comboBox1.Items.Add("Tatlı");
-                comboBox1.Items.Add("Ara Yemek");
-
-                // Malzemeleri çekmek için Malzemeler sınıfından bir nesne oluştur
-                MalzemeMethodları malzeme = new MalzemeMethodları();
-                List<string> malzemeListesi = malzeme.GetMalzemeler(); // Malzemeleri getir
-
-                // Malzemeleri FlowLayoutPanel'e ekle
-                flowLayoutPanel1.Controls.Clear(); // Önce mevcut kontrolleri temizle
-
-                foreach (string m in malzemeListesi)
-                {
-                    // Seçim için CheckBox
-                    CheckBox malzemeCheckBox = new CheckBox();
-                    malzemeCheckBox.Text = m;
-                    malzemeCheckBox.AutoSize = true;
-
-                    // Miktar giriş alanı
-                    NumericUpDown miktarNumericUpDown = new NumericUpDown();
-                    miktarNumericUpDown.Minimum = 0;
-                    miktarNumericUpDown.DecimalPlaces = 2; // İstenirse ondalık basamak sayısını ayarlayın
-                    miktarNumericUpDown.Width = 60; // Genişliği ayarlayın
-
-                    // Birim yazısı
-                    Label birimLabel = new Label();
-                    birimLabel.Text = "g"; // Örneğin gram cinsinden
-                    birimLabel.AutoSize = true;
-
-                    // Kontrolleri FlowLayoutPanel'e ekle
-                    listView1.Controls.Add(malzemeCheckBox);
-                    listView1.Controls.Add(miktarNumericUpDown);
-                    listView1.Controls.Add(birimLabel);
-                */
-
             }
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -117,6 +80,7 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             List<Kullanilan_Malzeme> kullanilanMalzemeler = new List<Kullanilan_Malzeme>();
 
             // Seçilen malzemeleri ve miktarları al
@@ -148,42 +112,15 @@ namespace Yazlab_1
             // Tarif ekleme işlemini yap
             Tarif_Ekleme tarifEkleme = new Tarif_Ekleme();
             tarifEkleme.TarifVeMalzemeleriEkle(tarifAdi, kategori, hazirlamaSuresi, talimatlar, kullanilanMalzemeler);
+
+            // Tarif eklendikten sonra formu kapat
+            this.Close();
+
+            // Ana Sayfa'daki tarifleri güncelle
+            anaSayfaForm.LoadTarifler();
         }
-        /*
-        List<Kullanilan_Malzeme> kullanilanMalzemeler = new List<Kullanilan_Malzeme>();
+        
 
-        // Seçilen malzemeleri ve miktarları al
-        for (int i = 0; i < flowLayoutPanel1.Controls.Count; i += 3) // Her malzeme için 3 kontrol var
-        {
-            CheckBox malzemeCheckBox = (CheckBox)flowLayoutPanel1.Controls[i];
-            NumericUpDown miktarNumericUpDown = (NumericUpDown)flowLayoutPanel1.Controls[i + 1];
-
-            // Eğer malzeme seçildiyse
-            if (malzemeCheckBox.Checked)
-            {
-                string malzemeAdi = malzemeCheckBox.Text;
-                float miktar = (float)miktarNumericUpDown.Value; // Miktarı al
-                int malzemeID = malzeme.GetMalzemeID(malzemeAdi); // Malzeme ID'sini al
-
-                if (miktar > 0)
-                {
-                    kullanilanMalzemeler.Add(new Kullanilan_Malzeme(malzemeID, miktar));
-                }
-            }
-        }
-
-        // Tarif bilgilerini al
-        string tarifAdi = textBox1.Text;
-        string kategori = comboBox1.SelectedItem?.ToString() ?? "";
-        int hazirlamaSuresi = (int)numericUpDown1.Value;
-        string talimatlar = richTextBox1.Text;
-
-        // Tarif ekleme işlemini yap
-        Tarif_Ekleme tarifEkleme = new Tarif_Ekleme();
-        tarifEkleme.TarifVeMalzemeleriEkle(tarifAdi, kategori, hazirlamaSuresi, talimatlar, kullanilanMalzemeler);
-    }
-        */
-   
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -211,7 +148,12 @@ namespace Yazlab_1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Bu formu gizle (kapatmak yerine)
+            this.Close();
 
+            // Ana Sayfa formuna geri dön
+            Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme();
+            malzemeEklemeForm.Show();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -227,6 +169,12 @@ namespace Yazlab_1
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tarifeklemegeri_Click(object sender, EventArgs e)
+        {
+            // Bu formu gizle (kapatmak yerine)
+            this.Close();
         }
     }
 }

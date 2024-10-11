@@ -19,15 +19,13 @@ namespace Yazlab_1
             malzeme = new MalzemeMethodları();
         }
 
-
-
         private void Malzeme_Ekleme_Load_1(object sender, EventArgs e)
         {
-           
+
             comboBox1.Items.Add("gram");
             comboBox1.Items.Add("mililitre");
         }
-       private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -62,7 +60,18 @@ namespace Yazlab_1
             {
                 MessageBox.Show("Lütfen malzeme adı ve birim seçin."); // Hata mesajı
             }
+
+            // Bu formu kapat
+            this.Close();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Bu formu kapat
+            this.Close();
+
         }
     }
-    }
+}
 

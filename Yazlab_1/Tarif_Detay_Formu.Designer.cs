@@ -58,6 +58,7 @@
             button1.TabIndex = 0;
             button1.Text = "Geri";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -69,6 +70,7 @@
             button2.TabIndex = 1;
             button2.Text = "Yap";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // pictureBox1
             // 

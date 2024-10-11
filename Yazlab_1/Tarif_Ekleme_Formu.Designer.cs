@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             textBox1 = new TextBox();
             numericUpDown1 = new NumericUpDown();
             richTextBox1 = new RichTextBox();
             comboBox1 = new ComboBox();
+            tarifMethodlarıBindingSource = new BindingSource(components);
             tarifekle = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
             MalzemeEkleme = new Button();
@@ -41,6 +43,7 @@
             label3 = new Label();
             label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tarifMethodlarıBindingSource).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -79,11 +82,16 @@
             comboBox1.BackColor = Color.RosyBrown;
             comboBox1.Font = new Font("Segoe UI", 10F);
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Tatlı", "Ana Yemek", "Ara Yemek", "Çorba", "Salata" });
             comboBox1.Location = new Point(226, 131);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(245, 31);
             comboBox1.TabIndex = 4;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // tarifMethodlarıBindingSource
+            // 
+            tarifMethodlarıBindingSource.DataSource = typeof(TarifMethodları);
             // 
             // tarifekle
             // 
@@ -128,6 +136,7 @@
             tarifeklemegeri.TabIndex = 10;
             tarifeklemegeri.Text = "Geri";
             tarifeklemegeri.UseVisualStyleBackColor = false;
+            tarifeklemegeri.Click += tarifeklemegeri_Click;
             // 
             // label1
             // 
@@ -194,6 +203,7 @@
             Text = "Tarif Ekleme";
             Load += Tarif_Ekleme_Formu_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tarifMethodlarıBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -212,5 +222,6 @@
         private Label label2;
         private Label label3;
         private Label label5;
+        private BindingSource tarifMethodlarıBindingSource;
     }
 }

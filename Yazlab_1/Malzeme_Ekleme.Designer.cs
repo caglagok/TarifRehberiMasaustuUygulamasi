@@ -135,6 +135,7 @@
             button2.TabIndex = 9;
             button2.Text = "Geri";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // Malzeme_Ekleme
             // 
