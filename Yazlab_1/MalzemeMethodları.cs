@@ -49,8 +49,29 @@ namespace Yazlab_1
                 }
             }
         }
-        public List<string> GetMalzemeler()
+        public List<Malzemeler> GetMalzemeler()
         {
+            List<Malzemeler> malzemeListesi = new List<Malzemeler>();
+            using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
+            {
+                connection.Open();
+                string query = "SELECT MalzemeAdi, MalzemeBirim FROM Malzemeler ORDER BY MalzemeAdi";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Malzemeler malzeme = new Malzemeler
+                        {
+                            MalzemeAdi = reader["MalzemeAdi"].ToString(),
+                            MalzemeBirim = reader["MalzemeBirim"].ToString()
+                        };
+                        malzemeListesi.Add(malzeme);
+                    }
+                }
+            }
+            return malzemeListesi;
+            /*
             List<string> malzemeListesi = new List<string>();
             using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
             {
@@ -67,6 +88,7 @@ namespace Yazlab_1
                 }
             }
             return malzemeListesi; // Malzeme listesini döndür
+            */
         }
         public int GetMalzemeID(string malzemeAdi)
         {

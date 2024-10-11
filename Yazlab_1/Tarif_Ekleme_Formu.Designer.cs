@@ -33,7 +33,7 @@
             numericUpDown1 = new NumericUpDown();
             richTextBox1 = new RichTextBox();
             comboBox1 = new ComboBox();
-            numericUpDown2 = new NumericUpDown();
+            tarifMethodlarıBindingSource = new BindingSource(components);
             tarifekle = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
             MalzemeEkleme = new Button();
@@ -41,12 +41,9 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            label4 = new Label();
             label5 = new Label();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            listView1 = new ListView();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tarifMethodlarıBindingSource).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -73,9 +70,9 @@
             // 
             richTextBox1.BackColor = Color.RosyBrown;
             richTextBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 162);
-            richTextBox1.Location = new Point(226, 224);
+            richTextBox1.Location = new Point(226, 185);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(245, 137);
+            richTextBox1.Size = new Size(245, 176);
             richTextBox1.TabIndex = 2;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -85,21 +82,16 @@
             comboBox1.BackColor = Color.RosyBrown;
             comboBox1.Font = new Font("Segoe UI", 10F);
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Tatlı", "Ana Yemek", "Ara Yemek", "Çorba", "Salata" });
             comboBox1.Location = new Point(226, 131);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(245, 31);
             comboBox1.TabIndex = 4;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // numericUpDown2
+            // tarifMethodlarıBindingSource
             // 
-            numericUpDown2.BackColor = Color.RosyBrown;
-            numericUpDown2.Font = new Font("Segoe UI", 10F);
-            numericUpDown2.Location = new Point(226, 176);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(245, 30);
-            numericUpDown2.TabIndex = 5;
-            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
+            tarifMethodlarıBindingSource.DataSource = typeof(TarifMethodları);
             // 
             // tarifekle
             // 
@@ -116,9 +108,9 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackColor = Color.RosyBrown;
-            flowLayoutPanel1.Location = new Point(510, 110);
+            flowLayoutPanel1.Location = new Point(528, 115);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(366, 173);
+            flowLayoutPanel1.Size = new Size(364, 246);
             flowLayoutPanel1.TabIndex = 8;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -144,6 +136,7 @@
             tarifeklemegeri.TabIndex = 10;
             tarifeklemegeri.Text = "Geri";
             tarifeklemegeri.UseVisualStyleBackColor = false;
+            tarifeklemegeri.Click += tarifeklemegeri_Click;
             // 
             // label1
             // 
@@ -177,40 +170,15 @@
             label3.TabIndex = 13;
             label3.Text = "Kategori:";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F);
-            label4.Location = new Point(120, 171);
-            label4.Name = "label4";
-            label4.Size = new Size(86, 28);
-            label4.TabIndex = 14;
-            label4.Text = "Maliyeti:";
-            // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F);
-            label5.Location = new Point(101, 220);
+            label5.Location = new Point(101, 181);
             label5.Name = "label5";
             label5.Size = new Size(105, 28);
             label5.TabIndex = 15;
             label5.Text = "Hazırlanışı:";
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
-            // listView1
-            // 
-            listView1.Location = new Point(837, 478);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(348, 247);
-            listView1.TabIndex = 18;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // Tarif_Ekleme_Formu
             // 
@@ -218,9 +186,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
             ClientSize = new Size(1233, 726);
-            Controls.Add(listView1);
             Controls.Add(label5);
-            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -228,7 +194,6 @@
             Controls.Add(MalzemeEkleme);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(tarifekle);
-            Controls.Add(numericUpDown2);
             Controls.Add(comboBox1);
             Controls.Add(richTextBox1);
             Controls.Add(numericUpDown1);
@@ -238,7 +203,7 @@
             Text = "Tarif Ekleme";
             Load += Tarif_Ekleme_Formu_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tarifMethodlarıBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -249,7 +214,6 @@
         private NumericUpDown numericUpDown1;
         private RichTextBox richTextBox1;
         private ComboBox comboBox1;
-        private NumericUpDown numericUpDown2;
         private Button tarifekle;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button MalzemeEkleme;
@@ -257,9 +221,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
         private Label label5;
-        private ContextMenuStrip contextMenuStrip1;
-        private ListView listView1;
+        private BindingSource tarifMethodlarıBindingSource;
     }
 }

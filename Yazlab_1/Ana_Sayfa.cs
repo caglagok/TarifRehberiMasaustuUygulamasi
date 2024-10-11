@@ -16,17 +16,17 @@ namespace Yazlab_1
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadTarifler();
-         
+
         }
 
-        private void LoadTarifler()
+        public void LoadTarifler()
         {
             List<Tarifler> tariflerList = TarifMethodlarý.GetTarifler();
 
             // Tarifleri DataGridView'e baðla
             dataGridView1.DataSource = tariflerList;
 
-           
+
 
             // MaliyetHesaplama sýnýfýndan bir nesne oluþtur
             MaliyetHesaplama maliyetHesaplama = new MaliyetHesaplama();
@@ -63,15 +63,17 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu(this); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
+            tarifEklemeFormu.Show();
 
-            Tarif_Ekleme_Formu tarifEkleForm = new Tarif_Ekleme_Formu();
-            tarifEkleForm.ShowDialog();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+
             Malzeme_Ekleme malzemeEkleForm = new Malzeme_Ekleme();
             malzemeEkleForm.ShowDialog();
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -176,6 +178,11 @@ namespace Yazlab_1
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
