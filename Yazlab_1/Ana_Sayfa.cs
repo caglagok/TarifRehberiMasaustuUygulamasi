@@ -34,7 +34,6 @@ namespace Yazlab_1
         {
             List<Tarifler> tariflerList = TarifMethodlarý.GetTarifler();
 
-            // Tarifleri DataGridView'e baðla
             dataGridView1.DataSource = tariflerList;
         }
 

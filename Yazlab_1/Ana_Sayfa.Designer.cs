@@ -61,7 +61,7 @@
             // 
             tarif_ekle.BackColor = Color.IndianRed;
             tarif_ekle.Font = new Font("Segoe UI", 12F);
-            tarif_ekle.Location = new Point(1042, 14);
+            tarif_ekle.Location = new Point(1078, 201);
             tarif_ekle.Name = "tarif_ekle";
             tarif_ekle.Size = new Size(168, 71);
             tarif_ekle.TabIndex = 0;
@@ -72,11 +72,12 @@
             // button1
             // 
             button1.BackColor = Color.IndianRed;
-            button1.Location = new Point(815, 489);
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.Location = new Point(1078, 291);
             button1.Name = "button1";
             button1.Size = new Size(168, 71);
             button1.TabIndex = 1;
-            button1.Text = "Malzeme Ekle????";
+            button1.Text = "Malzeme Ekle";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_1;
             // 
@@ -116,7 +117,7 @@
             // treeView1
             // 
             treeView1.BackColor = Color.RosyBrown;
-            treeView1.Location = new Point(1042, 161);
+            treeView1.Location = new Point(766, 163);
             treeView1.Name = "treeView1";
             treeNode1.Name = "Tatli";
             treeNode1.Text = "Tatlı";
@@ -145,7 +146,7 @@
             treeNode13.Name = "MaliyetAralıgı";
             treeNode13.Text = "Maliyet Aralığı";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode6, treeNode9, treeNode13 });
-            treeView1.Size = new Size(204, 322);
+            treeView1.Size = new Size(257, 322);
             treeView1.TabIndex = 3;
             treeView1.AfterSelect += treeView1_AfterSelect;
             // 
@@ -183,7 +184,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.IndianRed;
             label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(1042, 121);
+            label1.Location = new Point(766, 122);
             label1.Name = "label1";
             label1.Size = new Size(98, 28);
             label1.TabIndex = 12;
@@ -195,7 +196,7 @@
             comboBox1.BackColor = Color.RosyBrown;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Süreye göre Artan-Azalan", "Süreye göre Azalan-Artan", "Maliyete göre Artan-Azalan", "Maliyete göre Azalan-Artan" });
-            comboBox1.Location = new Point(762, 161);
+            comboBox1.Location = new Point(766, 550);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(257, 28);
             comboBox1.TabIndex = 9;
@@ -205,7 +206,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.IndianRed;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(762, 121);
+            label2.Location = new Point(766, 508);
             label2.Name = "label2";
             label2.Size = new Size(87, 28);
             label2.TabIndex = 13;

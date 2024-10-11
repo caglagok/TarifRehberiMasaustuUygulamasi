@@ -146,5 +146,10 @@ namespace Yazlab_1
         {
 
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

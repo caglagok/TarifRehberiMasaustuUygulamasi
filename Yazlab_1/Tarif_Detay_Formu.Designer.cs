@@ -50,7 +50,7 @@
             // 
             button1.BackColor = Color.IndianRed;
             button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(604, 633);
+            button1.Location = new Point(595, 597);
             button1.Name = "button1";
             button1.Size = new Size(94, 37);
             button1.TabIndex = 0;
@@ -61,7 +61,7 @@
             // 
             button2.BackColor = Color.IndianRed;
             button2.Font = new Font("Segoe UI", 12F);
-            button2.Location = new Point(776, 633);
+            button2.Location = new Point(803, 597);
             button2.Name = "button2";
             button2.Size = new Size(94, 37);
             button2.TabIndex = 1;
