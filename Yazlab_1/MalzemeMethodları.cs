@@ -70,17 +70,26 @@ namespace Yazlab_1
         }
         public int GetMalzemeID(string malzemeAdi)
         {
-            using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
+            using (SqlConnection connection = dbHelper.GetConnection())
             {
-                connection.Open();
                 string query = "SELECT MalzemeID FROM Malzemeler WHERE MalzemeAdi = @MalzemeAdi";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@MalzemeAdi", malzemeAdi);
+                    connection.Open();
+
                     object result = command.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : -1; // Bulamazsa -1 döner
+                    if (result != null)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        throw new Exception("Malzeme bulunamadı: " + malzemeAdi);
+                    }
                 }
             }
         }
+
     }
 }

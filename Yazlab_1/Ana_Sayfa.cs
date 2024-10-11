@@ -15,27 +15,35 @@ namespace Yazlab_1
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadTarifler();
-            DataGridViewButtonColumn silButon = new DataGridViewButtonColumn();
-            silButon.Name = "Sil";
-            silButon.HeaderText = "Sil";
-            silButon.Text = "Sil";
-            silButon.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(silButon);
 
-            DataGridViewButtonColumn guncelleButon = new DataGridViewButtonColumn();
-            guncelleButon.Name = "Guncelle";
-            guncelleButon.HeaderText = "Güncelle";
-            guncelleButon.Text = "Güncelle";
-            guncelleButon.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(guncelleButon);
         }
 
         private void LoadTarifler()
         {
             List<Tarifler> tariflerList = TarifMethodlarý.GetTarifler();
 
-            // Tarifleri DataGridView'e baðla
+            // Eðer liste boþsa, kullanýcýyý bilgilendir
+            if (tariflerList.Count == 0)
+            {
+                MessageBox.Show("Veritabanýnda hiç tarif yok!");
+                return;
+            }
+
+            // DataGridView'ýn veri kaynaðýný ayarla
             dataGridView1.DataSource = tariflerList;
+
+            // DataGridView'da sadece gerekli sütunlarý göster
+            dataGridView1.Columns["TarifAdi"].HeaderText = "Tarif Adý"; // Sütun baþlýðýný deðiþtir
+            dataGridView1.Columns["HazirlamaSuresi"].HeaderText = "Hazýrlama Süresi (dk)"; // Sütun baþlýðýný deðiþtir
+
+            // Diðer sütunlarý gizle
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                if (column.Name != "TarifAdi" && column.Name != "HazirlamaSuresi")
+                {
+                    column.Visible = false; // Sadece istenen sütunlarý göster
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,20 +61,7 @@ namespace Yazlab_1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dataGridView1.Columns["Sil"].Index && e.RowIndex >= 0)
-            {
-                // Seçilen satýrdaki TarifID'yi al
-                int tarifID = (int)dataGridView1.Rows[e.RowIndex].Cells["TarifID"].Value;
-
-                var result = MessageBox.Show("Bu tarifi silmek istediðinize emin misiniz?", "Silme Onayý", MessageBoxButtons.YesNo);
-
-                if (result == DialogResult.Yes)
-                {
-                    TarifMethodlarý.TarifSil(tarifID); // Tarif silme iþlemini yap
-                    MessageBox.Show("Tarif baþarýyla silindi.");
-                    LoadTarifler(); // Listeyi güncelle
-                }
-            }
+       
 
 
         }
@@ -95,10 +90,20 @@ namespace Yazlab_1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // TextBox'taki arama terimini al
+            string searchTerm = textBox1.Text.Trim();
 
+            // Arama fonksiyonunu çaðýr ve sonucu DataGridView'e baðla
+            List<Tarifler> aramaSonuclari = TarifMethodlarý.SearchTarifler(searchTerm);
+            dataGridView1.DataSource = aramaSonuclari;
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -16,9 +16,9 @@ namespace Yazlab_1
 
             using (SqlConnection connection = dbHelper.GetConnection())
             {
-                string query = "SELECT TarifID, TarifAdi, Kategori, HazirlamaSuresi, Talimatlar FROM Tarifler";
-                SqlCommand command = new SqlCommand(query, connection);
+                string query = "SELECT TarifAdi, HazirlamaSuresi FROM Tarifler";
 
+                SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -26,11 +26,8 @@ namespace Yazlab_1
                 {
                     Tarifler tarif = new Tarifler
                     {
-                        TarifID = reader.GetInt32(0),
-                        TarifAdi = reader.GetString(1),
-                        Kategori = reader.GetString(2),
-                        HazirlamaSuresi = reader.GetInt32(3),
-                        Talimatlar = reader.GetString(4)
+                        TarifAdi = reader.GetString(0),
+                        HazirlamaSuresi = reader.GetInt32(1),
                     };
 
                     tariflerList.Add(tarif);
@@ -83,8 +80,74 @@ namespace Yazlab_1
                 }
             }
         }
-      
+        public static List<Tarifler> SearchTarifler(string searchTerm)
+        {
+            List<Tarifler> tariflerList = new List<Tarifler>();
+            DatabaseHelper dbHelper = new DatabaseHelper();
 
+            using (SqlConnection connection = dbHelper.GetConnection())
+            {
+                // Tarifler ve Malzemeler arasında ilişki kuran sorgu
+                string query = @"
+            SELECT t.TarifID, t.TarifAdi, t.HazirlamaSuresi, 
+                   m.MalzemeID, m.MalzemeAdi, tm.MalzemeMiktar,
+                   CASE 
+                     WHEN t.TarifAdi LIKE @SearchTerm THEN 1 
+                     ELSE 2 
+                   END AS SortOrder
+            FROM Tarifler t
+            LEFT JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
+            LEFT JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+            WHERE t.TarifAdi LIKE @SearchTerm OR m.MalzemeAdi LIKE @SearchTerm
+            ORDER BY SortOrder ASC, t.TarifAdi ASC";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    // Tarif bilgilerini al
+                    int tarifID = reader.GetInt32(0);
+                    string tarifAdi = reader.GetString(1);
+                    int hazirlamaSuresi = reader.GetInt32(2);
+
+                    // Malzeme bilgilerini al
+                    Malzemeler malzeme = new Malzemeler
+                    {
+                        MalzemeID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3), // MalzemeID
+                        MalzemeAdi = reader.IsDBNull(4) ? "" : reader.GetString(4), // MalzemeAdi
+                       
+                    };
+
+                    // Eğer tarif daha önce listede yoksa ekle
+                    var tarif = tariflerList.FirstOrDefault(t => t.TarifID == tarifID);
+                    if (tarif == null)
+                    {
+                        tarif = new Tarifler
+                        {
+                            TarifID = tarifID,
+                            TarifAdi = tarifAdi,
+                            HazirlamaSuresi = hazirlamaSuresi,
+                            Malzemeler = new List<Malzemeler>()
+                        };
+                        tariflerList.Add(tarif);
+                    }
+
+                    // Malzemeyi tarifin malzeme listesine ekle
+                    if (malzeme.MalzemeID != 0) // Eğer malzeme mevcutsa
+                    {
+                        tarif.Malzemeler.Add(malzeme);
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return tariflerList;
+        }
 
     }
 }
