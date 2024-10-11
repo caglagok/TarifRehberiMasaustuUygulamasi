@@ -12,9 +12,30 @@ namespace Yazlab_1
 {
     public partial class Tarif_Detay_Formu : Form
     {
+        public int TarifID { get; set; } // TarifID özelliği
         public Tarif_Detay_Formu()
         {
             InitializeComponent();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // Silmek istediğin tarifin ID'sini kullanarak TarifSil metodunu çağır
+            TarifMethodları.TarifSil(TarifID);
+
+            // Silme işleminden sonra formu güncelleyin veya başka bir işlem yapın
+            MessageBox.Show("Tarif başarıyla silindi.");
+            this.Close(); // İsterseniz formu kapatabilirsiniz
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

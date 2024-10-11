@@ -44,9 +44,6 @@
             tarif_ekle = new Button();
             button1 = new Button();
             dataGridView1 = new DataGridView();
-            Tarifler = new DataGridViewTextBoxColumn();
-            Süre = new DataGridViewTextBoxColumn();
-            TotalMaliyet = new DataGridViewTextBoxColumn();
             treeView1 = new TreeView();
             textBox1 = new TextBox();
             Ara = new Button();
@@ -85,34 +82,12 @@
             // 
             dataGridView1.BackgroundColor = Color.RosyBrown;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Tarifler, Süre, TotalMaliyet });
             dataGridView1.Location = new Point(12, 121);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(735, 629);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // Tarifler
-            // 
-            Tarifler.HeaderText = "Tarifler";
-            Tarifler.MinimumWidth = 8;
-            Tarifler.Name = "Tarifler";
-            Tarifler.Width = 300;
-            // 
-            // Süre
-            // 
-            Süre.HeaderText = "Süre";
-            Süre.MinimumWidth = 8;
-            Süre.Name = "Süre";
-            Süre.Width = 190;
-            // 
-            // TotalMaliyet
-            // 
-            TotalMaliyet.HeaderText = "Total Maliyet";
-            TotalMaliyet.MinimumWidth = 8;
-            TotalMaliyet.Name = "TotalMaliyet";
-            TotalMaliyet.Width = 190;
             // 
             // treeView1
             // 
@@ -248,9 +223,6 @@
         private Button button2;
         private Label label1;
         private ComboBox comboBox1;
-        private DataGridViewTextBoxColumn Tarifler;
-        private DataGridViewTextBoxColumn Süre;
-        private DataGridViewTextBoxColumn TotalMaliyet;
         private Label label2;
     }
 }

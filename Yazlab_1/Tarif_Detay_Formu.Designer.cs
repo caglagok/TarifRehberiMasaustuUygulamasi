@@ -41,6 +41,8 @@
             Miktar = new DataGridViewTextBoxColumn();
             BirimFiyatı = new DataGridViewTextBoxColumn();
             numericUpDown1 = new NumericUpDown();
+            button3 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -50,9 +52,9 @@
             // 
             button1.BackColor = Color.IndianRed;
             button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(595, 597);
+            button1.Location = new Point(595, 589);
             button1.Name = "button1";
-            button1.Size = new Size(94, 37);
+            button1.Size = new Size(94, 45);
             button1.TabIndex = 0;
             button1.Text = "Geri";
             button1.UseVisualStyleBackColor = false;
@@ -61,9 +63,9 @@
             // 
             button2.BackColor = Color.IndianRed;
             button2.Font = new Font("Segoe UI", 12F);
-            button2.Location = new Point(803, 597);
+            button2.Location = new Point(803, 589);
             button2.Name = "button2";
-            button2.Size = new Size(94, 37);
+            button2.Size = new Size(94, 45);
             button2.TabIndex = 1;
             button2.Text = "Yap";
             button2.UseVisualStyleBackColor = false;
@@ -71,11 +73,12 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.RosyBrown;
-            pictureBox1.Location = new Point(595, 112);
+            pictureBox1.Location = new Point(595, 141);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(302, 370);
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // label1
             // 
@@ -139,6 +142,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(428, 226);
             dataGridView1.TabIndex = 9;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Malzeme
             // 
@@ -169,12 +173,37 @@
             numericUpDown1.Size = new Size(186, 27);
             numericUpDown1.TabIndex = 11;
             // 
+            // button3
+            // 
+            button3.BackColor = Color.IndianRed;
+            button3.Font = new Font("Segoe UI", 12F);
+            button3.Location = new Point(781, 45);
+            button3.Name = "button3";
+            button3.Size = new Size(116, 64);
+            button3.TabIndex = 12;
+            button3.Text = "Tarifi Sil";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.IndianRed;
+            button4.Font = new Font("Segoe UI", 10F);
+            button4.Location = new Point(595, 47);
+            button4.Name = "button4";
+            button4.Size = new Size(116, 64);
+            button4.TabIndex = 13;
+            button4.Text = "Tarifi Güncelle";
+            button4.UseVisualStyleBackColor = false;
+            // 
             // Tarif_Detay_Formu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
             ClientSize = new Size(945, 731);
+            Controls.Add(button4);
+            Controls.Add(button3);
             Controls.Add(numericUpDown1);
             Controls.Add(dataGridView1);
             Controls.Add(label4);
@@ -209,5 +238,7 @@
         private DataGridViewTextBoxColumn Miktar;
         private DataGridViewTextBoxColumn BirimFiyatı;
         private NumericUpDown numericUpDown1;
+        private Button button3;
+        private Button button4;
     }
 }
