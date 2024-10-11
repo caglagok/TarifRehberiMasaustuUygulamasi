@@ -59,29 +59,31 @@
             // 
             // tarif_ekle
             // 
-            tarif_ekle.BackColor = Color.LightSeaGreen;
-            tarif_ekle.Location = new Point(1042, 12);
+            tarif_ekle.BackColor = Color.IndianRed;
+            tarif_ekle.Font = new Font("Segoe UI", 12F);
+            tarif_ekle.Location = new Point(1078, 201);
             tarif_ekle.Name = "tarif_ekle";
-            tarif_ekle.Size = new Size(102, 71);
+            tarif_ekle.Size = new Size(168, 71);
             tarif_ekle.TabIndex = 0;
-            tarif_ekle.Text = "+Tarif Ekle";
+            tarif_ekle.Text = "Yeni Tarif Ekle";
             tarif_ekle.UseVisualStyleBackColor = false;
             tarif_ekle.Click += button1_Click;
             // 
             // button1
             // 
-            button1.BackColor = Color.LightSeaGreen;
-            button1.Location = new Point(1144, 12);
+            button1.BackColor = Color.IndianRed;
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.Location = new Point(1078, 291);
             button1.Name = "button1";
-            button1.Size = new Size(102, 71);
+            button1.Size = new Size(168, 71);
             button1.TabIndex = 1;
-            button1.Text = "+Malzeme Ekle";
+            button1.Text = "Malzeme Ekle";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_1;
             // 
             // dataGridView1
             // 
-            dataGridView1.BackgroundColor = Color.DarkSeaGreen;
+            dataGridView1.BackgroundColor = Color.RosyBrown;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Tarifler, Süre, TotalMaliyet });
             dataGridView1.Location = new Point(12, 121);
@@ -114,8 +116,8 @@
             // 
             // treeView1
             // 
-            treeView1.BackColor = Color.DarkSeaGreen;
-            treeView1.Location = new Point(1042, 161);
+            treeView1.BackColor = Color.RosyBrown;
+            treeView1.Location = new Point(766, 163);
             treeView1.Name = "treeView1";
             treeNode1.Name = "Tatli";
             treeNode1.Text = "Tatlı";
@@ -144,12 +146,13 @@
             treeNode13.Name = "MaliyetAralıgı";
             treeNode13.Text = "Maliyet Aralığı";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode6, treeNode9, treeNode13 });
-            treeView1.Size = new Size(204, 322);
+            treeView1.Size = new Size(257, 322);
             treeView1.TabIndex = 3;
             treeView1.AfterSelect += treeView1_AfterSelect;
             // 
             // textBox1
             // 
+            textBox1.BackColor = Color.RosyBrown;
             textBox1.Location = new Point(68, 56);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(322, 27);
@@ -157,7 +160,7 @@
             // 
             // Ara
             // 
-            Ara.BackColor = Color.LightSeaGreen;
+            Ara.BackColor = Color.IndianRed;
             Ara.Location = new Point(414, 56);
             Ara.Name = "Ara";
             Ara.Size = new Size(127, 29);
@@ -168,10 +171,10 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.LightSeaGreen;
-            button2.Location = new Point(1042, 515);
+            button2.BackColor = Color.IndianRed;
+            button2.Location = new Point(1133, 695);
             button2.Name = "button2";
-            button2.Size = new Size(94, 43);
+            button2.Size = new Size(113, 55);
             button2.TabIndex = 6;
             button2.Text = "Geri";
             button2.UseVisualStyleBackColor = false;
@@ -179,9 +182,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.LightSeaGreen;
+            label1.BackColor = Color.IndianRed;
             label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(1042, 121);
+            label1.Location = new Point(766, 122);
             label1.Name = "label1";
             label1.Size = new Size(98, 28);
             label1.TabIndex = 12;
@@ -190,20 +193,21 @@
             // 
             // comboBox1
             // 
+            comboBox1.BackColor = Color.RosyBrown;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Süreye göre Artan-Azalan", "Süreye göre Azalan-Artan", "Maliyete göre Artan-Azalan", "Maliyete göre Azalan-Artan" });
-            comboBox1.Location = new Point(762, 161);
+            comboBox1.Location = new Point(766, 550);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(257, 28);
             comboBox1.TabIndex = 9;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.LightSeaGreen;
+            label2.BackColor = Color.IndianRed;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(762, 121);
+            label2.Location = new Point(766, 508);
             label2.Name = "label2";
             label2.Size = new Size(87, 28);
             label2.TabIndex = 13;
@@ -213,7 +217,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightCyan;
+            BackColor = Color.Linen;
             ClientSize = new Size(1258, 793);
             Controls.Add(label2);
             Controls.Add(comboBox1);
@@ -226,7 +230,8 @@
             Controls.Add(button1);
             Controls.Add(tarif_ekle);
             Name = "Ana_Sayfa";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Anasayfa";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

@@ -16,7 +16,7 @@ namespace Yazlab_1
         public string Talimatlar { get; set; }
         public List<Malzemeler> Malzemeler { get; set; } // Malzemeler sınıfı önceden tanımlanmış olmalı
 
-       
+        public decimal Maliyet { get; set; }
 
     }
 
