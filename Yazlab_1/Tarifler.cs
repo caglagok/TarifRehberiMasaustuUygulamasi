@@ -17,6 +17,7 @@ namespace Yazlab_1
         public List<Malzemeler> Malzemeler { get; set; } // Malzemeler sınıfı önceden tanımlanmış olmalı
 
         public decimal Maliyet { get; set; }
+        public decimal EslestirmeYuzdesi { get; set; } // Eşleşme yüzdesi
 
     }
 

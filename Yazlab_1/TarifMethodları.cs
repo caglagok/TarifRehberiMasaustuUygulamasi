@@ -136,25 +136,33 @@ namespace Yazlab_1
                     string tarifAdi = reader.GetString(1);
                     int hazirlamaSuresi = reader.GetInt32(2);
 
+                    // Malzeme nesnesi oluştur
                     Malzemeler malzeme = new Malzemeler
                     {
                         MalzemeID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
                         MalzemeAdi = reader.IsDBNull(4) ? "" : reader.GetString(4),
                     };
 
+                    // Tarif nesnesini kontrol et
                     var tarif = tariflerList.FirstOrDefault(t => t.TarifID == tarifID);
                     if (tarif == null)
                     {
+                        // Yeni tarif nesnesi oluştur
                         tarif = new Tarifler
                         {
                             TarifID = tarifID,
                             TarifAdi = tarifAdi,
                             HazirlamaSuresi = hazirlamaSuresi,
-                            Malzemeler = new List<Malzemeler>()
+                            Malzemeler = new List<Malzemeler>() // Malzemeler listesini başlat
                         };
+
+                        // Maliyet hesapla ve tarif nesnesine ekle
+                        tarif.Maliyet = maliyetHesaplama.TarifMaliyetiHesapla(tarifID);
+
                         tariflerList.Add(tarif);
                     }
 
+                    // Eğer malzeme mevcutsa, tarifin malzemeler listesine ekle
                     if (malzeme.MalzemeID != 0)
                     {
                         tarif.Malzemeler.Add(malzeme);
@@ -162,13 +170,6 @@ namespace Yazlab_1
                 }
 
                 connection.Close();
-            }
-
-            // Maliyet hesapla ve tarifleri sıralama yap
-            foreach (var tarif in tariflerList)
-            {
-                decimal maliyet = maliyetHesaplama.TarifMaliyetiHesapla(tarif.TarifID);
-                tarif.Maliyet = maliyet;
             }
 
             // Maliyet aralığı filtresi
@@ -215,7 +216,60 @@ namespace Yazlab_1
         }
 
 
+        public void TarifDetaylariniGetir(int tarifID, DataGridView dataGridView1, RichTextBox richTextBox1, TextBox textBox1)
+        {
+            DatabaseHelper dbHelper = new DatabaseHelper();
 
+            using (SqlConnection connection = dbHelper.GetConnection())
+            {
+                // 1. Malzemeleri ve miktarları getir
+                string malzemeQuery = @"
+                SELECT m.MalzemeAdi, tm.MalzemeMiktar, m.BirimFiyat 
+                FROM TarifMalzeme tm
+                JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+                WHERE tm.TarifID = @TarifID";
 
+                SqlCommand malzemeCommand = new SqlCommand(malzemeQuery, connection);
+                malzemeCommand.Parameters.AddWithValue("@TarifID", tarifID);
+
+                connection.Open();
+                SqlDataReader reader = malzemeCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string malzemeAdi = reader.GetString(0);
+                    double miktar = reader.GetDouble(1);
+                    decimal birimFiyat = reader.GetDecimal(2);
+
+                    // Malzemeleri ve maliyetlerini DataGridView'e ekle
+                    dataGridView1.Rows.Add(malzemeAdi, miktar, birimFiyat);
+                }
+
+                reader.Close();
+
+                // 2. Talimatları getir
+                string talimatQuery = "SELECT Talimatlar FROM Tarifler WHERE TarifID = @TarifID";
+                SqlCommand talimatCommand = new SqlCommand(talimatQuery, connection);
+                talimatCommand.Parameters.AddWithValue("@TarifID", tarifID);
+
+                string talimatlar = talimatCommand.ExecuteScalar()?.ToString();
+
+                // Talimatları RichTextBox'a ekle
+                if (!string.IsNullOrEmpty(talimatlar))
+                {
+                    richTextBox1.Clear(); // Öncelikle mevcut metni temizle
+                    richTextBox1.AppendText(talimatlar); // Talimatları RichTextBox'a ekle
+                }
+
+                // 3. Toplam maliyeti hesapla ve göster
+                MaliyetHesaplama maliyetHesaplama = new MaliyetHesaplama();
+                decimal toplamMaliyet = maliyetHesaplama.TarifMaliyetiHesapla(tarifID);
+
+                // Toplam maliyeti TextBox'a ekle
+                textBox1.Text = toplamMaliyet.ToString("C"); // Para birimi formatında göster
+
+                connection.Close();
+            }
+        }
     }
 }

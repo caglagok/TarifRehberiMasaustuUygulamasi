@@ -7,15 +7,19 @@ namespace Yazlab_1
 {
     public partial class Ana_Sayfa : Form
     {
+        private MalzemeMethodlarý malzemeMethodlarý; // MalzemeMethodlarý örneði
+
         public Ana_Sayfa()
         {
             InitializeComponent();
+            malzemeMethodlarý = new MalzemeMethodlarý(); // Yeni örneði oluþtur
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadTarifler();
+            LoadMalzemeler();
 
         }
 
@@ -26,40 +30,47 @@ namespace Yazlab_1
             // Tarifleri DataGridView'e baðla
             dataGridView1.DataSource = tariflerList;
 
-
-
             // MaliyetHesaplama sýnýfýndan bir nesne oluþtur
             MaliyetHesaplama maliyetHesaplama = new MaliyetHesaplama();
 
-            // Tariflerin maliyetini hesapla ve yeni sütuna ekle
             for (int i = 0; i < tariflerList.Count; i++)
             {
                 int tarifID = tariflerList[i].TarifID;
-
-                // Tarif ID'yi kontrol et
-                Console.WriteLine($"Tarif ID: {tarifID}");
 
                 // MaliyetHesaplama sýnýfýndan TarifMaliyetiHesapla metodunu çaðýr
                 decimal maliyet = maliyetHesaplama.TarifMaliyetiHesapla(tarifID);
 
                 // Maliyeti ilgili sütuna ekle
                 dataGridView1.Rows[i].Cells["Maliyet"].Value = maliyet;
+
+                // Eþleþme yüzdesini ilgili sütuna ekle
+                dataGridView1.Rows[i].Cells["EslestirmeYuzdesi"].Value = tariflerList[i].EslestirmeYuzdesi;
             }
 
             // DataGridView'da sadece gerekli sütunlarý göster
             dataGridView1.Columns["TarifAdi"].HeaderText = "Tarif Adý"; // Sütun baþlýðýný deðiþtir
             dataGridView1.Columns["HazirlamaSuresi"].HeaderText = "Hazýrlama Süresi (dk)"; // Sütun baþlýðýný deðiþtir
+            dataGridView1.Columns["EslestirmeYuzdesi"].HeaderText = "Eþleþme Yüzdesi"; // Eþleþme yüzdesi sütun baþlýðýný ayarla
 
             // Diðer sütunlarý gizle
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
-                if (column.Name != "TarifAdi" && column.Name != "HazirlamaSuresi" && column.Name != "Maliyet")
+                if (column.Name != "TarifAdi" && column.Name != "HazirlamaSuresi" && column.Name != "Maliyet" && column.Name != "EslestirmeYuzdesi")
                 {
                     column.Visible = false; // Sadece istenen sütunlarý göster
                 }
             }
         }
 
+        private void LoadMalzemeler()
+        {
+            List<Malzemeler> malzemeListesi = malzemeMethodlarý.GetMalzemeler();
+
+            foreach (var malzeme in malzemeListesi)
+            {
+                checkedListBox1.Items.Add(malzeme.MalzemeAdi, false); // Malzemeleri ekle
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -108,7 +119,7 @@ namespace Yazlab_1
                 e.Node.BackColor = Color.LightGray; // Seçildiðinde rengi açýk gri yap
             }
 
-            
+
         }
 
         // Seçilen filtrelere göre tarifleri filtrele
@@ -155,23 +166,60 @@ namespace Yazlab_1
                 selectedCostRanges.Count > 0 ? string.Join(",", selectedCostRanges) : null, // Maliyet aralýðý
                 selectedIngredientRanges.Count > 0 ? string.Join(",", selectedIngredientRanges) : null, // Malzeme sayýsý aralýðý
                 selectedSortOrder // Sýralama kriteri
+               
             );
+
+            // Seçilen malzemeler varsa filtreleme yap
+            if (checkedListBox1.CheckedItems.Count > 0)
+            {
+                // Eðer checkedListBox1 boþsa, boþ bir liste oluþtur
+                List<string> selectedIngredients = checkedListBox1.CheckedItems.Cast<string>().ToList();
+
+                // Sadece seçilen malzemeleri içeren tarifleri filtrele
+                filtrelenmisTarifler = filtrelenmisTarifler
+                    .Where(tarif =>
+                        tarif.Malzemeler.All(m => selectedIngredients.Contains(m.MalzemeAdi) || !selectedIngredients.Contains(m.MalzemeAdi))
+                        && tarif.Malzemeler.Any(m => selectedIngredients.Contains(m.MalzemeAdi))
+                    ).ToList();
+
+                // Eþleþme yüzdesini hesapla ve tarifleri sýrala
+                foreach (var tarif in filtrelenmisTarifler)
+                {
+                    int totalSelectedIngredients = selectedIngredients.Count; // Kullanýcýnýn seçtiði malzeme sayýsý
+                    int matchingIngredients = selectedIngredients.Count(m => tarif.Malzemeler.Any(t => t.MalzemeAdi == m)); // Seçilen malzemelerden tarifte olanlarýn sayýsý
+                    decimal matchingPercentage = totalSelectedIngredients > 0 ? (decimal)matchingIngredients / totalSelectedIngredients * 100 : 0; // Eþleþme yüzdesi
+                    tarif.EslestirmeYuzdesi = matchingPercentage;
+                }
+
+
+                // Yüzdeye göre sýrala
+                filtrelenmisTarifler = filtrelenmisTarifler.OrderByDescending(t => t.EslestirmeYuzdesi).ToList();
+            }
 
             return filtrelenmisTarifler;
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-     
+
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
         }
 
         private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

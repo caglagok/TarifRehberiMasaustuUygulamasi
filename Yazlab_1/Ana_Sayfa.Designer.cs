@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TreeNode treeNode1 = new TreeNode("Tatlı");
-            TreeNode treeNode2 = new TreeNode("Ana yemek");
-            TreeNode treeNode3 = new TreeNode("Çorba");
-            TreeNode treeNode4 = new TreeNode("Salata");
-            TreeNode treeNode5 = new TreeNode("Ara yemek");
-            TreeNode treeNode6 = new TreeNode("Kategori", new TreeNode[] { treeNode1, treeNode2, treeNode3, treeNode4, treeNode5 });
-            TreeNode treeNode7 = new TreeNode("0-5");
-            TreeNode treeNode8 = new TreeNode("5-10");
-            TreeNode treeNode9 = new TreeNode("Malzeme Sayısına Göre", new TreeNode[] { treeNode7, treeNode8 });
-            TreeNode treeNode10 = new TreeNode("0-100 TL");
-            TreeNode treeNode11 = new TreeNode("100-200 TL");
-            TreeNode treeNode12 = new TreeNode("200-300 TL");
-            TreeNode treeNode13 = new TreeNode("Maliyet Aralığı", new TreeNode[] { treeNode10, treeNode11, treeNode12 });
+            TreeNode treeNode14 = new TreeNode("Tatlı");
+            TreeNode treeNode15 = new TreeNode("Ana yemek");
+            TreeNode treeNode16 = new TreeNode("Çorba");
+            TreeNode treeNode17 = new TreeNode("Salata");
+            TreeNode treeNode18 = new TreeNode("Ara yemek");
+            TreeNode treeNode19 = new TreeNode("Kategori", new TreeNode[] { treeNode14, treeNode15, treeNode16, treeNode17, treeNode18 });
+            TreeNode treeNode20 = new TreeNode("0-5");
+            TreeNode treeNode21 = new TreeNode("5-10");
+            TreeNode treeNode22 = new TreeNode("Malzeme Sayısına Göre", new TreeNode[] { treeNode20, treeNode21 });
+            TreeNode treeNode23 = new TreeNode("0-100 TL");
+            TreeNode treeNode24 = new TreeNode("100-200 TL");
+            TreeNode treeNode25 = new TreeNode("200-300 TL");
+            TreeNode treeNode26 = new TreeNode("Maliyet Aralığı", new TreeNode[] { treeNode23, treeNode24, treeNode25 });
             tarif_ekle = new Button();
             button1 = new Button();
             dataGridView1 = new DataGridView();
@@ -51,6 +51,7 @@
             label1 = new Label();
             comboBox1 = new ComboBox();
             label2 = new Label();
+            checkedListBox1 = new CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -94,33 +95,33 @@
             treeView1.BackColor = Color.RosyBrown;
             treeView1.Location = new Point(766, 163);
             treeView1.Name = "treeView1";
-            treeNode1.Name = "Tatli";
-            treeNode1.Text = "Tatlı";
-            treeNode2.Name = "AnaYemek";
-            treeNode2.Text = "Ana yemek";
-            treeNode3.Name = "Corba";
-            treeNode3.Text = "Çorba";
-            treeNode4.Name = "Salata";
-            treeNode4.Text = "Salata";
-            treeNode5.Name = "AraYemek";
-            treeNode5.Text = "Ara yemek";
-            treeNode6.Name = "Kategori";
-            treeNode6.Text = "Kategori";
-            treeNode7.Name = "m05";
-            treeNode7.Text = "0-5";
-            treeNode8.Name = "m510";
-            treeNode8.Text = "5-10";
-            treeNode9.Name = "MalzemeSayisi";
-            treeNode9.Text = "Malzeme Sayısına Göre";
-            treeNode10.Name = "maliyet0100";
-            treeNode10.Text = "0-100 TL";
-            treeNode11.Name = "maliyet100200";
-            treeNode11.Text = "100-200 TL";
-            treeNode12.Name = "maliyet200300";
-            treeNode12.Text = "200-300 TL";
-            treeNode13.Name = "MaliyetAralıgı";
-            treeNode13.Text = "Maliyet Aralığı";
-            treeView1.Nodes.AddRange(new TreeNode[] { treeNode6, treeNode9, treeNode13 });
+            treeNode14.Name = "Tatli";
+            treeNode14.Text = "Tatlı";
+            treeNode15.Name = "AnaYemek";
+            treeNode15.Text = "Ana yemek";
+            treeNode16.Name = "Corba";
+            treeNode16.Text = "Çorba";
+            treeNode17.Name = "Salata";
+            treeNode17.Text = "Salata";
+            treeNode18.Name = "AraYemek";
+            treeNode18.Text = "Ara yemek";
+            treeNode19.Name = "Kategori";
+            treeNode19.Text = "Kategori";
+            treeNode20.Name = "m05";
+            treeNode20.Text = "0-5";
+            treeNode21.Name = "m510";
+            treeNode21.Text = "5-10";
+            treeNode22.Name = "MalzemeSayisi";
+            treeNode22.Text = "Malzeme Sayısına Göre";
+            treeNode23.Name = "maliyet0100";
+            treeNode23.Text = "0-100 TL";
+            treeNode24.Name = "maliyet100200";
+            treeNode24.Text = "100-200 TL";
+            treeNode25.Name = "maliyet200300";
+            treeNode25.Text = "200-300 TL";
+            treeNode26.Name = "MaliyetAralıgı";
+            treeNode26.Text = "Maliyet Aralığı";
+            treeView1.Nodes.AddRange(new TreeNode[] { treeNode19, treeNode22, treeNode26 });
             treeView1.Size = new Size(257, 322);
             treeView1.TabIndex = 3;
             treeView1.AfterSelect += treeView1_AfterSelect;
@@ -189,12 +190,22 @@
             label2.TabIndex = 13;
             label2.Text = "Sıralama";
             // 
+            // checkedListBox1
+            // 
+            checkedListBox1.FormattingEnabled = true;
+            checkedListBox1.Location = new Point(579, 56);
+            checkedListBox1.Name = "checkedListBox1";
+            checkedListBox1.Size = new Size(261, 48);
+            checkedListBox1.TabIndex = 15;
+            checkedListBox1.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
+            // 
             // Ana_Sayfa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
             ClientSize = new Size(1258, 793);
+            Controls.Add(checkedListBox1);
             Controls.Add(label2);
             Controls.Add(comboBox1);
             Controls.Add(label1);
@@ -226,5 +237,6 @@
         private Label label1;
         private ComboBox comboBox1;
         private Label label2;
+        private CheckedListBox checkedListBox1;
     }
 }

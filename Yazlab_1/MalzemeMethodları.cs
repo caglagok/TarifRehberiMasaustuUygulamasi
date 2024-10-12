@@ -112,6 +112,47 @@ namespace Yazlab_1
                 }
             }
         }
+        public void MalzemeSil(string malzemeAdi)
+        {
+            using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
+            {
+                try
+                {
+                    connection.Open(); // Veritabanına bağlan
+                    MessageBox.Show("Veritabanına başarıyla bağlandı."); // Bağlantı kontrolü
+
+                    // Önce TarifMalzeme tablosundan malzemeyi sil
+                    string deleteTarifMalzemeQuery = "DELETE FROM TarifMalzeme WHERE MalzemeID = (SELECT MalzemeID FROM Malzemeler WHERE MalzemeAdi = @MalzemeAdi)";
+                    using (SqlCommand command = new SqlCommand(deleteTarifMalzemeQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@MalzemeAdi", malzemeAdi);
+                        command.ExecuteNonQuery(); // Komutu çalıştır
+                    }
+
+                    // Ardından Malzeme tablosundan malzemeyi sil
+                    string deleteMalzemeQuery = "DELETE FROM Malzemeler WHERE MalzemeAdi = @MalzemeAdi";
+                    using (SqlCommand command = new SqlCommand(deleteMalzemeQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@MalzemeAdi", malzemeAdi);
+                        int result = command.ExecuteNonQuery(); // Komutu çalıştır
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Malzeme başarıyla silindi."); // Başarılı silme
+                        }
+                        else
+                        {
+                            MessageBox.Show("Malzeme silinemedi. Malzeme adı bulunamadı."); // Hata durumu
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message); // Hata mesajı
+                }
+            }
+        }
+
 
     }
 }
