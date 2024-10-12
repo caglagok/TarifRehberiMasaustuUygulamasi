@@ -40,12 +40,12 @@
             Malzeme = new DataGridViewTextBoxColumn();
             Miktar = new DataGridViewTextBoxColumn();
             BirimFiyatı = new DataGridViewTextBoxColumn();
-            numericUpDown1 = new NumericUpDown();
             button3 = new Button();
             button4 = new Button();
+            richTextBox1 = new RichTextBox();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -168,15 +168,6 @@
             BirimFiyatı.Name = "BirimFiyatı";
             BirimFiyatı.Width = 125;
             // 
-            // numericUpDown1
-            // 
-            numericUpDown1.BackColor = Color.RosyBrown;
-            numericUpDown1.Location = new Point(215, 361);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(186, 27);
-            numericUpDown1.TabIndex = 11;
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
-            // 
             // button3
             // 
             button3.BackColor = Color.IndianRed;
@@ -199,6 +190,24 @@
             button4.TabIndex = 13;
             button4.Text = "Tarifi Güncelle";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(67, 427);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(381, 222);
+            richTextBox1.TabIndex = 14;
+            richTextBox1.Text = "";
+            richTextBox1.TextChanged += richTextBox1_TextChanged;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(216, 360);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 15;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // Tarif_Detay_Formu
             // 
@@ -206,9 +215,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
             ClientSize = new Size(945, 731);
+            Controls.Add(textBox1);
+            Controls.Add(richTextBox1);
             Controls.Add(button4);
             Controls.Add(button3);
-            Controls.Add(numericUpDown1);
             Controls.Add(dataGridView1);
             Controls.Add(label4);
             Controls.Add(listView2);
@@ -223,7 +233,6 @@
             Load += Tarif_Detay_Formu_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -242,8 +251,9 @@
         private DataGridViewTextBoxColumn Malzeme;
         private DataGridViewTextBoxColumn Miktar;
         private DataGridViewTextBoxColumn BirimFiyatı;
-        private NumericUpDown numericUpDown1;
         private Button button3;
         private Button button4;
+        private RichTextBox richTextBox1;
+        private TextBox textBox1;
     }
 }

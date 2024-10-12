@@ -171,7 +171,7 @@
             // 
             comboBox1.BackColor = Color.RosyBrown;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Süreye göre Artan-Azalan", "Süreye göre Azalan-Artan", "Maliyete göre Artan-Azalan", "Maliyete göre Azalan-Artan" });
+            comboBox1.Items.AddRange(new object[] { "Süreye göre Artan", "Süreye göre Azalan", "Maliyete göre Artan", "Maliyete göre Azalan" });
             comboBox1.Location = new Point(766, 550);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(257, 28);

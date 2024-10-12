@@ -117,23 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="yemek2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yemek2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="yemek4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yemek4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="yemek1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yemek1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="yemek3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yemek3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_4f891984-9345-4095-996b-8dce55e6e37a" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\_4f891984-9345-4095-996b-8dce55e6e37a.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="yemek5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yemek5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

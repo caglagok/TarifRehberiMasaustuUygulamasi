@@ -108,25 +108,41 @@ namespace Yazlab_1
                 e.Node.BackColor = Color.LightGray; // Seçildiðinde rengi açýk gri yap
             }
 
-            ApplyFilters(); // Filtreleri uygula
+            
         }
 
         // Seçilen filtrelere göre tarifleri filtrele
-        private void ApplyFilters()
+        private void button2_Click(object sender, EventArgs e)
         {
-            // Seçilen kategoriler
+            // Kullanýcýdan alýnan arama terimini temizle
+            string searchTerm = textBox1.Text.Trim();
+
+            // ComboBox'tan sýralama kriterini al
+            string selectedSortOrder = comboBox1.SelectedItem?.ToString(); // null kontrolü ekledik
+
+            // Filtreleri ve arama terimini uygula
+            List<Tarifler> aramaSonuclari = ApplyFilters(searchTerm, selectedSortOrder);
+
+            // Veri kaynaðýný güncelle
+            dataGridView1.DataSource = aramaSonuclari;
+        }
+
+        // Seçilen filtrelere ve arama terimine göre tarifleri filtrele
+        private List<Tarifler> ApplyFilters(string searchTerm, string selectedSortOrder)
+        {
+            // Seçili düðümlerden kategorileri al
             List<string> selectedCategories = selectedNodes
                 .Where(node => node.Parent != null && node.Parent.Text == "Kategori")
                 .Select(node => node.Text)
                 .ToList();
 
-            // Seçilen maliyet aralýklarý
+            // Seçili maliyet aralýklarýný al
             List<string> selectedCostRanges = selectedNodes
                 .Where(node => node.Parent != null && node.Parent.Text == "Maliyet Aralýðý")
                 .Select(node => node.Text)
                 .ToList();
 
-            // Seçilen malzeme sayýsý aralýklarý
+            // Seçili malzeme sayýsý aralýklarýný al
             List<string> selectedIngredientRanges = selectedNodes
                 .Where(node => node.Parent != null && node.Parent.Text == "Malzeme Sayýsýna Göre")
                 .Select(node => node.Text)
@@ -134,47 +150,22 @@ namespace Yazlab_1
 
             // Filtreyi uygulamak için arama fonksiyonunu çaðýr
             List<Tarifler> filtrelenmisTarifler = TarifMethodlarý.SearchTarifler(
-                "", // Arama terimi boþ
+                searchTerm, // Arama terimi
                 selectedCategories, // Kategoriler listesi
                 selectedCostRanges.Count > 0 ? string.Join(",", selectedCostRanges) : null, // Maliyet aralýðý
-                selectedIngredientRanges.Count > 0 ? string.Join(",", selectedIngredientRanges) : null // Malzeme sayýsý aralýðý
+                selectedIngredientRanges.Count > 0 ? string.Join(",", selectedIngredientRanges) : null, // Malzeme sayýsý aralýðý
+                selectedSortOrder // Sýralama kriteri
             );
 
-            // Veri kaynaðýný güncelle
-            dataGridView1.DataSource = filtrelenmisTarifler;
+            return filtrelenmisTarifler;
         }
-
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Kullanýcýdan alýnan arama terimini temizle
-            string searchTerm = textBox1.Text.Trim();
-
-            // Arama terimi boþsa kullanýcýyý uyar
-            if (string.IsNullOrEmpty(searchTerm))
-            {
-                MessageBox.Show("Lütfen bir arama terimi girin.", "Uyarý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Tarife göre arama yap
-            List<Tarifler> aramaSonuclari = TarifMethodlarý.SearchTarifler(searchTerm, null, null, null);
-
-            // Veri kaynaðýný güncelle
-            dataGridView1.DataSource = aramaSonuclari;
-        }
-
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
