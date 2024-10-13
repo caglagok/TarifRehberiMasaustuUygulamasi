@@ -13,6 +13,7 @@ namespace Yazlab_1
         {
             InitializeComponent();
             malzemeMethodlarý = new MalzemeMethodlarý(); // Yeni örneði oluþtur
+            dataGridView1.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView1_CellFormatting);
         }
 
 
@@ -69,6 +70,26 @@ namespace Yazlab_1
             foreach (var malzeme in malzemeListesi)
             {
                 checkedListBox1.Items.Add(malzeme.MalzemeAdi, false); // Malzemeleri ekle
+            }
+        }
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Maliyet sütununa göre satýr rengini deðiþtirme
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Maliyet")
+            {
+                // Hücre deðerinin null olmadýðýndan emin olun
+                if (e.Value != null && decimal.TryParse(e.Value.ToString(), out decimal maliyet))
+                {
+                    // Eðer maliyet 0 ise yeþil, 0'dan büyükse kýrmýzý
+                    if (maliyet == 0)
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Green;
+                    }
+                    else if (maliyet > 0)
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
             }
         }
 
