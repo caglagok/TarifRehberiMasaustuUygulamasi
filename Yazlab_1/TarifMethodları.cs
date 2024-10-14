@@ -179,10 +179,10 @@ namespace Yazlab_1
                     {
                         case "0-100 TL":
                             return totalCost >= 0 && totalCost <= 100;
-                        case "100-200 TL":
-                            return totalCost > 100 && totalCost <= 200;
-                        case "200-300 TL":
-                            return totalCost > 200 && totalCost <= 300;
+                        case "100-500 TL":
+                            return totalCost > 100 && totalCost <= 500;
+                        case "500 ve üzeri":
+                            return totalCost > 500 ;
                         default:
                             return true;
                     }

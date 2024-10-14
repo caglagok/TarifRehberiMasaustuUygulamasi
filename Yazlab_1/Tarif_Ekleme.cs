@@ -17,6 +17,20 @@ namespace Yazlab_1
         }
 
         // Tarif ve Malzemeleri Ekleme Metodu
+        private bool TarifVarMi(string tarifAdi, SqlConnection connection, SqlTransaction transaction)
+        {
+            string query = "SELECT COUNT(*) FROM Tarifler WHERE TarifAdi = @TarifAdi";
+
+            using (SqlCommand command = new SqlCommand(query, connection, transaction))
+            {
+                command.Parameters.AddWithValue("@TarifAdi", tarifAdi);
+
+                int count = (int)command.ExecuteScalar(); // Eşleşen kayıt sayısını al
+                return count > 0; // Eğer 0'dan büyükse tarif zaten var
+            }
+        }
+
+        // Tarif ve Malzemeleri Ekleme Metodu
         public void TarifVeMalzemeleriEkle(string tarifAdi, string kategori, int hazirlamaSuresi, string talimatlar, List<Kullanilan_Malzeme> malzemeler)
         {
             using (SqlConnection connection = dbHelper.GetConnection())
@@ -27,6 +41,14 @@ namespace Yazlab_1
                 {
                     connection.Open();
                     transaction = connection.BeginTransaction();
+
+                    // Duplicate kontrolü: Aynı isimde tarif var mı?
+                    if (TarifVarMi(tarifAdi, connection, transaction))
+                    {
+                        MessageBox.Show("Bu tarif zaten mevcut! Lütfen farklı bir tarif adı girin.");
+                        transaction.Rollback(); // İşlemi iptal et
+                        return;
+                    }
 
                     // Tarif ekleme sorgusu
                     string tarifQuery = "INSERT INTO Tarifler (TarifAdi, Kategori, HazirlamaSuresi, Talimatlar) " +

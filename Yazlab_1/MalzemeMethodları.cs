@@ -14,6 +14,18 @@ namespace Yazlab_1
         {
             dbHelper = new DatabaseHelper(); // DatabaseHelper nesnesini oluşturuyoruz.
         }
+        private bool MalzemeVarMi(string malzemeAdi, SqlConnection connection)
+        {
+            string query = "SELECT COUNT(*) FROM Malzemeler WHERE MalzemeAdi = @MalzemeAdi";
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@MalzemeAdi", malzemeAdi);
+
+                int count = (int)command.ExecuteScalar(); // Eşleşen kayıt sayısını al
+                return count > 0; // Eğer 0'dan büyükse malzeme zaten var
+            }
+        }
+
         public void MalzemeEkle(string malzemeAdi, string toplamMiktar, string malzemeBirim, decimal birimFiyat)
         {
             using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
@@ -22,6 +34,13 @@ namespace Yazlab_1
                 {
                     connection.Open(); // Veritabanına bağlan
                     MessageBox.Show("Veritabanına başarıyla bağlandı."); // Bağlantı kontrolü
+
+                    // Duplicate kontrolü: Aynı isimde malzeme var mı?
+                    if (MalzemeVarMi(malzemeAdi, connection))
+                    {
+                        MessageBox.Show("Bu malzeme zaten mevcut! Lütfen farklı bir malzeme adı girin.");
+                        return; // Ekleme işlemini iptal et
+                    }
 
                     // Malzeme ekleme sorgusu
                     string query = "INSERT INTO Malzemeler (MalzemeAdi, ToplamMiktar, MalzemeBirim, BirimFiyat) VALUES (@MalzemeAdi, @ToplamMiktar, @MalzemeBirim, @BirimFiyat)";
@@ -49,6 +68,7 @@ namespace Yazlab_1
                 }
             }
         }
+
         public List<Malzemeler> GetMalzemeler()
         {
             List<Malzemeler> malzemeListesi = new List<Malzemeler>();
@@ -71,25 +91,8 @@ namespace Yazlab_1
                 }
             }
             return malzemeListesi;
-            /*
-            List<string> malzemeListesi = new List<string>();
-            using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT MalzemeAdi FROM Malzemeler ORDER BY MalzemeAdi"; // Malzemeleri alfabetik sıraya göre getir
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        malzemeListesi.Add(reader["MalzemeAdi"].ToString()); // Malzeme adını listeye ekle
-                    }
-                }
-            }
-            return malzemeListesi; // Malzeme listesini döndür
-            */
         }
+ 
         public int GetMalzemeID(string malzemeAdi)
         {
             using (SqlConnection connection = dbHelper.GetConnection())

@@ -125,22 +125,29 @@ namespace Yazlab_1
         }
 
         private List<TreeNode> selectedNodes = new List<TreeNode>(); // Seçili düðümleri tutacak liste
+        private Dictionary<TreeNode, Color> nodeOriginalColors = new Dictionary<TreeNode, Color>(); // Düðümlerin önceki renklerini saklar
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            // Düðümün önceki rengini kaydet, eðer daha önce eklenmemiþse
+            if (!nodeOriginalColors.ContainsKey(e.Node))
+            {
+                nodeOriginalColors[e.Node] = e.Node.BackColor; // Düðümün önceki rengini sakla
+            }
+
             // Seçili düðümleri kontrol et ve listeyi güncelle
             if (selectedNodes.Contains(e.Node))
             {
                 selectedNodes.Remove(e.Node);
-                e.Node.BackColor = Color.White; // Seçim iptal edildiðinde rengi beyaz yap
+
+                // Önceki rengine geri döndür
+                e.Node.BackColor = nodeOriginalColors[e.Node];
             }
             else
             {
                 selectedNodes.Add(e.Node);
                 e.Node.BackColor = Color.LightGray; // Seçildiðinde rengi açýk gri yap
             }
-
-
         }
 
         // Seçilen filtrelere göre tarifleri filtrele
