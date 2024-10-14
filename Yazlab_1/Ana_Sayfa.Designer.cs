@@ -38,8 +38,8 @@
             TreeNode treeNode8 = new TreeNode("5-10");
             TreeNode treeNode9 = new TreeNode("Malzeme Sayısına Göre", new TreeNode[] { treeNode7, treeNode8 });
             TreeNode treeNode10 = new TreeNode("0-100 TL");
-            TreeNode treeNode11 = new TreeNode("100-200 TL");
-            TreeNode treeNode12 = new TreeNode("200-300 TL");
+            TreeNode treeNode11 = new TreeNode("100-500 TL");
+            TreeNode treeNode12 = new TreeNode("500TL ve Üzeri");
             TreeNode treeNode13 = new TreeNode("Maliyet Aralığı", new TreeNode[] { treeNode10, treeNode11, treeNode12 });
             tarif_ekle = new Button();
             button1 = new Button();
@@ -59,9 +59,9 @@
             // 
             tarif_ekle.BackColor = Color.IndianRed;
             tarif_ekle.Font = new Font("Century", 12F);
-            tarif_ekle.Location = new Point(1078, 201);
+            tarif_ekle.Location = new Point(766, 32);
             tarif_ekle.Name = "tarif_ekle";
-            tarif_ekle.Size = new Size(168, 71);
+            tarif_ekle.Size = new Size(193, 73);
             tarif_ekle.TabIndex = 0;
             tarif_ekle.Text = "Yeni Tarif Ekle";
             tarif_ekle.UseVisualStyleBackColor = false;
@@ -71,9 +71,9 @@
             // 
             button1.BackColor = Color.IndianRed;
             button1.Font = new Font("Century", 12F);
-            button1.Location = new Point(1078, 291);
+            button1.Location = new Point(1044, 33);
             button1.Name = "button1";
-            button1.Size = new Size(168, 71);
+            button1.Size = new Size(193, 71);
             button1.TabIndex = 1;
             button1.Text = "Malzeme Deposu";
             button1.UseVisualStyleBackColor = false;
@@ -93,6 +93,7 @@
             // treeView1
             // 
             treeView1.BackColor = Color.RosyBrown;
+            treeView1.CheckBoxes = true;
             treeView1.Font = new Font("Century", 9F);
             treeView1.Location = new Point(766, 163);
             treeView1.Name = "treeView1";
@@ -116,10 +117,10 @@
             treeNode9.Text = "Malzeme Sayısına Göre";
             treeNode10.Name = "maliyet0100";
             treeNode10.Text = "0-100 TL";
-            treeNode11.Name = "maliyet100200";
-            treeNode11.Text = "100-200 TL";
+            treeNode11.Name = "maliyet100500";
+            treeNode11.Text = "100-500 TL";
             treeNode12.Name = "maliyet200300";
-            treeNode12.Text = "200-300 TL";
+            treeNode12.Text = "500TL ve Üzeri";
             treeNode13.Name = "MaliyetAralıgı";
             treeNode13.Text = "Maliyet Aralığı";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode6, treeNode9, treeNode13 });
@@ -195,11 +196,12 @@
             // 
             // checkedListBox1
             // 
+            checkedListBox1.BackColor = Color.RosyBrown;
             checkedListBox1.Font = new Font("Century", 9F);
             checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(579, 56);
+            checkedListBox1.Location = new Point(1044, 163);
             checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(261, 46);
+            checkedListBox1.Size = new Size(193, 319);
             checkedListBox1.TabIndex = 15;
             checkedListBox1.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
             // 
