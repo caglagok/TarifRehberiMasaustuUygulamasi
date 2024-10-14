@@ -75,7 +75,7 @@
             button1.Name = "button1";
             button1.Size = new Size(168, 71);
             button1.TabIndex = 1;
-            button1.Text = "Malzeme Ekle";
+            button1.Text = "Malzeme Deposu";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_1;
             // 
@@ -199,7 +199,7 @@
             checkedListBox1.FormattingEnabled = true;
             checkedListBox1.Location = new Point(579, 56);
             checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(261, 48);
+            checkedListBox1.Size = new Size(261, 46);
             checkedListBox1.TabIndex = 15;
             checkedListBox1.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
             // 
