@@ -72,8 +72,8 @@ namespace Yazlab_1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            // Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu(this); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
-            //tarifEklemeFormu.Show();
+             Tarif_Guncelle tarifGuncelleFormu = new Tarif_Guncelle(_tarifID); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
+            tarifGuncelleFormu.Show();
         }
 
 

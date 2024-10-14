@@ -20,6 +20,7 @@ namespace Yazlab_1
             InitializeComponent();
             malzeme = new MalzemeMethodları(); // Malzemeler nesnesini oluştur
             anaSayfaForm = anaSayfa; // Ana Sayfa formunu sakla
+
         }
 
 

@@ -25,6 +25,49 @@ namespace Yazlab_1
                 return count > 0; // Eğer 0'dan büyükse malzeme zaten var
             }
         }
+        public void MalzemeGuncelle(int malzemeId, string yeniMalzemeAdi, string yeniToplamMiktar, string yeniMalzemeBirim, decimal yeniBirimFiyat)
+        {
+            using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
+            {
+                try
+                {
+                    connection.Open(); // Veritabanına bağlan
+                    MessageBox.Show("Veritabanına başarıyla bağlandı."); // Bağlantı kontrolü
+
+                    // Malzeme güncelleme sorgusu
+                    string updateQuery = "UPDATE Malzemeler SET " +
+                                          "MalzemeAdi = @YeniMalzemeAdi, " +
+                                          "ToplamMiktar = @YeniToplamMiktar, " +
+                                          "MalzemeBirim = @YeniMalzemeBirim, " +
+                                          "BirimFiyat = @YeniBirimFiyat " +
+                                          "WHERE MalzemeId = @MalzemeId"; // Malzeme adı yerine malzeme ID'sini kullan
+
+                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@MalzemeId", malzemeId); // Malzeme ID'si için parametre
+                        command.Parameters.AddWithValue("@YeniMalzemeAdi", yeniMalzemeAdi);
+                        command.Parameters.AddWithValue("@YeniToplamMiktar", yeniToplamMiktar);
+                        command.Parameters.AddWithValue("@YeniMalzemeBirim", yeniMalzemeBirim);
+                        command.Parameters.AddWithValue("@YeniBirimFiyat", yeniBirimFiyat);
+
+                        int result = command.ExecuteNonQuery(); // Komutu çalıştır
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Malzeme başarıyla güncellendi."); // Başarılı güncelleme
+                        }
+                        else
+                        {
+                            MessageBox.Show("Malzeme güncellenemedi. Malzeme ID'si bulunamadı."); // Hata durumu
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message); // Hata mesajı
+                }
+            }
+        }
 
         public void MalzemeEkle(string malzemeAdi, string toplamMiktar, string malzemeBirim, decimal birimFiyat)
         {
@@ -75,7 +118,8 @@ namespace Yazlab_1
             using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
             {
                 connection.Open();
-                string query = "SELECT MalzemeAdi, MalzemeBirim FROM Malzemeler ORDER BY MalzemeAdi";
+                // SQL sorgusunu güncelleyin
+                string query = "SELECT MalzemeID, MalzemeAdi, MalzemeBirim, ToplamMiktar, BirimFiyat FROM Malzemeler ORDER BY MalzemeAdi";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     SqlDataReader reader = command.ExecuteReader();
@@ -83,8 +127,11 @@ namespace Yazlab_1
                     {
                         Malzemeler malzeme = new Malzemeler
                         {
+                            MalzemeID = Convert.ToInt32(reader["MalzemeID"]), // MalzemeID'yi al
                             MalzemeAdi = reader["MalzemeAdi"].ToString(),
-                            MalzemeBirim = reader["MalzemeBirim"].ToString()
+                            MalzemeBirim = reader["MalzemeBirim"].ToString(),
+                            ToplamMiktar = reader["ToplamMiktar"].ToString(), // ToplamMiktar'ı al
+                            BirimFiyat = Convert.ToDecimal(reader["BirimFiyat"]) // BirimFiyat'ı al
                         };
                         malzemeListesi.Add(malzeme);
                     }
@@ -92,7 +139,8 @@ namespace Yazlab_1
             }
             return malzemeListesi;
         }
- 
+
+
         public int GetMalzemeID(string malzemeAdi)
         {
             using (SqlConnection connection = dbHelper.GetConnection())

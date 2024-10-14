@@ -43,6 +43,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(952, 716);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // label1
             // 
@@ -78,6 +79,7 @@
             Name = "Malzeme_Deposu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Malzeme_Deposu";
+           // Load += Malzeme_Deposu_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
