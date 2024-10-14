@@ -232,6 +232,10 @@ namespace Yazlab_1
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            Baslangýc baslangýcForm = new Baslangýc();
+            baslangýcForm.ShowDialog();
+
+            this.Close();
 
         }
 

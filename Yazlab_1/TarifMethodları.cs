@@ -94,14 +94,11 @@ namespace Yazlab_1
 
             using (SqlConnection connection = dbHelper.GetConnection())
             {
-                string query = @"
-        SELECT t.TarifID, t.TarifAdi, t.HazirlamaSuresi, 
-               m.MalzemeID, m.MalzemeAdi, tm.MalzemeMiktar,
-               t.Kategori
-        FROM Tarifler t
-        LEFT JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
-        LEFT JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
-        WHERE (t.TarifAdi LIKE @SearchTerm OR m.MalzemeAdi LIKE @SearchTerm)";
+                string query = @"SELECT t.TarifID, t.TarifAdi, t.HazirlamaSuresi, m.MalzemeID, m.MalzemeAdi, tm.MalzemeMiktar, t.Kategori
+                                 FROM Tarifler t
+                                 LEFT JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
+                                 LEFT JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+                                 WHERE (t.TarifAdi LIKE @SearchTerm OR m.MalzemeAdi LIKE @SearchTerm)";
 
                 // Kategori filtresi ekleme
                 if (selectedCategories != null && selectedCategories.Count > 0)
@@ -214,9 +211,84 @@ namespace Yazlab_1
 
             return tariflerList;
         }
+        public string TarifDetaylariniGetir(int tarifID, DataGridView dataGridView1, RichTextBox richTextBox1, TextBox textBox1, PictureBox pictureBox1)
+        {
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            string tarifAdi = string.Empty; // Tarif adını tutacak değişken
 
+            using (SqlConnection connection = dbHelper.GetConnection())
+            {
+                // Malzemeleri ve miktarları getir
+                string malzemeQuery = @"
+        SELECT m.MalzemeAdi, tm.MalzemeMiktar, m.BirimFiyat 
+        FROM TarifMalzeme tm
+        JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+        WHERE tm.TarifID = @TarifID";
 
-        public void TarifDetaylariniGetir(int tarifID, DataGridView dataGridView1, RichTextBox richTextBox1, TextBox textBox1)
+                SqlCommand malzemeCommand = new SqlCommand(malzemeQuery, connection);
+                malzemeCommand.Parameters.AddWithValue("@TarifID", tarifID);
+
+                connection.Open();
+                SqlDataReader reader = malzemeCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string malzemeAdi = reader.GetString(0);
+                    double miktar = reader.GetDouble(1);
+                    decimal birimFiyat = reader.GetDecimal(2);
+
+                    // Malzemeleri ve maliyetlerini DataGridView'e ekle
+                    dataGridView1.Rows.Add(malzemeAdi, miktar, birimFiyat);
+                }
+
+                reader.Close();
+
+                // Talimatları ve tarif adını getir
+                string talimatQuery = "SELECT TarifAdi, Talimatlar, TarifGorseli FROM Tarifler WHERE TarifID = @TarifID";
+                SqlCommand talimatCommand = new SqlCommand(talimatQuery, connection);
+                talimatCommand.Parameters.AddWithValue("@TarifID", tarifID);
+
+                using (SqlDataReader talimatReader = talimatCommand.ExecuteReader())
+                {
+                    if (talimatReader.Read())
+                    {
+                        // Tarif adını al
+                        tarifAdi = talimatReader["TarifAdi"]?.ToString(); // Tarif adını al
+                        string talimatlar = talimatReader["Talimatlar"]?.ToString();
+                        if (!string.IsNullOrEmpty(talimatlar))
+                        {
+                            richTextBox1.Clear(); // Mevcut metni temizle
+                            richTextBox1.AppendText(talimatlar); // Yeni talimatları ekle
+                        }
+
+                        // Görsel yolunu al ve PictureBox'a yükle
+                        string imagePath = talimatReader["TarifGorseli"]?.ToString();
+                        if (!string.IsNullOrEmpty(imagePath) && System.IO.File.Exists(imagePath))
+                        {
+                            pictureBox1.Image = Image.FromFile(imagePath);
+                        }
+                        else
+                        {
+                            pictureBox1.Image = null; // Varsayılan resim
+                        }
+                    }
+                }
+
+                // Toplam maliyeti hesapla ve göster
+                MaliyetHesaplama maliyetHesaplama = new MaliyetHesaplama();
+                decimal toplamMaliyet = maliyetHesaplama.TarifMaliyetiHesapla(tarifID);
+
+                // Toplam maliyeti TextBox'a ekle
+                textBox1.Text = toplamMaliyet.ToString("C"); // Para birimi formatında göster
+
+                connection.Close();
+            }
+
+            return tarifAdi; // Tarif adını döndür
+        }
+
+        /*
+        public void TarifDetaylariniGetir(int tarifID, DataGridView dataGridView1, RichTextBox richTextBox1, TextBox textBox1, PictureBox pictureBox1)
         {
             DatabaseHelper dbHelper = new DatabaseHelper();
 
@@ -248,19 +320,36 @@ namespace Yazlab_1
                 reader.Close();
 
                 // 2. Talimatları getir
-                string talimatQuery = "SELECT Talimatlar FROM Tarifler WHERE TarifID = @TarifID";
+                string talimatQuery = "SELECT Talimatlar, TarifGorseli FROM Tarifler WHERE TarifID = @TarifID";
                 SqlCommand talimatCommand = new SqlCommand(talimatQuery, connection);
                 talimatCommand.Parameters.AddWithValue("@TarifID", tarifID);
 
-                string talimatlar = talimatCommand.ExecuteScalar()?.ToString();
+                //string talimatlar = talimatCommand.ExecuteScalar()?.ToString();
 
-                // Talimatları RichTextBox'a ekle
-                if (!string.IsNullOrEmpty(talimatlar))
+                using (SqlDataReader talimatReader = talimatCommand.ExecuteReader())
                 {
-                    richTextBox1.Clear(); // Öncelikle mevcut metni temizle
-                    richTextBox1.AppendText(talimatlar); // Talimatları RichTextBox'a ekle
-                }
+                    if (talimatReader.Read())
+                    {
+                        // Talimatları RichTextBox'a ekle
+                        string talimatlar = talimatReader["Talimatlar"]?.ToString();
+                        if (!string.IsNullOrEmpty(talimatlar))
+                        {
+                            richTextBox1.Clear(); // Mevcut metni temizle
+                            richTextBox1.AppendText(talimatlar); // Yeni talimatları ekle
+                        }
 
+                        // 3. Görsel yolunu al ve PictureBox'a yükle
+                        string imagePath = talimatReader["TarifGorseli"]?.ToString();
+                        if (!string.IsNullOrEmpty(imagePath) && System.IO.File.Exists(imagePath))
+                        {
+                            pictureBox1.Image = Image.FromFile(imagePath);
+                        }
+                        else
+                        {
+                            pictureBox1.Image = null; // Varsayılan resim
+                        }
+                    }
+                }
                 // 3. Toplam maliyeti hesapla ve göster
                 MaliyetHesaplama maliyetHesaplama = new MaliyetHesaplama();
                 decimal toplamMaliyet = maliyetHesaplama.TarifMaliyetiHesapla(tarifID);
@@ -271,5 +360,6 @@ namespace Yazlab_1
                 connection.Close();
             }
         }
+        */
     }
 }

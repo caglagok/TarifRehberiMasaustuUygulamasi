@@ -26,8 +26,11 @@ namespace Yazlab_1
 
         private void Tarif_Detay_Formu_Load(object sender, EventArgs e)
         {
-            // Yeni sınıftaki metodu çağırıyoruz
-            _tarifDetayManager.TarifDetaylariniGetir(_tarifID, dataGridView1, richTextBox1, textBox1);
+            // Yeni sınıftaki metodu çağırıyoruz ve tarif adını alıyoruz
+            string tarifAdi = _tarifDetayManager.TarifDetaylariniGetir(_tarifID, dataGridView1, richTextBox1, textBox1, pictureBox1);
+
+            // label1'e tarif adını yazdır
+            label1.Text = tarifAdi;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -57,10 +60,11 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            // Bu formu gizle (kapatmak yerine)
+            this.Close();
         }
 
-       
+
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -68,11 +72,11 @@ namespace Yazlab_1
 
         private void button4_Click(object sender, EventArgs e)
         {
-           // Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu(this); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
+            // Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu(this); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
             //tarifEklemeFormu.Show();
         }
 
-     
+
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -80,6 +84,11 @@ namespace Yazlab_1
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

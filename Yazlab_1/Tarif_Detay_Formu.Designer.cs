@@ -34,7 +34,6 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            listView2 = new ListView();
             label4 = new Label();
             dataGridView1 = new DataGridView();
             Malzeme = new DataGridViewTextBoxColumn();
@@ -51,8 +50,8 @@
             // button1
             // 
             button1.BackColor = Color.IndianRed;
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(595, 589);
+            button1.Font = new Font("Century", 12F);
+            button1.Location = new Point(595, 674);
             button1.Name = "button1";
             button1.Size = new Size(94, 45);
             button1.TabIndex = 0;
@@ -63,8 +62,8 @@
             // button2
             // 
             button2.BackColor = Color.IndianRed;
-            button2.Font = new Font("Segoe UI", 12F);
-            button2.Location = new Point(803, 589);
+            button2.Font = new Font("Century", 12F);
+            button2.Location = new Point(724, 674);
             button2.Name = "button2";
             button2.Size = new Size(94, 45);
             button2.TabIndex = 1;
@@ -75,9 +74,10 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.RosyBrown;
-            pictureBox1.Location = new Point(595, 141);
+            pictureBox1.Location = new Point(33, 171);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(302, 370);
+            pictureBox1.Size = new Size(475, 370);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
@@ -85,65 +85,55 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Bernard MT Condensed", 25F, FontStyle.Italic);
-            label1.Location = new Point(67, 19);
+            label1.Font = new Font("Century", 25.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Location = new Point(33, 52);
             label1.Name = "label1";
-            label1.Size = new Size(210, 49);
+            label1.Size = new Size(298, 50);
             label1.TabIndex = 10;
             label1.Text = "TARİFİN ADI";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(67, 81);
+            label2.Font = new Font("Century", 12F, FontStyle.Italic, GraphicsUnit.Point, 162);
+            label2.Location = new Point(595, 73);
             label2.Name = "label2";
-            label2.Size = new Size(117, 28);
+            label2.Size = new Size(119, 23);
             label2.TabIndex = 4;
-            label2.Text = "Malzemeler:";
+            label2.Text = "Malzemeler";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F);
-            label3.Location = new Point(67, 396);
+            label3.Font = new Font("Century", 12F, FontStyle.Italic);
+            label3.Location = new Point(595, 381);
             label3.Name = "label3";
-            label3.Size = new Size(105, 28);
+            label3.Size = new Size(113, 23);
             label3.TabIndex = 6;
-            label3.Text = "Hazırlanışı:";
-            // 
-            // listView2
-            // 
-            listView2.BackColor = Color.RosyBrown;
-            listView2.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 162);
-            listView2.Location = new Point(67, 427);
-            listView2.Name = "listView2";
-            listView2.Size = new Size(428, 207);
-            listView2.TabIndex = 7;
-            listView2.UseCompatibleStateImageBehavior = false;
-            listView2.SelectedIndexChanged += listView2_SelectedIndexChanged;
+            label3.Text = "Hazırlanışı";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Linen;
-            label4.Font = new Font("Segoe UI", 12F);
-            label4.Location = new Point(67, 356);
+            label4.Font = new Font("Century", 12F, FontStyle.Italic, GraphicsUnit.Point, 162);
+            label4.Location = new Point(595, 345);
             label4.Name = "label4";
-            label4.Size = new Size(128, 28);
+            label4.Size = new Size(135, 23);
             label4.TabIndex = 8;
-            label4.Text = "Total Maliyet:";
+            label4.Text = "Total Maliyet";
             // 
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = Color.RosyBrown;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Malzeme, Miktar, BirimFiyatı });
-            dataGridView1.GridColor = Color.DarkGray;
-            dataGridView1.Location = new Point(67, 112);
+            dataGridView1.GridColor = Color.IndianRed;
+            dataGridView1.Location = new Point(595, 104);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(428, 226);
+            dataGridView1.Size = new Size(427, 226);
             dataGridView1.TabIndex = 9;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -171,8 +161,8 @@
             // button3
             // 
             button3.BackColor = Color.IndianRed;
-            button3.Font = new Font("Segoe UI", 12F);
-            button3.Location = new Point(781, 45);
+            button3.Font = new Font("Century", 12F);
+            button3.Location = new Point(906, 14);
             button3.Name = "button3";
             button3.Size = new Size(116, 64);
             button3.TabIndex = 12;
@@ -183,8 +173,8 @@
             // button4
             // 
             button4.BackColor = Color.IndianRed;
-            button4.Font = new Font("Segoe UI", 10F);
-            button4.Location = new Point(595, 47);
+            button4.Font = new Font("Century", 10F);
+            button4.Location = new Point(766, 14);
             button4.Name = "button4";
             button4.Size = new Size(116, 64);
             button4.TabIndex = 13;
@@ -194,16 +184,19 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(67, 427);
+            richTextBox1.BackColor = Color.RosyBrown;
+            richTextBox1.Font = new Font("Century", 12F, FontStyle.Italic);
+            richTextBox1.Location = new Point(595, 412);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(381, 222);
+            richTextBox1.Size = new Size(427, 222);
             richTextBox1.TabIndex = 14;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(216, 360);
+            textBox1.BackColor = Color.RosyBrown;
+            textBox1.Location = new Point(744, 345);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 15;
@@ -214,14 +207,13 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
-            ClientSize = new Size(945, 731);
+            ClientSize = new Size(1247, 731);
             Controls.Add(textBox1);
             Controls.Add(richTextBox1);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(dataGridView1);
             Controls.Add(label4);
-            Controls.Add(listView2);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -229,6 +221,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "Tarif_Detay_Formu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Tarif_Detay_Formu";
             Load += Tarif_Detay_Formu_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -245,7 +238,6 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private ListView listView2;
         private Label label4;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn Malzeme;
