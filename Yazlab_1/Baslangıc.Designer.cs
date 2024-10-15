@@ -52,6 +52,7 @@
             Name = "Baslangıc";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Baslangıc";
+            Load += Baslangıc_Load;
             ResumeLayout(false);
         }
 

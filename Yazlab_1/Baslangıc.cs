@@ -19,12 +19,17 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
 
             Ana_Sayfa anasayfaForm = new Ana_Sayfa();
             anasayfaForm.ShowDialog();
 
             this.Close();
+        }
+
+        private void Baslangıc_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

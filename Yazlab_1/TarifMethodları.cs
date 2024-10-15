@@ -22,10 +22,10 @@ namespace Yazlab_1
                 // Sorguya Talimatlar sütununu ekledik
                 string query = "SELECT TarifID, TarifAdi, HazirlamaSuresi, Talimatlar FROM Tarifler";
 
-                SqlCommand command = new SqlCommand(query, connection);
+               SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-
+               
                 while (reader.Read())
                 {
                     // TarifID, TarifAdi, HazirlamaSuresi ve Talimatlar'ı okuyarak tarif nesnesini oluşturuyoruz

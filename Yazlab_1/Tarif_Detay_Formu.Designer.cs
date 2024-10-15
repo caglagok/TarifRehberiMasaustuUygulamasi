@@ -51,9 +51,9 @@
             // 
             button1.BackColor = Color.IndianRed;
             button1.Font = new Font("Century", 12F);
-            button1.Location = new Point(595, 674);
+            button1.Location = new Point(72, 663);
             button1.Name = "button1";
-            button1.Size = new Size(94, 45);
+            button1.Size = new Size(94, 44);
             button1.TabIndex = 0;
             button1.Text = "Geri";
             button1.UseVisualStyleBackColor = false;
@@ -63,9 +63,9 @@
             // 
             button2.BackColor = Color.IndianRed;
             button2.Font = new Font("Century", 12F);
-            button2.Location = new Point(724, 674);
+            button2.Location = new Point(1050, 663);
             button2.Name = "button2";
-            button2.Size = new Size(94, 45);
+            button2.Size = new Size(94, 44);
             button2.TabIndex = 1;
             button2.Text = "Yap";
             button2.UseVisualStyleBackColor = false;
@@ -74,9 +74,9 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.RosyBrown;
-            pictureBox1.Location = new Point(33, 171);
+            pictureBox1.Location = new Point(72, 144);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(475, 370);
+            pictureBox1.Size = new Size(525, 410);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -86,7 +86,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century", 25.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(33, 52);
+            label1.Location = new Point(72, 57);
             label1.Name = "label1";
             label1.Size = new Size(298, 50);
             label1.TabIndex = 10;
@@ -97,7 +97,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century", 12F, FontStyle.Italic, GraphicsUnit.Point, 162);
-            label2.Location = new Point(595, 73);
+            label2.Location = new Point(717, 79);
             label2.Name = "label2";
             label2.Size = new Size(119, 23);
             label2.TabIndex = 4;
@@ -107,7 +107,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century", 12F, FontStyle.Italic);
-            label3.Location = new Point(595, 381);
+            label3.Location = new Point(717, 403);
             label3.Name = "label3";
             label3.Size = new Size(113, 23);
             label3.TabIndex = 6;
@@ -118,7 +118,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.Linen;
             label4.Font = new Font("Century", 12F, FontStyle.Italic, GraphicsUnit.Point, 162);
-            label4.Location = new Point(595, 345);
+            label4.Location = new Point(717, 371);
             label4.Name = "label4";
             label4.Size = new Size(135, 23);
             label4.TabIndex = 8;
@@ -130,10 +130,10 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Malzeme, Miktar, BirimFiyatı });
             dataGridView1.GridColor = Color.IndianRed;
-            dataGridView1.Location = new Point(595, 104);
+            dataGridView1.Location = new Point(717, 114);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(427, 226);
+            dataGridView1.Size = new Size(433, 251);
             dataGridView1.TabIndex = 9;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -162,7 +162,7 @@
             // 
             button3.BackColor = Color.IndianRed;
             button3.Font = new Font("Century", 12F);
-            button3.Location = new Point(906, 14);
+            button3.Location = new Point(1034, 16);
             button3.Name = "button3";
             button3.Size = new Size(116, 64);
             button3.TabIndex = 12;
@@ -174,7 +174,7 @@
             // 
             button4.BackColor = Color.IndianRed;
             button4.Font = new Font("Century", 10F);
-            button4.Location = new Point(766, 14);
+            button4.Location = new Point(894, 16);
             button4.Name = "button4";
             button4.Size = new Size(116, 64);
             button4.TabIndex = 13;
@@ -186,9 +186,9 @@
             // 
             richTextBox1.BackColor = Color.RosyBrown;
             richTextBox1.Font = new Font("Century", 12F, FontStyle.Italic);
-            richTextBox1.Location = new Point(595, 412);
+            richTextBox1.Location = new Point(717, 438);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(427, 222);
+            richTextBox1.Size = new Size(427, 204);
             richTextBox1.TabIndex = 14;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -196,7 +196,7 @@
             // textBox1
             // 
             textBox1.BackColor = Color.RosyBrown;
-            textBox1.Location = new Point(744, 345);
+            textBox1.Location = new Point(872, 371);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 15;
@@ -207,7 +207,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
-            ClientSize = new Size(1247, 731);
+            ClientSize = new Size(1258, 793);
             Controls.Add(textBox1);
             Controls.Add(richTextBox1);
             Controls.Add(button4);
@@ -222,7 +222,7 @@
             Controls.Add(button1);
             Name = "Tarif_Detay_Formu";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Tarif_Detay_Formu";
+            Text = "Tarif Detayları";
             Load += Tarif_Detay_Formu_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
