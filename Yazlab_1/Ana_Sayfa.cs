@@ -194,7 +194,6 @@ namespace Yazlab_1
                 selectedCostRanges.Count > 0 ? string.Join(",", selectedCostRanges) : null, // Maliyet aralýðý
                 selectedIngredientRanges.Count > 0 ? string.Join(",", selectedIngredientRanges) : null, // Malzeme sayýsý aralýðý
                 selectedSortOrder // Sýralama kriteri
-               
             );
 
             // Seçilen malzemeler varsa filtreleme yap
@@ -219,13 +218,12 @@ namespace Yazlab_1
                     tarif.EslestirmeYuzdesi = matchingPercentage;
                 }
 
-
-                // Yüzdeye göre sýrala
-                filtrelenmisTarifler = filtrelenmisTarifler.OrderByDescending(t => t.EslestirmeYuzdesi).ToList();
+               
             }
 
             return filtrelenmisTarifler;
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
 

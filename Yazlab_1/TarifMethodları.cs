@@ -97,10 +97,10 @@ namespace Yazlab_1
             using (SqlConnection connection = dbHelper.GetConnection())
             {
                 string query = @"SELECT t.TarifID, t.TarifAdi, t.HazirlamaSuresi, m.MalzemeID, m.MalzemeAdi, tm.MalzemeMiktar, t.Kategori
-                                 FROM Tarifler t
-                                 LEFT JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
-                                 LEFT JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
-                                 WHERE (t.TarifAdi LIKE @SearchTerm OR m.MalzemeAdi LIKE @SearchTerm)";
+                      FROM Tarifler t
+                      LEFT JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
+                      LEFT JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+                      WHERE (t.TarifAdi LIKE @SearchTerm OR m.MalzemeAdi LIKE @SearchTerm)";
 
                 // Kategori filtresi ekleme
                 if (selectedCategories != null && selectedCategories.Count > 0)
@@ -112,15 +112,20 @@ namespace Yazlab_1
                 // Malzeme sayısı filtresi ekleme
                 if (!string.IsNullOrEmpty(selectedIngredientRange))
                 {
-                    switch (selectedIngredientRange)
+                    string[] ingredientRanges = selectedIngredientRange.Split(',');
+                    string rangeConditions = string.Join(" OR ", ingredientRanges.Select(range =>
                     {
-                        case "0-5":
-                            query += " AND (SELECT COUNT(*) FROM TarifMalzeme WHERE TarifID = t.TarifID) BETWEEN 0 AND 5";
-                            break;
-                        case "5-10":
-                            query += " AND (SELECT COUNT(*) FROM TarifMalzeme WHERE TarifID = t.TarifID) BETWEEN 5 AND 10";
-                            break;
-                    }
+                        switch (range)
+                        {
+                            case "0-5":
+                                return "(SELECT COUNT(*) FROM TarifMalzeme WHERE TarifID = t.TarifID) BETWEEN 0 AND 5";
+                            case "5-10":
+                                return "(SELECT COUNT(*) FROM TarifMalzeme WHERE TarifID = t.TarifID) BETWEEN 5 AND 10";
+                            default:
+                                return "1=1"; // Herhangi bir sayı için filtre yoksa geç
+                        }
+                    }));
+                    query += $" AND ({rangeConditions})";
                 }
 
                 SqlCommand command = new SqlCommand(query, connection);
@@ -174,20 +179,24 @@ namespace Yazlab_1
             // Maliyet aralığı filtresi
             if (!string.IsNullOrEmpty(selectedCostRange))
             {
+                string[] costRanges = selectedCostRange.Split(',');
                 tariflerList = tariflerList.Where(t =>
                 {
                     decimal totalCost = t.Maliyet;
-                    switch (selectedCostRange)
+                    return costRanges.Any(range =>
                     {
-                        case "0-100 TL":
-                            return totalCost >= 0 && totalCost <= 100;
-                        case "100-500 TL":
-                            return totalCost > 100 && totalCost <= 500;
-                        case "500 ve üzeri":
-                            return totalCost > 500 ;
-                        default:
-                            return true;
-                    }
+                        switch (range)
+                        {
+                            case "0-100 TL":
+                                return totalCost >= 0 && totalCost <= 100;
+                            case "100-500 TL":
+                                return totalCost > 100 && totalCost <= 500;
+                            case "500TL ve Üzeri":
+                                return totalCost > 500;
+                            default:
+                                return false;
+                        }
+                    });
                 }).ToList();
             }
 
@@ -207,16 +216,17 @@ namespace Yazlab_1
                     tariflerList = tariflerList.OrderByDescending(t => t.Maliyet).ToList();
                     break;
                 default:
-                    tariflerList = tariflerList.OrderBy(t => t.TarifAdi).ToList(); // Varsayılan olarak tarif adına göre sırala
                     break;
             }
 
             return tariflerList;
         }
+
         public string TarifDetaylariniGetir(int tarifID, DataGridView dataGridView1, RichTextBox richTextBox1, TextBox textBox1, PictureBox pictureBox1)
         {
             DatabaseHelper dbHelper = new DatabaseHelper();
             string tarifAdi = string.Empty; // Tarif adını tutacak değişken
+            decimal toplamMaliyet = 0; // Toplam maliyeti tutacak değişken
 
             using (SqlConnection connection = dbHelper.GetConnection())
             {
@@ -241,6 +251,9 @@ namespace Yazlab_1
 
                     // Malzemeleri ve maliyetlerini DataGridView'e ekle
                     dataGridView1.Rows.Add(malzemeAdi, miktar, birimFiyat);
+
+                    // Toplam maliyeti hesapla
+                    toplamMaliyet += (decimal)miktar * birimFiyat; // Miktar * Birim Fiyat
                 }
 
                 reader.Close();
@@ -276,10 +289,6 @@ namespace Yazlab_1
                     }
                 }
 
-                // Toplam maliyeti hesapla ve göster
-                MaliyetHesaplama maliyetHesaplama = new MaliyetHesaplama();
-                decimal toplamMaliyet = maliyetHesaplama.TarifMaliyetiHesapla(tarifID);
-
                 // Toplam maliyeti TextBox'a ekle
                 textBox1.Text = toplamMaliyet.ToString("C"); // Para birimi formatında göster
 
@@ -288,6 +297,7 @@ namespace Yazlab_1
 
             return tarifAdi; // Tarif adını döndür
         }
+
 
         public static void TarifGuncelle(int tarifID, string tarifAdi, string kategori, int hazirlamaSuresi, string talimatlar, List<Kullanilan_Malzeme> malzemeler)
         {
