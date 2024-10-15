@@ -113,6 +113,7 @@
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(151, 26);
             numericUpDown2.TabIndex = 13;
+            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // numericUpDown1
             // 
@@ -162,6 +163,7 @@
             Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "Malzeme_Guncelleme";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Malzeme_Guncelleme";
             Load += Malzeme_Guncelleme_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
