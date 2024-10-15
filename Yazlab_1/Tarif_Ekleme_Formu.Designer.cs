@@ -50,7 +50,7 @@
             // 
             textBox1.BackColor = Color.RosyBrown;
             textBox1.Font = new Font("Century", 12F);
-            textBox1.Location = new Point(226, 45);
+            textBox1.Location = new Point(300, 97);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(245, 32);
             textBox1.TabIndex = 0;
@@ -60,7 +60,7 @@
             // 
             numericUpDown1.BackColor = Color.RosyBrown;
             numericUpDown1.Font = new Font("Segoe UI", 10F);
-            numericUpDown1.Location = new Point(226, 89);
+            numericUpDown1.Location = new Point(300, 142);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(245, 30);
             numericUpDown1.TabIndex = 1;
@@ -70,7 +70,7 @@
             // 
             richTextBox1.BackColor = Color.RosyBrown;
             richTextBox1.Font = new Font("Century", 12F, FontStyle.Italic, GraphicsUnit.Point, 162);
-            richTextBox1.Location = new Point(226, 185);
+            richTextBox1.Location = new Point(300, 244);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(245, 176);
             richTextBox1.TabIndex = 2;
@@ -83,7 +83,7 @@
             comboBox1.Font = new Font("Segoe UI", 10F);
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Tatlı", "Ana Yemek", "Ara Yemek", "Çorba", "Salata" });
-            comboBox1.Location = new Point(226, 131);
+            comboBox1.Location = new Point(300, 184);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(245, 31);
             comboBox1.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             tarifekle.BackColor = Color.IndianRed;
             tarifekle.Font = new Font("Century", 12F);
-            tarifekle.Location = new Point(768, 383);
+            tarifekle.Location = new Point(842, 456);
             tarifekle.Name = "tarifekle";
             tarifekle.Size = new Size(124, 58);
             tarifekle.TabIndex = 7;
@@ -109,7 +109,7 @@
             // 
             flowLayoutPanel1.BackColor = Color.RosyBrown;
             flowLayoutPanel1.Font = new Font("Century", 12F);
-            flowLayoutPanel1.Location = new Point(528, 89);
+            flowLayoutPanel1.Location = new Point(602, 148);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(364, 272);
             flowLayoutPanel1.TabIndex = 8;
@@ -119,7 +119,7 @@
             // 
             MalzemeEkleme.BackColor = Color.IndianRed;
             MalzemeEkleme.Font = new Font("Century", 12F);
-            MalzemeEkleme.Location = new Point(740, 22);
+            MalzemeEkleme.Location = new Point(814, 81);
             MalzemeEkleme.Name = "MalzemeEkleme";
             MalzemeEkleme.Size = new Size(152, 55);
             MalzemeEkleme.TabIndex = 9;
@@ -131,7 +131,7 @@
             // 
             tarifeklemegeri.BackColor = Color.IndianRed;
             tarifeklemegeri.Font = new Font("Century", 12F);
-            tarifeklemegeri.Location = new Point(528, 383);
+            tarifeklemegeri.Location = new Point(162, 456);
             tarifeklemegeri.Name = "tarifeklemegeri";
             tarifeklemegeri.Size = new Size(124, 58);
             tarifeklemegeri.TabIndex = 10;
@@ -143,7 +143,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century", 12F);
-            label1.Location = new Point(103, 41);
+            label1.Location = new Point(169, 100);
             label1.Name = "label1";
             label1.Size = new Size(117, 23);
             label1.TabIndex = 11;
@@ -154,7 +154,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century", 12F);
-            label2.Location = new Point(35, 84);
+            label2.Location = new Point(94, 143);
             label2.Name = "label2";
             label2.Size = new Size(192, 23);
             label2.TabIndex = 12;
@@ -165,7 +165,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century", 12F);
-            label3.Location = new Point(115, 127);
+            label3.Location = new Point(189, 186);
             label3.Name = "label3";
             label3.Size = new Size(97, 23);
             label3.TabIndex = 13;
@@ -175,7 +175,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Century", 12F);
-            label5.Location = new Point(101, 181);
+            label5.Location = new Point(169, 244);
             label5.Name = "label5";
             label5.Size = new Size(119, 23);
             label5.TabIndex = 15;
@@ -186,7 +186,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
-            ClientSize = new Size(967, 608);
+            ClientSize = new Size(1162, 573);
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -201,7 +201,7 @@
             Controls.Add(textBox1);
             Name = "Tarif_Ekleme_Formu";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Tarif Ekleme";
+            Text = "Yeni Tarif Ekleme";
             Load += Tarif_Ekleme_Formu_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)tarifMethodlarıBindingSource).EndInit();
