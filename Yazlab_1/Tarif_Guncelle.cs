@@ -198,6 +198,12 @@ namespace Yazlab_1
             malzemeEklemeForm.Show();
         }
 
-        
+        private void tarifeklemegeri_Click(object sender, EventArgs e)
+        {
+            
+            // Bu formu gizle (kapatmak yerine)
+            this.Close();
+            
+        }
     }
 }
