@@ -8,7 +8,7 @@ namespace Yazlab_1
     public partial class Ana_Sayfa : Form
     {
         private MalzemeMethodlarý malzemeMethodlarý; // MalzemeMethodlarý örneði
-
+        
         public Ana_Sayfa()
         {
             InitializeComponent();
@@ -19,9 +19,9 @@ namespace Yazlab_1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            treeView1.AfterCheck += treeView1_AfterCheck; // Olayý ekle
             LoadTarifler();
             LoadMalzemeler();
-
         }
 
         public void LoadTarifler()
@@ -127,6 +127,25 @@ namespace Yazlab_1
         private List<TreeNode> selectedNodes = new List<TreeNode>(); // Seçili düðümleri tutacak liste
         private Dictionary<TreeNode, Color> nodeOriginalColors = new Dictionary<TreeNode, Color>(); // Düðümlerin önceki renklerini saklar
 
+        private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            // AfterCheck olayý tetiklendiðinde checkbox durumu deðiþtiyse kontrol et
+            if (e.Action != TreeViewAction.Unknown) // Kullanýcý tarafýndan tetiklenen iþlemleri kontrol et
+            {
+                if (e.Node.Checked)
+                {
+                    if (!selectedNodes.Contains(e.Node))
+                    {
+                        selectedNodes.Add(e.Node); // Seçili düðümü listeye ekle
+                    }
+                }
+                else
+                {
+                    selectedNodes.Remove(e.Node); // Düðüm iþaretlenmediyse listeden çýkar
+                }
+            }
+        }
+        /*
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             // Düðümün önceki rengini kaydet, eðer daha önce eklenmemiþse
@@ -149,6 +168,7 @@ namespace Yazlab_1
                 e.Node.BackColor = Color.LightGray; // Seçildiðinde rengi açýk gri yap
             }
         }
+        */
 
         // Seçilen filtrelere göre tarifleri filtrele
         private void button2_Click(object sender, EventArgs e)
@@ -169,7 +189,6 @@ namespace Yazlab_1
         // Seçilen filtrelere ve arama terimine göre tarifleri filtrele
         private List<Tarifler> ApplyFilters(string searchTerm, string selectedSortOrder)
         {
-            // Seçili düðümlerden kategorileri al
             List<string> selectedCategories = selectedNodes
                 .Where(node => node.Parent != null && node.Parent.Text == "Kategori")
                 .Select(node => node.Text)
