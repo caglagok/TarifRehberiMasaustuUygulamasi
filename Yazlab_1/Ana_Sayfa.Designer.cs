@@ -126,7 +126,7 @@
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode32, treeNode35, treeNode39 });
             treeView1.Size = new Size(257, 322);
             treeView1.TabIndex = 3;
-            treeView1.AfterSelect += treeView1_AfterSelect;
+            //treeView1.AfterSelect += treeView1_AfterSelect;
             // 
             // textBox1
             // 
