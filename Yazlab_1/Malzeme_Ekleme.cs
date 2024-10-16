@@ -74,4 +74,3 @@ namespace Yazlab_1
         }
     }
 }
-
