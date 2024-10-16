@@ -58,7 +58,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century", 9F);
-            label4.Location = new Point(268, 247);
+            label4.Location = new Point(260, 247);
             label4.Name = "label4";
             label4.Size = new Size(124, 18);
             label4.TabIndex = 18;
@@ -68,7 +68,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century", 9F);
-            label3.Location = new Point(291, 199);
+            label3.Location = new Point(285, 199);
             label3.Name = "label3";
             label3.Size = new Size(99, 18);
             label3.TabIndex = 17;
