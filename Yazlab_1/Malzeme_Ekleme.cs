@@ -72,6 +72,8 @@ namespace Yazlab_1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu();
+            //tarifEklemeFormu.ShowDialog();
             // Bu formu kapat
             this.Close();
 
