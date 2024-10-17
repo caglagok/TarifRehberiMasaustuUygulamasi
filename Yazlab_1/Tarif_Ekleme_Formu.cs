@@ -14,6 +14,7 @@ namespace Yazlab_1
     {
         public MalzemeMethodları malzeme; // Malzemeler sınıfı için bir nesne
         private Ana_Sayfa anaSayfaForm; // Ana Sayfa formuna referans
+        private string resimDosyaYolu; // Resim dosyasının yolu
 
         public Tarif_Ekleme_Formu(Ana_Sayfa anaSayfa)
         {
@@ -81,7 +82,6 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             List<Kullanilan_Malzeme> kullanilanMalzemeler = new List<Kullanilan_Malzeme>();
 
             // Seçilen malzemeleri ve miktarları al
@@ -112,15 +112,16 @@ namespace Yazlab_1
 
             // Tarif ekleme işlemini yap
             Tarif_Ekleme tarifEkleme = new Tarif_Ekleme();
-            tarifEkleme.TarifVeMalzemeleriEkle(tarifAdi, kategori, hazirlamaSuresi, talimatlar, kullanilanMalzemeler);
+            tarifEkleme.TarifVeMalzemeleriEkle(tarifAdi, kategori, hazirlamaSuresi, talimatlar, kullanilanMalzemeler,resimDosyaYolu);
 
             // Tarif eklendikten sonra formu kapat
             this.Close();
 
             // Ana Sayfa'daki tarifleri güncelle
             anaSayfaForm.LoadTarifler();
+
         }
-        
+
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -173,6 +174,35 @@ namespace Yazlab_1
         private void tarifeklemegeri_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp"; // Desteklenen formatlar
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Seçilen resmi PictureBox'a yükle
+                resimDosyaYolu = openFileDialog.FileName; // Dosya yolunu al
+                pictureBox1.Image = Image.FromFile(resimDosyaYolu); // Resmi yükle
+            }
+        }
+
+        private byte[] ResmiByteArrayOlarakAl(string dosyaYolu)
+        {
+            using (FileStream fs = new FileStream(dosyaYolu, FileMode.Open, FileAccess.Read))
+            {
+                using (BinaryReader br = new BinaryReader(fs))
+                {
+                    return br.ReadBytes((int)fs.Length);
+                }
+            }
         }
     }
 }

@@ -42,8 +42,11 @@
             label2 = new Label();
             label3 = new Label();
             label5 = new Label();
+            pictureBox1 = new PictureBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tarifMethodlarıBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -181,12 +184,33 @@
             label5.TabIndex = 15;
             label5.Text = "Hazırlanışı:";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(988, 299);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(162, 109);
+            pictureBox1.TabIndex = 16;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(988, 251);
+            button1.Name = "button1";
+            button1.Size = new Size(145, 42);
+            button1.TabIndex = 17;
+            button1.Text = "resim ekle";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
             // Tarif_Ekleme_Formu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
             ClientSize = new Size(1162, 573);
+            Controls.Add(button1);
+            Controls.Add(pictureBox1);
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -205,6 +229,7 @@
             Load += Tarif_Ekleme_Formu_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)tarifMethodlarıBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,5 +249,7 @@
         private Label label3;
         private Label label5;
         private BindingSource tarifMethodlarıBindingSource;
+        private PictureBox pictureBox1;
+        private Button button1;
     }
 }

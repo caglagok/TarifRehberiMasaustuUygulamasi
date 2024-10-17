@@ -13,10 +13,12 @@ namespace Yazlab_1
     public partial class Malzeme_Ekleme : Form
     {
         private MalzemeMethodları malzeme;
+        
         public Malzeme_Ekleme()
         {
             InitializeComponent();
             malzeme = new MalzemeMethodları();
+           
         }
 
         private void Malzeme_Ekleme_Load_1(object sender, EventArgs e)
@@ -63,6 +65,8 @@ namespace Yazlab_1
 
             // Bu formu kapat
             this.Close();
+
+         
 
         }
 

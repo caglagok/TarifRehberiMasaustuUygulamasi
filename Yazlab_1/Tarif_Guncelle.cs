@@ -7,7 +7,7 @@ namespace Yazlab_1
     public partial class Tarif_Guncelle : Form
     {
         private int tarif_ID; // Sınıf seviyesinde tanımla
-
+        private string resimDosyaYolu; // Resim dosyasının yolu
         public Tarif_Guncelle(int Tarif_ID)
         {
             tarif_ID = Tarif_ID; // Constructor'da gelen parametreyi atıyoruz
@@ -34,44 +34,7 @@ namespace Yazlab_1
             // Gerekirse buraya kod ekleyebilirsiniz
         }
 
-        /*  private void tarifekle_Click(object sender, EventArgs e)
-          {
-              // Formdan değerleri al
-              string tarifAdi = textBox1.Text;
-              string kategori = comboBox1.SelectedItem?.ToString(); // Kategori seçili değilse null döner
-              int hazirlamaSuresi = (int)numericUpDown1.Value;
-              string talimatlar = richTextBox1.Text;
-
-              // Malzemeleri topla
-              List<Kullanilan_Malzeme> malzemeler = new List<Kullanilan_Malzeme>();
-
-              foreach (FlowLayoutPanel malzemePanel in flowLayoutPanel1.Controls)
-              {
-                  CheckBox malzemeCheckBox = (CheckBox)malzemePanel.Controls[0];
-                  NumericUpDown miktarNumericUpDown = (NumericUpDown)malzemePanel.Controls[1];
-                  Label malzemeIDLabel = (Label)malzemePanel.Controls[2]; // Malzeme ID'sini al
-
-                  if (malzemeCheckBox.Checked) // Eğer malzeme işaretlenmişse
-                  {
-                      malzemeler.Add(new Kullanilan_Malzeme
-                      {
-                          MalzemeID = int.Parse(malzemeIDLabel.Text), // Malzeme ID'sini al
-                          Miktar = miktarNumericUpDown.Value // Miktarı al
-                      });
-                  }
-              }
-
-              // Güncelleme işlemini gerçekleştir
-              try
-              {
-                  TarifMethodları.TarifGuncelle(tarif_ID, tarifAdi, kategori, hazirlamaSuresi, talimatlar, malzemeler);
-                  MessageBox.Show("Tarif başarıyla güncellendi.");
-              }
-              catch (Exception ex)
-              {
-                  MessageBox.Show("Güncelleme sırasında bir hata oluştu: " + ex.Message);
-              }
-          }*/
+      
         private void Tarif_Guncelle_Load(object sender, EventArgs e)
         {
             // Tarif bilgilerini ID ile getir
@@ -148,7 +111,6 @@ namespace Yazlab_1
                 flowLayoutPanel1.Height = 300; // Yüksekliği sabitle
             }
         }
-
         private void tarifekle_Click(object sender, EventArgs e)
         {
             // Formdan değerleri al
@@ -181,7 +143,7 @@ namespace Yazlab_1
             }
 
             // Güncelleme işlemini gerçekleştir
-            TarifMethodları.TarifGuncelle(tarif_ID, tarifAdi, kategori, hazirlamaSuresi, talimatlar, malzemeler);
+            TarifMethodları.TarifGuncelle(tarif_ID, tarifAdi, kategori, hazirlamaSuresi, talimatlar, malzemeler, resimDosyaYolu); // Resim yolunu burada ekliyoruz
         }
 
 
@@ -200,10 +162,28 @@ namespace Yazlab_1
 
         private void tarifeklemegeri_Click(object sender, EventArgs e)
         {
-            
+
             // Bu formu gizle (kapatmak yerine)
             this.Close();
-            
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp"; // Desteklenen formatlar
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Seçilen resmi PictureBox'a yükle
+                resimDosyaYolu = openFileDialog.FileName; // Dosya yolunu al
+                pictureBox1.Image = Image.FromFile(resimDosyaYolu); // Resmi yükle
+            }
         }
     }
 }

@@ -36,6 +36,8 @@ namespace Yazlab_1
         {
             numericUpDown1.Minimum = 0; // Minimum değeri ayarla
             numericUpDown1.Maximum = 100000; // Maksimum değeri ayarla
+            numericUpDown2.Minimum = 0; // Minimum değeri ayarla
+            numericUpDown2.Maximum = 100000; // Maksimum değeri ayarla
 
             LoadMalzemeBilgileri();
         }
@@ -81,6 +83,8 @@ namespace Yazlab_1
             int eklenenMiktar = (int)numericUpDown1.Value;
 
             malzemeYardimcisi.MalzemeGuncelle(malzemeID, malzemeAdi, eklenenMiktar.ToString(), malzemeBirim, birimFiyat);
+        
+            this.Close(); // Malzeme güncelleme formunu kapat
         }
 
         private void button2_Click(object sender, EventArgs e)

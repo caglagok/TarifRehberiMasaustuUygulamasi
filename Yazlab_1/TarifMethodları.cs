@@ -299,7 +299,7 @@ namespace Yazlab_1
         }
 
 
-        public static void TarifGuncelle(int tarifID, string tarifAdi, string kategori, int hazirlamaSuresi, string talimatlar, List<Kullanilan_Malzeme> malzemeler)
+        public static void TarifGuncelle(int tarifID, string tarifAdi, string kategori, int hazirlamaSuresi, string talimatlar, List<Kullanilan_Malzeme> malzemeler, string resimDosyaYolu)
         {
             DatabaseHelper dbHelper = new DatabaseHelper();
             using (SqlConnection connection = dbHelper.GetConnection())
@@ -316,7 +316,8 @@ namespace Yazlab_1
                                         "TarifAdi = @TarifAdi, " +
                                         "Kategori = @Kategori, " +
                                         "HazirlamaSuresi = @HazirlamaSuresi, " +
-                                        "Talimatlar = @Talimatlar " +
+                                        "Talimatlar = @Talimatlar, " +
+                                        "TarifGorseli = @TarifGorseli " + // Resim dosya yolu da güncelleniyor
                                         "WHERE TarifID = @TarifID";
 
                     using (SqlCommand tarifCommand = new SqlCommand(tarifQuery, connection, transaction))
@@ -326,6 +327,7 @@ namespace Yazlab_1
                         tarifCommand.Parameters.AddWithValue("@Kategori", kategori);
                         tarifCommand.Parameters.AddWithValue("@HazirlamaSuresi", hazirlamaSuresi);
                         tarifCommand.Parameters.AddWithValue("@Talimatlar", talimatlar);
+                        tarifCommand.Parameters.AddWithValue("@TarifGorseli", resimDosyaYolu); // Resim dosya yolunu ekle
 
                         tarifCommand.ExecuteNonQuery();
                     }
@@ -367,7 +369,9 @@ namespace Yazlab_1
                 }
             }
         }
-        public static Tarifler GetTarifById(int tarifId)
+
+    
+    public static Tarifler GetTarifById(int tarifId)
         {
             Tarifler tarif = null;
             DatabaseHelper dbHelper = new DatabaseHelper();

@@ -40,7 +40,10 @@
             richTextBox1 = new RichTextBox();
             numericUpDown1 = new NumericUpDown();
             textBox1 = new TextBox();
+            button1 = new Button();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label5
@@ -172,12 +175,33 @@
             textBox1.TabIndex = 16;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
+            // button1
+            // 
+            button1.Location = new Point(990, 291);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 28;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(990, 326);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(143, 120);
+            pictureBox1.TabIndex = 29;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // Tarif_Guncelle
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
             ClientSize = new Size(1162, 573);
+            Controls.Add(pictureBox1);
+            Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -195,6 +219,7 @@
             Text = "Tarif Guncelle Ekranı";
             Load += Tarif_Guncelle_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -213,5 +238,7 @@
         private RichTextBox richTextBox1;
         private NumericUpDown numericUpDown1;
         private TextBox textBox1;
+        private Button button1;
+        private PictureBox pictureBox1;
     }
 }

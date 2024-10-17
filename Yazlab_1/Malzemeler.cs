@@ -16,7 +16,7 @@ namespace Yazlab_1
         public decimal BirimFiyat { get; set; }
 
 
-
+       
     }
 
 }

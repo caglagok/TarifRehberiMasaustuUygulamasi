@@ -31,7 +31,8 @@ namespace Yazlab_1
         }
 
         // Tarif ve Malzemeleri Ekleme Metodu
-        public void TarifVeMalzemeleriEkle(string tarifAdi, string kategori, int hazirlamaSuresi, string talimatlar, List<Kullanilan_Malzeme> malzemeler)
+        // Tarif ve Malzemeleri Ekleme Metodu
+        public void TarifVeMalzemeleriEkle(string tarifAdi, string kategori, int hazirlamaSuresi, string talimatlar, List<Kullanilan_Malzeme> malzemeler, string resimDosyaYolu)
         {
             using (SqlConnection connection = dbHelper.GetConnection())
             {
@@ -51,9 +52,9 @@ namespace Yazlab_1
                     }
 
                     // Tarif ekleme sorgusu
-                    string tarifQuery = "INSERT INTO Tarifler (TarifAdi, Kategori, HazirlamaSuresi, Talimatlar) " +
+                    string tarifQuery = "INSERT INTO Tarifler (TarifAdi, Kategori, HazirlamaSuresi, Talimatlar,TarifGorseli) " +
                                         "OUTPUT INSERTED.TarifID " +
-                                        "VALUES (@TarifAdi, @Kategori, @HazirlamaSuresi, @Talimatlar)";
+                                        "VALUES (@TarifAdi, @Kategori, @HazirlamaSuresi, @Talimatlar,@TarifGorseli)";
 
                     int tarifID;
 
@@ -63,6 +64,7 @@ namespace Yazlab_1
                         tarifCommand.Parameters.AddWithValue("@Kategori", kategori);
                         tarifCommand.Parameters.AddWithValue("@HazirlamaSuresi", hazirlamaSuresi);
                         tarifCommand.Parameters.AddWithValue("@Talimatlar", talimatlar);
+                        tarifCommand.Parameters.AddWithValue("@TarifGorseli", resimDosyaYolu); // Resim dosya yolunu ekle
 
                         // Yeni eklenen tarifin ID'sini al
                         tarifID = (int)tarifCommand.ExecuteScalar();
@@ -97,5 +99,5 @@ namespace Yazlab_1
             }
         }
     }
-    
+
 }
