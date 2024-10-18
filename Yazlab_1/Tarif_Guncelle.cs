@@ -46,14 +46,20 @@ namespace Yazlab_1
                 textBox1.Text = tarif.TarifAdi;
                 numericUpDown1.Value = tarif.HazirlamaSuresi;
                 richTextBox1.Text = tarif.Talimatlar;
-                comboBox1.SelectedItem = tarif.Kategori; // Kategoriyi set et
+                comboBox1.SelectedItem = tarif.Kategori;
 
-                // FlowLayoutPanel'deki malzemeleri doldur
-                flowLayoutPanel1.Controls.Clear(); // Önceki kontrolleri temizle
+                // Resim dosyasını yükle
+                if (!string.IsNullOrEmpty(tarif.ResimDosyaYolu))
+                {
+                    resimDosyaYolu = tarif.ResimDosyaYolu; // Dosya yolunu al
+                    pictureBox1.Image = Image.FromFile(resimDosyaYolu); // Resmi PictureBox'a yükle
+                }
 
-                // Tüm malzemeleri al
-                MalzemeMethodları malzemeMethodları = new MalzemeMethodları(); // Sınıfın bir örneğini oluştur
-                var tumMalzemeler = malzemeMethodları.GetMalzemeler(); // Tüm malzemeleri al
+                // Malzemeleri doldur
+                flowLayoutPanel1.Controls.Clear();
+
+                MalzemeMethodları malzemeMethodları = new MalzemeMethodları();
+                var tumMalzemeler = malzemeMethodları.GetMalzemeler();
 
                 foreach (var malzeme in tumMalzemeler)
                 {
@@ -61,79 +67,70 @@ namespace Yazlab_1
                     malzemePanel.AutoSize = true;
                     malzemePanel.FlowDirection = FlowDirection.LeftToRight;
 
-                    // CheckBox
                     CheckBox malzemeCheckBox = new CheckBox();
                     malzemeCheckBox.Text = malzeme.MalzemeAdi;
-                    malzemeCheckBox.Checked = tarif.Malzemeler.Any(m => m.MalzemeAdi == malzeme.MalzemeAdi); // Mevcut tarifte varsa işaretle
+                    malzemeCheckBox.Checked = tarif.Malzemeler.Any(m => m.MalzemeAdi == malzeme.MalzemeAdi);
                     malzemeCheckBox.AutoSize = true;
 
-                    // NumericUpDown (Miktar)
                     NumericUpDown miktarNumericUpDown = new NumericUpDown();
                     miktarNumericUpDown.Minimum = 0;
                     miktarNumericUpDown.Maximum = 100000;
                     miktarNumericUpDown.DecimalPlaces = 2;
                     miktarNumericUpDown.Width = 90;
 
-                    // Miktarı set et
                     var mevcutMalzeme = tarif.Malzemeler.FirstOrDefault(m => m.MalzemeAdi == malzeme.MalzemeAdi);
                     if (mevcutMalzeme != null && !string.IsNullOrEmpty(mevcutMalzeme.ToplamMiktar))
                     {
                         if (decimal.TryParse(mevcutMalzeme.ToplamMiktar.Replace(',', '.'), out decimal miktar))
                         {
-                            miktarNumericUpDown.Value = miktar; // Dönüşüm başarılı ise değeri ayarla
+                            miktarNumericUpDown.Value = miktar;
                         }
                         else
                         {
-                            miktarNumericUpDown.Value = 0; // Dönüşüm başarısızsa varsayılan değeri ayarla
+                            miktarNumericUpDown.Value = 0;
                         }
                     }
                     else
                     {
-                        miktarNumericUpDown.Value = 0; // Eğer mevcut malzeme yoksa varsayılan değeri ayarla
+                        miktarNumericUpDown.Value = 0;
                     }
 
-                    // Malzeme ID'si Label'ı
                     Label malzemeIDLabel = new Label();
-                    malzemeIDLabel.Text = malzeme.MalzemeID.ToString(); // Malzeme ID'sini ayarla
-                    malzemeIDLabel.Visible = false; // Görünmez yap
+                    malzemeIDLabel.Text = malzeme.MalzemeID.ToString();
+                    malzemeIDLabel.Visible = false;
 
-                    // Panel'e ekle
                     malzemePanel.Controls.Add(malzemeCheckBox);
                     malzemePanel.Controls.Add(miktarNumericUpDown);
-                    malzemePanel.Controls.Add(malzemeIDLabel); // ID'yi ekle
+                    malzemePanel.Controls.Add(malzemeIDLabel);
 
                     flowLayoutPanel1.Controls.Add(malzemePanel);
                 }
 
-                // FlowLayoutPanel boyutlandırma ve scroll özelliği ekleme
-                flowLayoutPanel1.AutoScroll = true; // Scroll bar ekle
-                flowLayoutPanel1.VerticalScroll.Enabled = true; // Dikey kaydırmayı etkinleştir
-                flowLayoutPanel1.Height = 300; // Yüksekliği sabitle
+                flowLayoutPanel1.AutoScroll = true;
+                flowLayoutPanel1.VerticalScroll.Enabled = true;
+                flowLayoutPanel1.Height = 300;
             }
         }
         private void tarifekle_Click(object sender, EventArgs e)
         {
-            // Formdan değerleri al
             string tarifAdi = textBox1.Text;
-            string kategori = comboBox1.SelectedItem?.ToString(); // Kategori seçili değilse null döner
+            string kategori = comboBox1.SelectedItem?.ToString();
             int hazirlamaSuresi = (int)numericUpDown1.Value;
             string talimatlar = richTextBox1.Text;
 
-            // Malzemeleri topla
             List<Kullanilan_Malzeme> malzemeler = new List<Kullanilan_Malzeme>();
 
             foreach (FlowLayoutPanel malzemePanel in flowLayoutPanel1.Controls)
             {
                 CheckBox malzemeCheckBox = (CheckBox)malzemePanel.Controls[0];
                 NumericUpDown miktarNumericUpDown = (NumericUpDown)malzemePanel.Controls[1];
-                Label malzemeIDLabel = (Label)malzemePanel.Controls[2]; // Malzeme ID'sini al
+                Label malzemeIDLabel = (Label)malzemePanel.Controls[2];
 
-                if (malzemeCheckBox.Checked) // Eğer malzeme işaretlenmişse
+                if (malzemeCheckBox.Checked)
                 {
-                    int malzemeID;
-                    if (int.TryParse(malzemeIDLabel.Text, out malzemeID)) // Malzeme ID'sini al
+                    if (int.TryParse(malzemeIDLabel.Text, out int malzemeID))
                     {
-                        malzemeler.Add(new Kullanilan_Malzeme(malzemeID, (float)miktarNumericUpDown.Value)); // Düzeltme burada
+                        malzemeler.Add(new Kullanilan_Malzeme(malzemeID, (float)miktarNumericUpDown.Value));
                     }
                     else
                     {
@@ -142,8 +139,7 @@ namespace Yazlab_1
                 }
             }
 
-            // Güncelleme işlemini gerçekleştir
-            TarifMethodları.TarifGuncelle(tarif_ID, tarifAdi, kategori, hazirlamaSuresi, talimatlar, malzemeler, resimDosyaYolu); // Resim yolunu burada ekliyoruz
+            TarifMethodları.TarifGuncelle(tarif_ID, tarifAdi, kategori, hazirlamaSuresi, talimatlar, malzemeler, resimDosyaYolu);
         }
 
 

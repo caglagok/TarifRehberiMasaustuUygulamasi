@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Yazlab_1.Yazlab_1.Yazlab_1;
+
 
 namespace Yazlab_1
 {

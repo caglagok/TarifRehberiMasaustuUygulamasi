@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Yazlab_1.Yazlab_1.Yazlab_1;
+
 
 namespace Yazlab_1
 {
@@ -370,8 +370,8 @@ namespace Yazlab_1
             }
         }
 
-    
-    public static Tarifler GetTarifById(int tarifId)
+
+        public static Tarifler GetTarifById(int tarifId)
         {
             Tarifler tarif = null;
             DatabaseHelper dbHelper = new DatabaseHelper();
@@ -379,12 +379,11 @@ namespace Yazlab_1
             using (SqlConnection connection = dbHelper.GetConnection())
             {
                 string query = @"SELECT t.TarifID, t.TarifAdi, t.HazirlamaSuresi, t.Talimatlar, 
-                 t.Kategori, m.MalzemeID, m.MalzemeAdi, m.MalzemeBirim, tm.MalzemeMiktar
-                 FROM Tarifler t
-                 JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
-                 JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
-                 WHERE t.TarifID = @TarifID";
-
+                        t.Kategori, t.TarifGorseli, m.MalzemeID, m.MalzemeAdi, m.MalzemeBirim, tm.MalzemeMiktar
+                        FROM Tarifler t
+                        JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
+                        JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+                        WHERE t.TarifID = @TarifID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@TarifID", tarifId);
@@ -397,41 +396,28 @@ namespace Yazlab_1
 
                 while (reader.Read())
                 {
-                    // Tarif bilgilerini çek
-                    if (tarif.TarifID == 0) // İlk seferde tarif bilgilerini set et
+                    if (tarif.TarifID == 0)
                     {
                         tarif.TarifID = reader.GetInt32(0);
                         tarif.TarifAdi = reader.GetString(1);
                         tarif.HazirlamaSuresi = reader.GetInt32(2);
                         tarif.Talimatlar = reader.GetString(3);
                         tarif.Kategori = reader.GetString(4);
+                        tarif.ResimDosyaYolu = reader.GetString(5); // Resim dosyasının yolunu al
                     }
 
                     Malzemeler malzeme = new Malzemeler
                     {
-                        MalzemeID = reader.GetInt32(5),
-                        MalzemeAdi = reader.GetString(6),
-                        MalzemeBirim = reader.GetString(7),
-                        ToplamMiktar = reader.GetDouble(8).ToString() // String olarak al
+                        MalzemeID = reader.GetInt32(6),
+                        MalzemeAdi = reader.GetString(7),
+                        MalzemeBirim = reader.GetString(8),
+                        ToplamMiktar = reader.GetDouble(9).ToString()
                     };
-
-                    // Dönüştürmek için
-                    decimal toplamMiktarDecimal;
-                    if (decimal.TryParse(malzeme.ToplamMiktar, out toplamMiktarDecimal))
-                    {
-                        // Dönüşüm başarılı
-                    }
-                    else
-                    {
-                        // Dönüşüm başarısız, varsayılan değer verilebilir
-                        toplamMiktarDecimal = 0;
-                    }
 
                     malzemelerListesi.Add(malzeme);
                 }
 
-                tarif.Malzemeler = malzemelerListesi; // Malzemeleri tarif nesnesine ekle
-
+                tarif.Malzemeler = malzemelerListesi;
                 connection.Close();
             }
 

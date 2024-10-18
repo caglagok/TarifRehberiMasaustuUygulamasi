@@ -18,6 +18,10 @@ namespace Yazlab_1
 
         public decimal Maliyet { get; set; }
         public decimal EslestirmeYuzdesi { get; set; } // Eşleşme yüzdesi
+        public string ResimDosyaYolu;
+
+
+
 
     }
 
