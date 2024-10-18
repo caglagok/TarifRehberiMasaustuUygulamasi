@@ -52,7 +52,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1262, 800);
             panel1.TabIndex = 1;
-            //panel1.Paint += panel1_Paint;
+            panel1.Paint += panel1_Paint;
             // 
             // Baslangıc
             // 

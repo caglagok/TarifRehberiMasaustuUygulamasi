@@ -31,24 +31,28 @@ namespace Yazlab_1
 
         private void Baslangıc_Load(object sender, EventArgs e)
         {
+            // LibVLC ve MediaPlayer nesnelerini başlatma
             _libVLC = new LibVLC();
             _mediaPlayer = new MediaPlayer(_libVLC);
 
-            // VideoView'i oluştur ve panele ekle
+            // VideoView'i kod ile ekleme
             var videoView = new LibVLCSharp.WinForms.VideoView
             {
                 Dock = DockStyle.Fill
             };
+
+            // Panelin içine VideoView ekleme
             panel1.Controls.Add(videoView);
             videoView.MediaPlayer = _mediaPlayer;
 
-            // Video yolunu ayarla
-            var videoPath = @"C:\Users\CAGLA\Desktop\Yazlab1\Yazlab_1\Yazlab_1\TarifResimleri\baslangic4.mp4";
+            // Video dosyasının doğru yolunu ayarlama
+            var videoPath = @"C:\Users\CAGLA\Desktop\Yazlab1\Yazlab_1\Yazlab_1\TarifResimleri\baslangic.mp4";
             var media = new Media(_libVLC, new Uri(videoPath));
 
-            // Videoyu oynat
+            // Videoyu oynatma
             _mediaPlayer.Play(media);
         }
+
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -56,6 +60,11 @@ namespace Yazlab_1
             _mediaPlayer?.Dispose();
             _libVLC?.Dispose();
             base.OnFormClosing(e);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
