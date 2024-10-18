@@ -47,6 +47,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Linen;
             ClientSize = new Size(1258, 793);
             Controls.Add(button1);
             Name = "Baslangıc";

@@ -57,16 +57,14 @@ namespace Yazlab_1
             if (!string.IsNullOrWhiteSpace(malzemeAdi) && malzemeBirim != null)
             {
                 malzeme.MalzemeEkle(malzemeAdi, toplamMiktar, malzemeBirim, birimFiyat);
+                // Bu formu kapat
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Lütfen malzeme adı ve birim seçin."); // Hata mesajı
+
             }
-
-            // Bu formu kapat
-            this.Close();
-
-         
 
         }
 
