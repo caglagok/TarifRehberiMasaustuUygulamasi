@@ -16,12 +16,13 @@ namespace Yazlab_1
     {
         private int _tarifID;
         private TarifMethodları _tarifDetayManager; // Yeni sınıfı burada tanımlıyoruz
-
-        public Tarif_Detay_Formu(int tarifID)
+        private Ana_Sayfa anaSayfaForm;
+        public Tarif_Detay_Formu(int tarifID, Ana_Sayfa anaSayfaForm)
         {
             InitializeComponent();
             _tarifID = tarifID;
             _tarifDetayManager = new TarifMethodları(); // Yeni sınıftan bir nesne oluşturuyoruz
+            this.anaSayfaForm = anaSayfaForm;
         }
 
         private void Tarif_Detay_Formu_Load(object sender, EventArgs e)
@@ -72,7 +73,7 @@ namespace Yazlab_1
 
         private void button4_Click(object sender, EventArgs e)
         {
-             Tarif_Guncelle tarifGuncelleFormu = new Tarif_Guncelle(_tarifID); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
+             Tarif_Guncelle tarifGuncelleFormu = new Tarif_Guncelle(_tarifID,anaSayfaForm); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
             tarifGuncelleFormu.Show();
         }
 

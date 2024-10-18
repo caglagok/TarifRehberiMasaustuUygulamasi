@@ -1,7 +1,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
-using Yazlab_1.Yazlab_1.Yazlab_1;
+
 
 namespace Yazlab_1
 {
@@ -22,6 +22,8 @@ namespace Yazlab_1
             treeView1.AfterCheck += treeView1_AfterCheck; // Olayý ekle
             LoadTarifler();
             LoadMalzemeler();
+
+
         }
 
         public void LoadTarifler()
@@ -63,7 +65,7 @@ namespace Yazlab_1
             }
         }
 
-        private void LoadMalzemeler()
+        public void LoadMalzemeler()
         {
             List<Malzemeler> malzemeListesi = malzemeMethodlarý.GetMalzemeler();
 
@@ -95,8 +97,10 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu(this); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
             tarifEklemeFormu.Show();
+        
 
         }
 
@@ -118,8 +122,9 @@ namespace Yazlab_1
                 int tarifID = (int)dataGridView1.Rows[e.RowIndex].Cells["TarifID"].Value;
 
                 // Tarif detay formunu aç
-                Tarif_Detay_Formu tarifDetayForm = new Tarif_Detay_Formu(tarifID);
+                Tarif_Detay_Formu tarifDetayForm = new Tarif_Detay_Formu(tarifID,this);
                 tarifDetayForm.ShowDialog();
+                this.Close();
             }
 
         }
@@ -145,30 +150,7 @@ namespace Yazlab_1
                 }
             }
         }
-        /*
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            // Düðümün önceki rengini kaydet, eðer daha önce eklenmemiþse
-            if (!nodeOriginalColors.ContainsKey(e.Node))
-            {
-                nodeOriginalColors[e.Node] = e.Node.BackColor; // Düðümün önceki rengini sakla
-            }
-
-            // Seçili düðümleri kontrol et ve listeyi güncelle
-            if (selectedNodes.Contains(e.Node))
-            {
-                selectedNodes.Remove(e.Node);
-
-                // Önceki rengine geri döndür
-                e.Node.BackColor = nodeOriginalColors[e.Node];
-            }
-            else
-            {
-                selectedNodes.Add(e.Node);
-                e.Node.BackColor = Color.LightGray; // Seçildiðinde rengi açýk gri yap
-            }
-        }
-        */
+ 
 
         // Seçilen filtrelere göre tarifleri filtrele
         private void button2_Click(object sender, EventArgs e)

@@ -13,12 +13,12 @@ namespace Yazlab_1
     public partial class Malzeme_Ekleme : Form
     {
         private MalzemeMethodları malzeme;
-        
-        public Malzeme_Ekleme()
+        private Ana_Sayfa anaSayfaForm;
+        public Malzeme_Ekleme(Ana_Sayfa anaSayfa)
         {
             InitializeComponent();
             malzeme = new MalzemeMethodları();
-           
+            anaSayfaForm = anaSayfa;
         }
 
         private void Malzeme_Ekleme_Load_1(object sender, EventArgs e)
@@ -59,12 +59,17 @@ namespace Yazlab_1
                 malzeme.MalzemeEkle(malzemeAdi, toplamMiktar, malzemeBirim, birimFiyat);
                 // Bu formu kapat
                 this.Close();
+                Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu(anaSayfaForm);
+                tarifEklemeFormu.Show(); // Tarif Ekleme Formu'nu göster
+                
             }
             else
             {
                 MessageBox.Show("Lütfen malzeme adı ve birim seçin."); // Hata mesajı
 
             }
+ 
+
 
         }
 

@@ -8,10 +8,13 @@ namespace Yazlab_1
     {
         private int tarif_ID; // Sınıf seviyesinde tanımla
         private string resimDosyaYolu; // Resim dosyasının yolu
-        public Tarif_Guncelle(int Tarif_ID)
+        private Ana_Sayfa anaSayfaForm;
+        public Tarif_Guncelle(int Tarif_ID, Ana_Sayfa anaSayfaForm)
         {
             tarif_ID = Tarif_ID; // Constructor'da gelen parametreyi atıyoruz
             InitializeComponent();
+          
+            this.anaSayfaForm = anaSayfaForm;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -106,9 +109,7 @@ namespace Yazlab_1
                     flowLayoutPanel1.Controls.Add(malzemePanel);
                 }
 
-                flowLayoutPanel1.AutoScroll = true;
-                flowLayoutPanel1.VerticalScroll.Enabled = true;
-                flowLayoutPanel1.Height = 300;
+             
             }
         }
         private void tarifekle_Click(object sender, EventArgs e)
@@ -152,7 +153,7 @@ namespace Yazlab_1
         {
             this.Close();
 
-            Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme();
+            Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme(anaSayfaForm);
             malzemeEklemeForm.Show();
         }
 

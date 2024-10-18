@@ -119,6 +119,7 @@ namespace Yazlab_1
 
             // Ana Sayfa'daki tarifleri güncelle
             anaSayfaForm.LoadTarifler();
+            anaSayfaForm.LoadMalzemeler();
 
         }
 
@@ -152,7 +153,7 @@ namespace Yazlab_1
         {
             this.Close();
 
-            Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme();
+            Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme(anaSayfaForm);
             malzemeEklemeForm.Show();
         }
 
@@ -174,6 +175,9 @@ namespace Yazlab_1
         private void tarifeklemegeri_Click(object sender, EventArgs e)
         {
             this.Close();
+            Ana_Sayfa yeniForm = new Ana_Sayfa(); // Yeni bir ana form oluştur
+            yeniForm.Show(); // Yeni formu göster
+          this.Hide();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
