@@ -46,7 +46,7 @@ namespace Yazlab_1
             videoView.MediaPlayer = _mediaPlayer;
 
             // Video dosyasının doğru yolunu ayarlama
-            var videoPath = @"C:\Users\CAGLA\Desktop\Yazlab1\Yazlab_1\Yazlab_1\TarifResimleri\baslangic.mp4";
+            var videoPath = @"C:\Users\medih\source\repos\Yazlab_1\Yazlab_1\TarifResimleri\baslangic.mp4";
             var media = new Media(_libVLC, new Uri(videoPath));
 
             // Videoyu oynatma

@@ -1,7 +1,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
-
+using System.ComponentModel;
 
 namespace Yazlab_1
 {
@@ -28,6 +28,7 @@ namespace Yazlab_1
 
         public void LoadTarifler()
         {
+            // Tarifleri al
             List<Tarifler> tariflerList = TarifMethodlarý.GetTarifler();
 
             // Tarifleri DataGridView'e baðla
@@ -63,7 +64,11 @@ namespace Yazlab_1
                     column.Visible = false; // Sadece istenen sütunlarý göster
                 }
             }
+
+            // Eþleþme Yüzdesi sütununa göre sýralama yap
+          
         }
+
 
         public void LoadMalzemeler()
         {
@@ -218,7 +223,9 @@ namespace Yazlab_1
                     decimal matchingPercentage = totalSelectedIngredients > 0 ? (decimal)matchingIngredients / totalSelectedIngredients * 100 : 0; // Eþleþme yüzdesi
                     tarif.EslestirmeYuzdesi = matchingPercentage;
                 }
-
+                filtrelenmisTarifler = filtrelenmisTarifler
+       .OrderByDescending(t => t.EslestirmeYuzdesi) // Burada sýralama yapýyoruz
+       .ToList();
 
             }
 
