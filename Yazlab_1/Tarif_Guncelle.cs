@@ -42,6 +42,7 @@ namespace Yazlab_1
         {
             // Tarif bilgilerini ID ile getir
             Tarifler tarif = TarifMethodları.GetTarifById(tarif_ID);
+            flowLayoutPanel1.AutoScroll = true;
 
             if (tarif != null)
             {
@@ -141,6 +142,11 @@ namespace Yazlab_1
             }
 
             TarifMethodları.TarifGuncelle(tarif_ID, tarifAdi, kategori, hazirlamaSuresi, talimatlar, malzemeler, resimDosyaYolu);
+
+            anaSayfaForm.LoadTarifler();
+            anaSayfaForm.LoadMalzemeler();
+
+            this.Close();
         }
 
 
@@ -160,8 +166,10 @@ namespace Yazlab_1
         private void tarifeklemegeri_Click(object sender, EventArgs e)
         {
 
-            // Bu formu gizle (kapatmak yerine)
             this.Close();
+            Ana_Sayfa yeniForm = new Ana_Sayfa(); // Yeni bir ana form oluştur
+            yeniForm.Show(); // Yeni formu göster
+            this.Hide();
 
         }
 
