@@ -151,10 +151,9 @@ namespace Yazlab_1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
-
             Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme(anaSayfaForm);
-            malzemeEklemeForm.Show();
+            malzemeEklemeForm.ShowDialog();
+            this.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
