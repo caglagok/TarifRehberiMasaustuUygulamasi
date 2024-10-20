@@ -61,11 +61,9 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {    
+            Ana_Sayfa anasayfadon = new Ana_Sayfa();
+            anasayfadon.ShowDialog();
             this.Close();
-             // Yeni formu göster
-            
-
-
         }
 
 
@@ -76,7 +74,7 @@ namespace Yazlab_1
 
         private void button4_Click(object sender, EventArgs e)
         {
-             Tarif_Guncelle tarifGuncelleFormu = new Tarif_Guncelle(_tarifID,anaSayfaForm); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
+            Tarif_Guncelle tarifGuncelleFormu = new Tarif_Guncelle(_tarifID,anaSayfaForm); // 'this' ile mevcut Ana_Sayfa formunu geçiyoruz
             tarifGuncelleFormu.Show();
         }
 
