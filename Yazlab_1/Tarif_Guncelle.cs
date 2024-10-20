@@ -167,9 +167,7 @@ namespace Yazlab_1
         {
 
             this.Close();
-            Ana_Sayfa yeniForm = new Ana_Sayfa(); // Yeni bir ana form oluştur
-            yeniForm.Show(); // Yeni formu göster
-            this.Hide();
+           
 
         }
 
