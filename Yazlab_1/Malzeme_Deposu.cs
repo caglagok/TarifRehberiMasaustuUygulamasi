@@ -130,8 +130,8 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            
+            Ana_Sayfa ana_Sayfa = new Ana_Sayfa();
+            ana_Sayfa.ShowDialog();
             
             this.Close();
         }
