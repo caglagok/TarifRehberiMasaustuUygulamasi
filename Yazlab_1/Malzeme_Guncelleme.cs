@@ -90,8 +90,7 @@ namespace Yazlab_1
         private void button2_Click(object sender, EventArgs e)
         {
             
-            Malzeme_Deposu Malzeme_DeposuFormu = new Malzeme_Deposu();
-            Malzeme_DeposuFormu.ShowDialog();
+    
             
             this.Close();
 

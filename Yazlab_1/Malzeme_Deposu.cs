@@ -49,7 +49,22 @@ namespace Yazlab_1
                 Width = 150
             };
             dataGridView1.Columns.Add(malzemeBirimColumn);
+            var toplamMiktarColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Toplam Miktar",
+                Name = "ToplamMiktar",
+                Width = 150
+            };
+            dataGridView1.Columns.Add(toplamMiktarColumn);
 
+            // Birim Fiyat sütunu
+            var birimFiyatColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Birim Fiyat",
+                Name = "BirimFiyat",
+                Width = 150
+            };
+            dataGridView1.Columns.Add(birimFiyatColumn);
             // Güncelle butonu sütunu
             DataGridViewButtonColumn updateButtonColumn = new DataGridViewButtonColumn
             {
@@ -101,22 +116,22 @@ namespace Yazlab_1
 
         private void LoadMalzemeler()
         {
-            // Malzemeleri al
             List<Malzemeler> malzemeListesi = malzemeMethodları.GetMalzemeler();
+
             // DataGridView'e bağla
             dataGridView1.Rows.Clear(); // Önceki verileri temizle
+
             foreach (var malzeme in malzemeListesi)
             {
-                dataGridView1.Rows.Add(malzeme.MalzemeAdi, malzeme.MalzemeBirim);
-                // Butonlar zaten sütun tanımlarında eklendi
+                // Malzemeyi eklerken tüm gerekli sütunlar sırasıyla eklenir
+                dataGridView1.Rows.Add(malzeme.MalzemeAdi, malzeme.MalzemeBirim, malzeme.ToplamMiktar, malzeme.BirimFiyat);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             
-            Ana_Sayfa anasayfaForm = new Ana_Sayfa();
-            anasayfaForm.ShowDialog();
+            
             
             this.Close();
         }
