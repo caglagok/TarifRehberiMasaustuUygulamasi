@@ -21,34 +21,11 @@ namespace Yazlab_1
             malzeme = new MalzemeMethodları();
             anaSayfaForm = anaSayfa;
         }
-
-        private void Malzeme_Ekleme_Load_1(object sender, EventArgs e)
+        private void MalzemeEkleme2_Load(object sender, EventArgs e)
         {
-
             comboBox1.Items.Add("gram");
             comboBox1.Items.Add("mililitre");
         }
-
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string malzemeAdi = textBox1.Text;
@@ -69,14 +46,31 @@ namespace Yazlab_1
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }
+
+        private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown2_ValueChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

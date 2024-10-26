@@ -103,6 +103,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 26);
             comboBox1.TabIndex = 14;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
             // 
             // numericUpDown2
             // 
@@ -112,6 +113,7 @@
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(151, 26);
             numericUpDown2.TabIndex = 13;
+            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged_1;
             // 
             // numericUpDown1
             // 
@@ -121,6 +123,7 @@
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(151, 26);
             numericUpDown1.TabIndex = 12;
+            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged_1;
             // 
             // textBox1
             // 
@@ -130,6 +133,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(151, 26);
             textBox1.TabIndex = 11;
+            textBox1.TextChanged += textBox1_TextChanged_1;
             // 
             // button1
             // 
@@ -161,7 +165,9 @@
             Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "MalzemeEkleme2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MalzemeEkleme2";
+            Load += MalzemeEkleme2_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
