@@ -58,7 +58,7 @@
             // 
             textBox1.BackColor = Color.RosyBrown;
             textBox1.Font = new Font("Century", 9F);
-            textBox1.Location = new Point(332, 53);
+            textBox1.Location = new Point(332, 64);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(151, 26);
             textBox1.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             numericUpDown1.BackColor = Color.RosyBrown;
             numericUpDown1.Font = new Font("Century", 9F);
-            numericUpDown1.Location = new Point(332, 190);
+            numericUpDown1.Location = new Point(332, 201);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(151, 26);
             numericUpDown1.TabIndex = 2;
@@ -78,7 +78,7 @@
             // 
             numericUpDown2.BackColor = Color.RosyBrown;
             numericUpDown2.Font = new Font("Century", 9F);
-            numericUpDown2.Location = new Point(332, 142);
+            numericUpDown2.Location = new Point(332, 153);
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(151, 26);
             numericUpDown2.TabIndex = 3;
@@ -89,7 +89,7 @@
             comboBox1.BackColor = Color.RosyBrown;
             comboBox1.Font = new Font("Century", 9F);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(332, 97);
+            comboBox1.Location = new Point(332, 108);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 26);
             comboBox1.TabIndex = 4;
@@ -99,7 +99,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century", 9F);
-            label1.Location = new Point(197, 56);
+            label1.Location = new Point(197, 67);
             label1.Name = "label1";
             label1.Size = new Size(127, 18);
             label1.TabIndex = 5;
@@ -109,7 +109,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century", 9F);
-            label2.Location = new Point(201, 100);
+            label2.Location = new Point(201, 111);
             label2.Name = "label2";
             label2.Size = new Size(125, 18);
             label2.TabIndex = 6;
@@ -119,7 +119,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Century", 9F);
-            label3.Location = new Point(231, 144);
+            label3.Location = new Point(225, 155);
             label3.Name = "label3";
             label3.Size = new Size(99, 18);
             label3.TabIndex = 7;
@@ -129,7 +129,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Century", 9F);
-            label4.Location = new Point(208, 192);
+            label4.Location = new Point(200, 203);
             label4.Name = "label4";
             label4.Size = new Size(124, 18);
             label4.TabIndex = 8;
@@ -152,6 +152,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
+            BackgroundImage = Properties.Resources.Tatlı_Düşler_Mutfağı__1_;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(695, 359);
             Controls.Add(button2);
             Controls.Add(label4);

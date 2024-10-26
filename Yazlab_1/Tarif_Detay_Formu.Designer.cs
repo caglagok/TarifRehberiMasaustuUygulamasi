@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            button2 = new Button();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             label2 = new Label();
@@ -51,7 +50,7 @@
             // 
             button1.BackColor = Color.IndianRed;
             button1.Font = new Font("Century", 12F);
-            button1.Location = new Point(72, 663);
+            button1.Location = new Point(121, 660);
             button1.Name = "button1";
             button1.Size = new Size(94, 44);
             button1.TabIndex = 0;
@@ -59,24 +58,12 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // button2
-            // 
-            button2.BackColor = Color.IndianRed;
-            button2.Font = new Font("Century", 12F);
-            button2.Location = new Point(1050, 663);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 44);
-            button2.TabIndex = 1;
-            button2.Text = "Yap";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
-            // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.RosyBrown;
-            pictureBox1.Location = new Point(72, 144);
+            pictureBox1.Location = new Point(121, 149);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(525, 410);
+            pictureBox1.Size = new Size(511, 438);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -85,8 +72,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.RosyBrown;
             label1.Font = new Font("Century", 25.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(72, 57);
+            label1.Location = new Point(121, 79);
             label1.Name = "label1";
             label1.Size = new Size(298, 50);
             label1.TabIndex = 10;
@@ -207,6 +195,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
+            BackgroundImage = Properties.Resources.Tatlı_Düşler_Mutfağı__1_;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1258, 793);
             Controls.Add(textBox1);
             Controls.Add(richTextBox1);
@@ -218,7 +208,6 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
-            Controls.Add(button2);
             Controls.Add(button1);
             Name = "Tarif_Detay_Formu";
             StartPosition = FormStartPosition.CenterScreen;
@@ -233,7 +222,6 @@
         #endregion
 
         private Button button1;
-        private Button button2;
         private PictureBox pictureBox1;
         private Label label1;
         private Label label2;

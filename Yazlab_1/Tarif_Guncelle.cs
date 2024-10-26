@@ -6,12 +6,13 @@ namespace Yazlab_1
 {
     public partial class Tarif_Guncelle : Form
     {
-        private int tarif_ID; // Sınıf seviyesinde tanımla
-        private string resimDosyaYolu; // Resim dosyasının yolu
+        private int tarif_ID; 
+        private string resimDosyaYolu; 
         private Ana_Sayfa anaSayfaForm;
+
         public Tarif_Guncelle(int Tarif_ID, Ana_Sayfa anaSayfaForm)
         {
-            tarif_ID = Tarif_ID; // Constructor'da gelen parametreyi atıyoruz
+            tarif_ID = Tarif_ID; 
             InitializeComponent();
           
             this.anaSayfaForm = anaSayfaForm;
@@ -19,47 +20,43 @@ namespace Yazlab_1
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            // Gerekirse buraya kod ekleyebilirsiniz
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            // Gerekirse buraya kod ekleyebilirsiniz
+           
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            // Gerekirse buraya kod ekleyebilirsiniz
+           
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Gerekirse buraya kod ekleyebilirsiniz
+            
         }
 
       
         private void Tarif_Guncelle_Load(object sender, EventArgs e)
         {
-            // Tarif bilgilerini ID ile getir
             Tarifler tarif = TarifMethodları.GetTarifById(tarif_ID);
             flowLayoutPanel1.AutoScroll = true;
 
             if (tarif != null)
             {
-                // Form alanlarını doldur
                 textBox1.Text = tarif.TarifAdi;
                 numericUpDown1.Value = tarif.HazirlamaSuresi;
                 richTextBox1.Text = tarif.Talimatlar;
                 comboBox1.SelectedItem = tarif.Kategori;
 
-                // Resim dosyasını yükle
                 if (!string.IsNullOrEmpty(tarif.ResimDosyaYolu))
                 {
-                    resimDosyaYolu = tarif.ResimDosyaYolu; // Dosya yolunu al
-                    pictureBox1.Image = Image.FromFile(resimDosyaYolu); // Resmi PictureBox'a yükle
+                    resimDosyaYolu = tarif.ResimDosyaYolu; 
+                    pictureBox1.Image = Image.FromFile(resimDosyaYolu);
                 }
 
-                // Malzemeleri doldur
                 flowLayoutPanel1.Controls.Clear();
 
                 MalzemeMethodları malzemeMethodları = new MalzemeMethodları();
@@ -145,6 +142,11 @@ namespace Yazlab_1
 
             anaSayfaForm.LoadTarifler();
             anaSayfaForm.LoadMalzemeler();
+            
+            if (Application.OpenForms.OfType<Tarif_Detay_Formu>().FirstOrDefault() is Tarif_Detay_Formu detayFormu)
+            {
+                detayFormu.LoadData(); 
+            }
 
             this.Close();
         }
@@ -152,23 +154,19 @@ namespace Yazlab_1
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            // Gerekirse buraya kod ekleyebilirsiniz
         }
 
         private void MalzemeEkleme_Click(object sender, EventArgs e)
         {
             this.Close();
 
-            Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme(anaSayfaForm);
+            MalzemeEkleme2 malzemeEklemeForm = new MalzemeEkleme2(anaSayfaForm);
             malzemeEklemeForm.Show();
         }
 
         private void tarifeklemegeri_Click(object sender, EventArgs e)
         {
-
             this.Close();
-           
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -179,13 +177,12 @@ namespace Yazlab_1
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp"; // Desteklenen formatlar
+            openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp"; 
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Seçilen resmi PictureBox'a yükle
-                resimDosyaYolu = openFileDialog.FileName; // Dosya yolunu al
-                pictureBox1.Image = Image.FromFile(resimDosyaYolu); // Resmi yükle
+                resimDosyaYolu = openFileDialog.FileName; 
+                pictureBox1.Image = Image.FromFile(resimDosyaYolu);
             }
         }
     }

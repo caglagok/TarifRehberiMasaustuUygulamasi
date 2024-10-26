@@ -152,6 +152,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
+            BackgroundImage = Properties.Resources.Tatlı_Düşler_Mutfağı__1_;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
             Controls.Add(button2);
             Controls.Add(label4);

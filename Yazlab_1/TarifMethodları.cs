@@ -19,7 +19,6 @@ namespace Yazlab_1
 
             using (SqlConnection connection = dbHelper.GetConnection())
             {
-                // Sorguya Talimatlar sütununu ekledik
                 string query = "SELECT TarifID, TarifAdi, HazirlamaSuresi, Talimatlar FROM Tarifler";
 
                SqlCommand command = new SqlCommand(query, connection);
@@ -28,13 +27,12 @@ namespace Yazlab_1
                
                 while (reader.Read())
                 {
-                    // TarifID, TarifAdi, HazirlamaSuresi ve Talimatlar'ı okuyarak tarif nesnesini oluşturuyoruz
                     Tarifler tarif = new Tarifler
                     {
-                        TarifID = reader.GetInt32(0), // İlk sütun TarifID
-                        TarifAdi = reader.GetString(1), // İkinci sütun TarifAdi
-                        HazirlamaSuresi = reader.GetInt32(2), // Üçüncü sütun HazirlamaSuresi
-                        Talimatlar = reader.GetString(3) // Dördüncü sütun Talimatlar
+                        TarifID = reader.GetInt32(0), 
+                        TarifAdi = reader.GetString(1), 
+                        HazirlamaSuresi = reader.GetInt32(2), 
+                        Talimatlar = reader.GetString(3) 
                     };
 
                     tariflerList.Add(tarif);
@@ -48,10 +46,9 @@ namespace Yazlab_1
 
         public static void TarifSil(int tarifID)
         {
-            DatabaseHelper dbHelper = new DatabaseHelper(); // DatabaseHelper'dan bağlantı al
+            DatabaseHelper dbHelper = new DatabaseHelper(); 
             using (SqlConnection connection = dbHelper.GetConnection())
             {
-                // Transaction kullanarak iki tabloyu da silme işlemi gerçekleştireceğiz
                 SqlTransaction transaction = null;
 
                 try
@@ -59,7 +56,6 @@ namespace Yazlab_1
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
-                    // Önce TarifMalzeme tablosundan sil
                     string deleteMalzemeQuery = "DELETE FROM TarifMalzeme WHERE TarifID = @TarifID";
                     using (SqlCommand deleteMalzemeCommand = new SqlCommand(deleteMalzemeQuery, connection, transaction))
                     {
@@ -67,7 +63,6 @@ namespace Yazlab_1
                         deleteMalzemeCommand.ExecuteNonQuery();
                     }
 
-                    // Ardından Tarifler tablosundan sil
                     string deleteTarifQuery = "DELETE FROM Tarifler WHERE TarifID = @TarifID";
                     using (SqlCommand deleteTarifCommand = new SqlCommand(deleteTarifQuery, connection, transaction))
                     {
@@ -75,14 +70,14 @@ namespace Yazlab_1
                         deleteTarifCommand.ExecuteNonQuery();
                     }
 
-                    transaction.Commit(); // Her iki işlem de başarılıysa işlemi onayla
+                    transaction.Commit(); 
                     MessageBox.Show("Tarif ve ilgili malzemeler başarıyla silindi.");
                 }
                 catch (Exception ex)
                 {
                     if (transaction != null)
                     {
-                        transaction.Rollback(); // Hata durumunda işlemi geri al
+                        transaction.Rollback(); 
                     }
                     MessageBox.Show("Silme işlemi sırasında bir hata oluştu: " + ex.Message);
                 }
@@ -97,19 +92,17 @@ namespace Yazlab_1
             using (SqlConnection connection = dbHelper.GetConnection())
             {
                 string query = @"SELECT t.TarifID, t.TarifAdi, t.HazirlamaSuresi, m.MalzemeID, m.MalzemeAdi, tm.MalzemeMiktar, t.Kategori
-                      FROM Tarifler t
-                      LEFT JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
-                      LEFT JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
-                      WHERE (t.TarifAdi LIKE @SearchTerm OR m.MalzemeAdi LIKE @SearchTerm)";
+                FROM Tarifler t
+                LEFT JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
+                LEFT JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+                WHERE (t.TarifAdi LIKE @SearchTerm OR m.MalzemeAdi LIKE @SearchTerm)";
 
-                // Kategori filtresi ekleme
                 if (selectedCategories != null && selectedCategories.Count > 0)
                 {
                     string categoriesFilter = string.Join(",", selectedCategories.Select(c => $"'{c}'"));
                     query += $" AND t.Kategori IN ({categoriesFilter})";
                 }
 
-                // Malzeme sayısı filtresi ekleme
                 if (!string.IsNullOrEmpty(selectedIngredientRange))
                 {
                     string[] ingredientRanges = selectedIngredientRange.Split(',');
@@ -122,7 +115,7 @@ namespace Yazlab_1
                             case "5-10":
                                 return "(SELECT COUNT(*) FROM TarifMalzeme WHERE TarifID = t.TarifID) BETWEEN 5 AND 10";
                             default:
-                                return "1=1"; // Herhangi bir sayı için filtre yoksa geç
+                                return "1=1";
                         }
                     }));
                     query += $" AND ({rangeConditions})";
@@ -140,33 +133,33 @@ namespace Yazlab_1
                     string tarifAdi = reader.GetString(1);
                     int hazirlamaSuresi = reader.GetInt32(2);
 
-                    // Malzeme nesnesi oluştur
+
                     Malzemeler malzeme = new Malzemeler
                     {
                         MalzemeID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
                         MalzemeAdi = reader.IsDBNull(4) ? "" : reader.GetString(4),
                     };
 
-                    // Tarif nesnesini kontrol et
+
                     var tarif = tariflerList.FirstOrDefault(t => t.TarifID == tarifID);
                     if (tarif == null)
                     {
-                        // Yeni tarif nesnesi oluştur
+
                         tarif = new Tarifler
                         {
                             TarifID = tarifID,
                             TarifAdi = tarifAdi,
                             HazirlamaSuresi = hazirlamaSuresi,
-                            Malzemeler = new List<Malzemeler>() // Malzemeler listesini başlat
+                            Malzemeler = new List<Malzemeler>()
                         };
 
-                        // Maliyet hesapla ve tarif nesnesine ekle
+
                         tarif.Maliyet = maliyetHesaplama.TarifMaliyetiHesapla(tarifID);
 
                         tariflerList.Add(tarif);
                     }
 
-                    // Eğer malzeme mevcutsa, tarifin malzemeler listesine ekle
+
                     if (malzeme.MalzemeID != 0)
                     {
                         tarif.Malzemeler.Add(malzeme);
@@ -176,7 +169,6 @@ namespace Yazlab_1
                 connection.Close();
             }
 
-            // Maliyet aralığı filtresi
             if (!string.IsNullOrEmpty(selectedCostRange))
             {
                 string[] costRanges = selectedCostRange.Split(',');
@@ -200,7 +192,6 @@ namespace Yazlab_1
                 }).ToList();
             }
 
-            // Sıralama işlemi
             switch (sortOrder)
             {
                 case "Süreye göre Artan":
@@ -225,17 +216,16 @@ namespace Yazlab_1
         public string TarifDetaylariniGetir(int tarifID, DataGridView dataGridView1, RichTextBox richTextBox1, TextBox textBox1, PictureBox pictureBox1)
         {
             DatabaseHelper dbHelper = new DatabaseHelper();
-            string tarifAdi = string.Empty; // Tarif adını tutacak değişken
-            decimal toplamMaliyet = 0; // Toplam maliyeti tutacak değişken
+            string tarifAdi = string.Empty; 
+            decimal toplamMaliyet = 0;
 
             using (SqlConnection connection = dbHelper.GetConnection())
             {
-                // Malzemeleri ve miktarları getir
                 string malzemeQuery = @"
-        SELECT m.MalzemeAdi, tm.MalzemeMiktar, m.BirimFiyat 
-        FROM TarifMalzeme tm
-        JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
-        WHERE tm.TarifID = @TarifID";
+                                SELECT m.MalzemeAdi, tm.MalzemeMiktar, m.BirimFiyat 
+                                FROM TarifMalzeme tm
+                                JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+                                WHERE tm.TarifID = @TarifID";
 
                 SqlCommand malzemeCommand = new SqlCommand(malzemeQuery, connection);
                 malzemeCommand.Parameters.AddWithValue("@TarifID", tarifID);
@@ -249,16 +239,13 @@ namespace Yazlab_1
                     double miktar = reader.GetDouble(1);
                     decimal birimFiyat = reader.GetDecimal(2);
 
-                    // Malzemeleri ve maliyetlerini DataGridView'e ekle
                     dataGridView1.Rows.Add(malzemeAdi, miktar, birimFiyat);
 
-                    // Toplam maliyeti hesapla
-                    toplamMaliyet += (decimal)miktar * birimFiyat; // Miktar * Birim Fiyat
+                    toplamMaliyet += (decimal)miktar * birimFiyat; 
                 }
 
                 reader.Close();
 
-                // Talimatları ve tarif adını getir
                 string talimatQuery = "SELECT TarifAdi, Talimatlar, TarifGorseli FROM Tarifler WHERE TarifID = @TarifID";
                 SqlCommand talimatCommand = new SqlCommand(talimatQuery, connection);
                 talimatCommand.Parameters.AddWithValue("@TarifID", tarifID);
@@ -267,16 +254,14 @@ namespace Yazlab_1
                 {
                     if (talimatReader.Read())
                     {
-                        // Tarif adını al
-                        tarifAdi = talimatReader["TarifAdi"]?.ToString(); // Tarif adını al
+                        tarifAdi = talimatReader["TarifAdi"]?.ToString(); 
                         string talimatlar = talimatReader["Talimatlar"]?.ToString();
                         if (!string.IsNullOrEmpty(talimatlar))
                         {
-                            richTextBox1.Clear(); // Mevcut metni temizle
-                            richTextBox1.AppendText(talimatlar); // Yeni talimatları ekle
+                            richTextBox1.Clear(); 
+                            richTextBox1.AppendText(talimatlar); 
                         }
 
-                        // Görsel yolunu al ve PictureBox'a yükle
                         string imagePath = talimatReader["TarifGorseli"]?.ToString();
                         if (!string.IsNullOrEmpty(imagePath) && System.IO.File.Exists(imagePath))
                         {
@@ -284,18 +269,17 @@ namespace Yazlab_1
                         }
                         else
                         {
-                            pictureBox1.Image = null; // Varsayılan resim
+                            pictureBox1.Image = null; 
                         }
                     }
                 }
 
-                // Toplam maliyeti TextBox'a ekle
-                textBox1.Text = toplamMaliyet.ToString("C"); // Para birimi formatında göster
+                textBox1.Text = toplamMaliyet.ToString("C"); 
 
                 connection.Close();
             }
 
-            return tarifAdi; // Tarif adını döndür
+            return tarifAdi; 
         }
 
 
@@ -311,13 +295,12 @@ namespace Yazlab_1
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
-                    // Tarif güncelleme sorgusu
                     string tarifQuery = "UPDATE Tarifler SET " +
                                         "TarifAdi = @TarifAdi, " +
                                         "Kategori = @Kategori, " +
                                         "HazirlamaSuresi = @HazirlamaSuresi, " +
                                         "Talimatlar = @Talimatlar, " +
-                                        "TarifGorseli = @TarifGorseli " + // Resim dosya yolu da güncelleniyor
+                                        "TarifGorseli = @TarifGorseli " + 
                                         "WHERE TarifID = @TarifID";
 
                     using (SqlCommand tarifCommand = new SqlCommand(tarifQuery, connection, transaction))
@@ -327,13 +310,11 @@ namespace Yazlab_1
                         tarifCommand.Parameters.AddWithValue("@Kategori", kategori);
                         tarifCommand.Parameters.AddWithValue("@HazirlamaSuresi", hazirlamaSuresi);
                         tarifCommand.Parameters.AddWithValue("@Talimatlar", talimatlar);
-                        tarifCommand.Parameters.AddWithValue("@TarifGorseli", resimDosyaYolu); // Resim dosya yolunu ekle
+                        tarifCommand.Parameters.AddWithValue("@TarifGorseli", resimDosyaYolu); 
 
                         tarifCommand.ExecuteNonQuery();
                     }
 
-                    // Malzemeleri güncelle veya ekle
-                    // Öncelikle mevcut malzemeleri sil
                     string deleteMalzemeQuery = "DELETE FROM TarifMalzeme WHERE TarifID = @TarifID";
                     using (SqlCommand deleteCommand = new SqlCommand(deleteMalzemeQuery, connection, transaction))
                     {
@@ -341,7 +322,6 @@ namespace Yazlab_1
                         deleteCommand.ExecuteNonQuery();
                     }
 
-                    // Yeni malzemeleri ekle
                     foreach (Kullanilan_Malzeme malzeme in malzemeler)
                     {
                         string malzemeQuery = "INSERT INTO TarifMalzeme (TarifID, MalzemeID, MalzemeMiktar) " +
@@ -357,13 +337,11 @@ namespace Yazlab_1
                         }
                     }
 
-                    // İşlemi onayla
                     transaction.Commit();
                     MessageBox.Show("Tarif başarıyla güncellendi.");
                 }
                 catch (Exception ex)
                 {
-                    // Hata durumunda işlemi geri al
                     transaction?.Rollback();
                     MessageBox.Show("Hata: " + ex.Message);
                 }
@@ -403,7 +381,7 @@ namespace Yazlab_1
                         tarif.HazirlamaSuresi = reader.GetInt32(2);
                         tarif.Talimatlar = reader.GetString(3);
                         tarif.Kategori = reader.GetString(4);
-                        tarif.ResimDosyaYolu = reader.GetString(5); // Resim dosyasının yolunu al
+                        tarif.ResimDosyaYolu = reader.GetString(5);
                     }
 
                     Malzemeler malzeme = new Malzemeler
@@ -420,10 +398,7 @@ namespace Yazlab_1
                 tarif.Malzemeler = malzemelerListesi;
                 connection.Close();
             }
-
             return tarif;
         }
-
-
     }
 }

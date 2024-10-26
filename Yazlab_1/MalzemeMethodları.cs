@@ -12,7 +12,7 @@ namespace Yazlab_1
         private DatabaseHelper dbHelper;
         public MalzemeMethodları()
         {
-            dbHelper = new DatabaseHelper(); // DatabaseHelper nesnesini oluşturuyoruz.
+            dbHelper = new DatabaseHelper(); 
         }
         private bool MalzemeVarMi(string malzemeAdi, SqlConnection connection)
         {
@@ -21,8 +21,8 @@ namespace Yazlab_1
             {
                 command.Parameters.AddWithValue("@MalzemeAdi", malzemeAdi);
 
-                int count = (int)command.ExecuteScalar(); // Eşleşen kayıt sayısını al
-                return count > 0; // Eğer 0'dan büyükse malzeme zaten var
+                int count = (int)command.ExecuteScalar(); 
+                return count > 0; 
             }
         }
         public void MalzemeGuncelle(int malzemeId, string yeniMalzemeAdi, string yeniToplamMiktar, string yeniMalzemeBirim, decimal yeniBirimFiyat)
@@ -31,40 +31,39 @@ namespace Yazlab_1
             {
                 try
                 {
-                    connection.Open(); // Veritabanına bağlan
-                    MessageBox.Show("Veritabanına başarıyla bağlandı."); // Bağlantı kontrolü
+                    connection.Open(); 
+                    MessageBox.Show("Veritabanına başarıyla bağlandı.");
 
-                    // Malzeme güncelleme sorgusu
                     string updateQuery = "UPDATE Malzemeler SET " +
                                           "MalzemeAdi = @YeniMalzemeAdi, " +
                                           "ToplamMiktar = @YeniToplamMiktar, " +
                                           "MalzemeBirim = @YeniMalzemeBirim, " +
                                           "BirimFiyat = @YeniBirimFiyat " +
-                                          "WHERE MalzemeId = @MalzemeId"; // Malzeme adı yerine malzeme ID'sini kullan
+                                          "WHERE MalzemeId = @MalzemeId";
 
                     using (SqlCommand command = new SqlCommand(updateQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@MalzemeId", malzemeId); // Malzeme ID'si için parametre
+                        command.Parameters.AddWithValue("@MalzemeId", malzemeId); 
                         command.Parameters.AddWithValue("@YeniMalzemeAdi", yeniMalzemeAdi);
                         command.Parameters.AddWithValue("@YeniToplamMiktar", yeniToplamMiktar);
                         command.Parameters.AddWithValue("@YeniMalzemeBirim", yeniMalzemeBirim);
                         command.Parameters.AddWithValue("@YeniBirimFiyat", yeniBirimFiyat);
 
-                        int result = command.ExecuteNonQuery(); // Komutu çalıştır
+                        int result = command.ExecuteNonQuery(); 
 
                         if (result > 0)
                         {
-                            MessageBox.Show("Malzeme başarıyla güncellendi."); // Başarılı güncelleme
+                            MessageBox.Show("Malzeme başarıyla güncellendi."); 
                         }
                         else
                         {
-                            MessageBox.Show("Malzeme güncellenemedi. Malzeme ID'si bulunamadı."); // Hata durumu
+                            MessageBox.Show("Malzeme güncellenemedi. Malzeme ID'si bulunamadı."); 
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Hata: " + ex.Message); // Hata mesajı
+                    MessageBox.Show("Hata: " + ex.Message); 
                 }
             }
         }
@@ -75,17 +74,15 @@ namespace Yazlab_1
             {
                 try
                 {
-                    connection.Open(); // Veritabanına bağlan
-                    MessageBox.Show("Veritabanına başarıyla bağlandı."); // Bağlantı kontrolü
+                    connection.Open(); 
+                    MessageBox.Show("Veritabanına başarıyla bağlandı."); 
 
-                    // Duplicate kontrolü: Aynı isimde malzeme var mı?
                     if (MalzemeVarMi(malzemeAdi, connection))
                     {
                         MessageBox.Show("Bu malzeme zaten mevcut! Lütfen farklı bir malzeme adı girin.");
-                        return; // Ekleme işlemini iptal et
+                        return; 
                     }
 
-                    // Malzeme ekleme sorgusu
                     string query = "INSERT INTO Malzemeler (MalzemeAdi, ToplamMiktar, MalzemeBirim, BirimFiyat) VALUES (@MalzemeAdi, @ToplamMiktar, @MalzemeBirim, @BirimFiyat)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -94,20 +91,20 @@ namespace Yazlab_1
                         command.Parameters.AddWithValue("@MalzemeBirim", malzemeBirim);
                         command.Parameters.AddWithValue("@BirimFiyat", birimFiyat);
 
-                        int result = command.ExecuteNonQuery(); // Komutu çalıştır
+                        int result = command.ExecuteNonQuery(); 
                         if (result > 0)
                         {
-                            MessageBox.Show("Malzeme başarıyla eklendi."); // Başarılı ekleme
+                            MessageBox.Show("Malzeme başarıyla eklendi.");
                         }
                         else
                         {
-                            MessageBox.Show("Malzeme eklenemedi."); // Hata durumu
+                            MessageBox.Show("Malzeme eklenemedi."); 
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Hata: " + ex.Message); // Hata mesajı
+                    MessageBox.Show("Hata: " + ex.Message);
                 }
             }
         }
@@ -118,7 +115,7 @@ namespace Yazlab_1
             using (SqlConnection connection = new SqlConnection(dbHelper.connectionString))
             {
                 connection.Open();
-                // SQL sorgusunu güncelleyin
+
                 string query = "SELECT MalzemeID, MalzemeAdi, MalzemeBirim, ToplamMiktar, BirimFiyat FROM Malzemeler ORDER BY MalzemeAdi";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -127,11 +124,11 @@ namespace Yazlab_1
                     {
                         Malzemeler malzeme = new Malzemeler
                         {
-                            MalzemeID = Convert.ToInt32(reader["MalzemeID"]), // MalzemeID'yi al
+                            MalzemeID = Convert.ToInt32(reader["MalzemeID"]), 
                             MalzemeAdi = reader["MalzemeAdi"].ToString(),
                             MalzemeBirim = reader["MalzemeBirim"].ToString(),
-                            ToplamMiktar = reader["ToplamMiktar"].ToString(), // ToplamMiktar'ı al
-                            BirimFiyat = Convert.ToDecimal(reader["BirimFiyat"]) // BirimFiyat'ı al
+                            ToplamMiktar = reader["ToplamMiktar"].ToString(),
+                            BirimFiyat = Convert.ToDecimal(reader["BirimFiyat"]) 
                         };
                         malzemeListesi.Add(malzeme);
                     }
@@ -169,41 +166,37 @@ namespace Yazlab_1
             {
                 try
                 {
-                    connection.Open(); // Veritabanına bağlan
-                    MessageBox.Show("Veritabanına başarıyla bağlandı."); // Bağlantı kontrolü
+                    connection.Open(); 
+                    MessageBox.Show("Veritabanına başarıyla bağlandı."); 
 
-                    // Önce TarifMalzeme tablosundan malzemeyi sil
                     string deleteTarifMalzemeQuery = "DELETE FROM TarifMalzeme WHERE MalzemeID = (SELECT MalzemeID FROM Malzemeler WHERE MalzemeAdi = @MalzemeAdi)";
                     using (SqlCommand command = new SqlCommand(deleteTarifMalzemeQuery, connection))
                     {
                         command.Parameters.AddWithValue("@MalzemeAdi", malzemeAdi);
-                        command.ExecuteNonQuery(); // Komutu çalıştır
+                        command.ExecuteNonQuery(); 
                     }
 
-                    // Ardından Malzeme tablosundan malzemeyi sil
                     string deleteMalzemeQuery = "DELETE FROM Malzemeler WHERE MalzemeAdi = @MalzemeAdi";
                     using (SqlCommand command = new SqlCommand(deleteMalzemeQuery, connection))
                     {
                         command.Parameters.AddWithValue("@MalzemeAdi", malzemeAdi);
-                        int result = command.ExecuteNonQuery(); // Komutu çalıştır
+                        int result = command.ExecuteNonQuery(); 
 
                         if (result > 0)
                         {
-                            MessageBox.Show("Malzeme başarıyla silindi."); // Başarılı silme
+                            MessageBox.Show("Malzeme başarıyla silindi."); 
                         }
                         else
                         {
-                            MessageBox.Show("Malzeme silinemedi. Malzeme adı bulunamadı."); // Hata durumu
+                            MessageBox.Show("Malzeme silinemedi. Malzeme adı bulunamadı.");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Hata: " + ex.Message); // Hata mesajı
+                    MessageBox.Show("Hata: " + ex.Message); 
                 }
             }
         }
-
-
     }
 }

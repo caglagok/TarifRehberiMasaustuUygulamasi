@@ -14,11 +14,14 @@ namespace Yazlab_1
     {
         private MalzemeMethodları malzeme;
         private Ana_Sayfa anaSayfaForm;
-        public Malzeme_Ekleme(Ana_Sayfa anaSayfa)
+        private Tarif_Ekleme_Formu tarifEklemeFormu; 
+
+        public Malzeme_Ekleme(Ana_Sayfa anaSayfa, Tarif_Ekleme_Formu tarifEkleme)
         {
             InitializeComponent();
             malzeme = new MalzemeMethodları();
             anaSayfaForm = anaSayfa;
+            tarifEklemeFormu = tarifEkleme; 
         }
 
         private void Malzeme_Ekleme_Load_1(object sender, EventArgs e)
@@ -27,6 +30,8 @@ namespace Yazlab_1
             comboBox1.Items.Add("gram");
             comboBox1.Items.Add("mililitre");
         }
+
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -48,37 +53,32 @@ namespace Yazlab_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string malzemeAdi = textBox1.Text; // Malzeme adı textbox'ından
-            string toplamMiktar = numericUpDown1.Value.ToString(); // Toplam miktar numericUpDown'dan
-            string malzemeBirim = comboBox1.SelectedItem?.ToString(); // Seçilen birim
-            decimal birimFiyat = numericUpDown2.Value; // Birim fiyat numericUpDown'dan
+            string malzemeAdi = textBox1.Text; 
+            string toplamMiktar = numericUpDown1.Value.ToString();
+            string malzemeBirim = comboBox1.SelectedItem?.ToString();
+            decimal birimFiyat = numericUpDown2.Value;
 
-            // Malzeme ekle
             if (!string.IsNullOrWhiteSpace(malzemeAdi) && malzemeBirim != null)
             {
                 malzeme.MalzemeEkle(malzemeAdi, toplamMiktar, malzemeBirim, birimFiyat);
-                // Bu formu kapat
-                this.Close();
-                Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu(anaSayfaForm);
-                tarifEklemeFormu.Show(); // Tarif Ekleme Formu'nu göster
                 
+                tarifEklemeFormu.MalzemeleriGuncelle();
+
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Lütfen malzeme adı ve birim seçin."); // Hata mesajı
-
+                MessageBox.Show("Lütfen malzeme adı ve birim seçin.");
             }
- 
-
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Tarif_Ekleme_Formu tarifEklemeFormu = new Tarif_Ekleme_Formu(anaSayfaForm);
-            tarifEklemeFormu.ShowDialog();
-            // Bu formu kapat
             this.Close();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
 
         }
     }

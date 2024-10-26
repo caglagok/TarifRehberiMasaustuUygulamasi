@@ -15,8 +15,5 @@ namespace Yazlab_1
         public string MalzemeBirim { get; set; }
         public decimal BirimFiyat { get; set; }
 
-
-       
     }
-
 }

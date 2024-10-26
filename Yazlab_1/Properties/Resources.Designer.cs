@@ -59,5 +59,35 @@ namespace Yazlab_1.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tatlı_Düşler_Mutfağı {
+            get {
+                object obj = ResourceManager.GetObject("Tatlı Düşler Mutfağı", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tatlı_Düşler_Mutfağı__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Tatlı Düşler Mutfağı (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tatlı_Düşler_Mutfağı__3_ {
+            get {
+                object obj = ResourceManager.GetObject("Tatlı Düşler Mutfağı (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

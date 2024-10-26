@@ -12,62 +12,52 @@ namespace Yazlab_1
 {
     public partial class Tarif_Ekleme_Formu : Form
     {
-        public MalzemeMethodları malzeme; // Malzemeler sınıfı için bir nesne
-        private Ana_Sayfa anaSayfaForm; // Ana Sayfa formuna referans
-        private string resimDosyaYolu; // Resim dosyasının yolu
+        public MalzemeMethodları malzeme; 
+        private Ana_Sayfa anaSayfaForm;
+        private string resimDosyaYolu; 
 
         public Tarif_Ekleme_Formu(Ana_Sayfa anaSayfa)
         {
             InitializeComponent();
-            malzeme = new MalzemeMethodları(); // Malzemeler nesnesini oluştur
-            anaSayfaForm = anaSayfa; // Ana Sayfa formunu sakla
+            malzeme = new MalzemeMethodları(); 
+            anaSayfaForm = anaSayfa; 
 
         }
 
-
         public void Tarif_Ekleme_Formu_Load(object sender, EventArgs e)
         {
-            List<Malzemeler> malzemeListesi = malzeme.GetMalzemeler(); // Malzemeleri getir
-                                                                       // flowLayoutPanel1, formunuzda tanımlı FlowLayoutPanel nesnesi
+            List<Malzemeler> malzemeListesi = malzeme.GetMalzemeler(); 
+
             flowLayoutPanel1.AutoScroll = true;
 
-            // Malzemeleri FlowLayoutPanel'e ekle
-            flowLayoutPanel1.Controls.Clear(); // Önce mevcut kontrolleri temizle
+            flowLayoutPanel1.Controls.Clear(); 
 
             foreach (var malzemeItem in malzemeListesi)
             {
-                // Yeni bir Panel oluştur
                 FlowLayoutPanel malzemePanel = new FlowLayoutPanel();
-                malzemePanel.AutoSize = true; // Panelin otomatik boyutlandırılmasını sağla
-                malzemePanel.FlowDirection = FlowDirection.LeftToRight; // Kontrolleri yatay sırala
-                malzemePanel.AutoSizeMode = AutoSizeMode.GrowAndShrink; // Boyut değişimine izin ver
+                malzemePanel.AutoSize = true; 
+                malzemePanel.FlowDirection = FlowDirection.LeftToRight; 
+                malzemePanel.AutoSizeMode = AutoSizeMode.GrowAndShrink; 
 
-                // Seçim için CheckBox
                 CheckBox malzemeCheckBox = new CheckBox();
-                malzemeCheckBox.Text = malzemeItem.MalzemeAdi; // Malzeme adı
+                malzemeCheckBox.Text = malzemeItem.MalzemeAdi; 
                 malzemeCheckBox.AutoSize = true;
 
-                // Miktar giriş alanı
                 NumericUpDown miktarNumericUpDown = new NumericUpDown();
                 miktarNumericUpDown.Minimum = 0;
-                miktarNumericUpDown.Maximum = 100000; // Maksimum değer
-                miktarNumericUpDown.DecimalPlaces = 2; // İstenirse ondalık basamak sayısını ayarlayın
-                miktarNumericUpDown.Width = 90; // Genişliği ayarlayın
+                miktarNumericUpDown.Maximum = 100000; 
+                miktarNumericUpDown.DecimalPlaces = 2; 
+                miktarNumericUpDown.Width = 90; 
 
-                // Birim yazısı
                 Label birimLabel = new Label();
-                birimLabel.Text = malzemeItem.MalzemeBirim; // Örneğin "g" veya "ml" veritabanından alınacak
+                birimLabel.Text = malzemeItem.MalzemeBirim; 
                 birimLabel.AutoSize = true;
 
-                // Kontrolleri Panel'e ekle
                 malzemePanel.Controls.Add(malzemeCheckBox);
                 malzemePanel.Controls.Add(miktarNumericUpDown);
                 malzemePanel.Controls.Add(birimLabel);
 
-                // Panel'i FlowLayoutPanel'e ekle
                 flowLayoutPanel1.Controls.Add(malzemePanel);
-
-
             }
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,18 +74,16 @@ namespace Yazlab_1
         {
             List<Kullanilan_Malzeme> kullanilanMalzemeler = new List<Kullanilan_Malzeme>();
 
-            // Seçilen malzemeleri ve miktarları al
             foreach (Panel malzemePanel in flowLayoutPanel1.Controls)
             {
                 CheckBox malzemeCheckBox = (CheckBox)malzemePanel.Controls[0];
                 NumericUpDown miktarNumericUpDown = (NumericUpDown)malzemePanel.Controls[1];
 
-                // Eğer malzeme seçildiyse
                 if (malzemeCheckBox.Checked)
                 {
                     string malzemeAdi = malzemeCheckBox.Text;
-                    float miktar = (float)miktarNumericUpDown.Value; // Miktarı al
-                    int malzemeID = malzeme.GetMalzemeID(malzemeAdi); // Malzeme ID'sini al
+                    float miktar = (float)miktarNumericUpDown.Value;
+                    int malzemeID = malzeme.GetMalzemeID(malzemeAdi);
 
                     if (miktar > 0)
                     {
@@ -104,20 +92,16 @@ namespace Yazlab_1
                 }
             }
 
-            // Tarif bilgilerini al
             string tarifAdi = textBox1.Text;
             string kategori = comboBox1.SelectedItem?.ToString() ?? "";
             int hazirlamaSuresi = (int)numericUpDown1.Value;
             string talimatlar = richTextBox1.Text;
 
-            // Tarif ekleme işlemini yap
             Tarif_Ekleme tarifEkleme = new Tarif_Ekleme();
             tarifEkleme.TarifVeMalzemeleriEkle(tarifAdi, kategori, hazirlamaSuresi, talimatlar, kullanilanMalzemeler,resimDosyaYolu);
 
-            // Tarif eklendikten sonra formu kapat
             this.Close();
 
-            // Ana Sayfa'daki tarifleri güncelle
             anaSayfaForm.LoadTarifler();
             anaSayfaForm.LoadMalzemeler();
 
@@ -148,12 +132,14 @@ namespace Yazlab_1
         {
 
         }
-
+        public void MalzemeleriGuncelle()
+        {
+            Tarif_Ekleme_Formu_Load(this, EventArgs.Empty);
+        }
         private void button2_Click(object sender, EventArgs e)
         {
-            Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme(anaSayfaForm);
+            Malzeme_Ekleme malzemeEklemeForm = new Malzeme_Ekleme(anaSayfaForm, this);
             malzemeEklemeForm.ShowDialog();
-            this.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -174,7 +160,6 @@ namespace Yazlab_1
         private void tarifeklemegeri_Click(object sender, EventArgs e)
         {
             this.Close();
-           
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -185,13 +170,12 @@ namespace Yazlab_1
         private void button1_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp"; // Desteklenen formatlar
+            openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp"; 
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Seçilen resmi PictureBox'a yükle
-                resimDosyaYolu = openFileDialog.FileName; // Dosya yolunu al
-                pictureBox1.Image = Image.FromFile(resimDosyaYolu); // Resmi yükle
+                resimDosyaYolu = openFileDialog.FileName;
+                pictureBox1.Image = Image.FromFile(resimDosyaYolu); 
             }
         }
 

@@ -18,45 +18,37 @@ namespace Yazlab_1
         public Baslangıc()
         {
             InitializeComponent();
-            Core.Initialize(); // LibVLC motoru
+            Core.Initialize(); 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Ana_Sayfa anasayfaForm = new Ana_Sayfa();
             anasayfaForm.ShowDialog();
-
-            this.Close();
         }
 
         private void Baslangıc_Load(object sender, EventArgs e)
         {
-            // LibVLC ve MediaPlayer nesnelerini başlatma
             _libVLC = new LibVLC();
             _mediaPlayer = new MediaPlayer(_libVLC);
 
-            // VideoView'i kod ile ekleme
             var videoView = new LibVLCSharp.WinForms.VideoView
             {
                 Dock = DockStyle.Fill
             };
 
-            // Panelin içine VideoView ekleme
             panel1.Controls.Add(videoView);
             videoView.MediaPlayer = _mediaPlayer;
 
-            // Video dosyasının doğru yolunu ayarlama
-            var videoPath = @"C:\Users\medih\source\repos\Yazlab_1\Yazlab_1\TarifResimleri\baslangic.mp4";
+            var videoPath = @"C:\Users\CAGLA\Desktop\Yazlab1\Yazlab_1\Yazlab_1\TarifResimleri\Dökülüyor.mp4";
             var media = new Media(_libVLC, new Uri(videoPath));
 
-            // Videoyu oynatma
             _mediaPlayer.Play(media);
         }
 
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            // Uygulama kapanırken kaynakları serbest bırakma
             _mediaPlayer?.Dispose();
             _libVLC?.Dispose();
             base.OnFormClosing(e);

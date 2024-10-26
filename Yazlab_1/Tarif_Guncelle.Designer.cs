@@ -49,8 +49,9 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.RosyBrown;
             label5.Font = new Font("Century", 12F);
-            label5.Location = new Point(158, 234);
+            label5.Location = new Point(200, 234);
             label5.Name = "label5";
             label5.Size = new Size(119, 23);
             label5.TabIndex = 27;
@@ -59,8 +60,9 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.RosyBrown;
             label3.Font = new Font("Century", 12F);
-            label3.Location = new Point(180, 191);
+            label3.Location = new Point(222, 191);
             label3.Name = "label3";
             label3.Size = new Size(97, 23);
             label3.TabIndex = 26;
@@ -69,8 +71,9 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.RosyBrown;
             label2.Font = new Font("Century", 12F);
-            label2.Location = new Point(85, 147);
+            label2.Location = new Point(127, 147);
             label2.Name = "label2";
             label2.Size = new Size(192, 23);
             label2.TabIndex = 25;
@@ -79,8 +82,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.RosyBrown;
             label1.Font = new Font("Century", 12F);
-            label1.Location = new Point(160, 105);
+            label1.Location = new Point(202, 105);
             label1.Name = "label1";
             label1.Size = new Size(117, 23);
             label1.TabIndex = 24;
@@ -90,7 +94,7 @@
             // 
             tarifeklemegeri.BackColor = Color.IndianRed;
             tarifeklemegeri.Font = new Font("Century", 12F);
-            tarifeklemegeri.Location = new Point(130, 665);
+            tarifeklemegeri.Location = new Point(168, 665);
             tarifeklemegeri.Name = "tarifeklemegeri";
             tarifeklemegeri.Size = new Size(124, 58);
             tarifeklemegeri.TabIndex = 23;
@@ -102,7 +106,7 @@
             // 
             MalzemeEkleme.BackColor = Color.IndianRed;
             MalzemeEkleme.Font = new Font("Century", 12F);
-            MalzemeEkleme.Location = new Point(865, 102);
+            MalzemeEkleme.Location = new Point(865, 89);
             MalzemeEkleme.Name = "MalzemeEkleme";
             MalzemeEkleme.Size = new Size(215, 55);
             MalzemeEkleme.TabIndex = 22;
@@ -138,9 +142,9 @@
             comboBox1.Font = new Font("Segoe UI", 10F);
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Tatlı", "Ana Yemek", "Ara Yemek", "Çorba", "Salata" });
-            comboBox1.Location = new Point(291, 189);
+            comboBox1.Location = new Point(348, 189);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(245, 31);
+            comboBox1.Size = new Size(293, 31);
             comboBox1.TabIndex = 19;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -148,7 +152,7 @@
             // 
             richTextBox1.BackColor = Color.RosyBrown;
             richTextBox1.Font = new Font("Century", 12F, FontStyle.Italic, GraphicsUnit.Point, 162);
-            richTextBox1.Location = new Point(291, 234);
+            richTextBox1.Location = new Point(348, 234);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(293, 147);
             richTextBox1.TabIndex = 18;
@@ -159,9 +163,9 @@
             // 
             numericUpDown1.BackColor = Color.RosyBrown;
             numericUpDown1.Font = new Font("Segoe UI", 10F);
-            numericUpDown1.Location = new Point(291, 147);
+            numericUpDown1.Location = new Point(348, 147);
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(245, 30);
+            numericUpDown1.Size = new Size(293, 30);
             numericUpDown1.TabIndex = 17;
             numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
@@ -169,9 +173,9 @@
             // 
             textBox1.BackColor = Color.RosyBrown;
             textBox1.Font = new Font("Century", 12F);
-            textBox1.Location = new Point(291, 102);
+            textBox1.Location = new Point(348, 102);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(245, 32);
+            textBox1.Size = new Size(293, 32);
             textBox1.TabIndex = 16;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
@@ -179,7 +183,7 @@
             // 
             button1.BackColor = Color.IndianRed;
             button1.Font = new Font("Century", 12F);
-            button1.Location = new Point(126, 409);
+            button1.Location = new Point(168, 409);
             button1.Name = "button1";
             button1.Size = new Size(151, 58);
             button1.TabIndex = 28;
@@ -190,7 +194,7 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.RosyBrown;
-            pictureBox1.Location = new Point(291, 412);
+            pictureBox1.Location = new Point(348, 412);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(293, 190);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -203,6 +207,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
+            BackgroundImage = Properties.Resources.Tatlı_Düşler_Mutfağı__1_;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1258, 793);
             Controls.Add(pictureBox1);
             Controls.Add(button1);

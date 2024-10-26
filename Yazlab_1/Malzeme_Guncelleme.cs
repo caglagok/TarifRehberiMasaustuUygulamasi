@@ -18,7 +18,7 @@ namespace Yazlab_1
         public Malzeme_Guncelleme(int malzemeID)
         {
             InitializeComponent();
-            this.malzemeID = malzemeID; // Malzeme ID'sini sakla
+            this.malzemeID = malzemeID; 
             malzemeYardimcisi = new MalzemeMethodları();
         }
 
@@ -34,16 +34,15 @@ namespace Yazlab_1
 
         private void Malzeme_Guncelleme_Load(object sender, EventArgs e)
         {
-            numericUpDown1.Minimum = 0; // Minimum değeri ayarla
-            numericUpDown1.Maximum = 100000; // Maksimum değeri ayarla
-            numericUpDown2.Minimum = 0; // Minimum değeri ayarla
-            numericUpDown2.Maximum = 100000; // Maksimum değeri ayarla
+            numericUpDown1.Minimum = 0; 
+            numericUpDown1.Maximum = 100000; 
+            numericUpDown2.Minimum = 0;
+            numericUpDown2.Maximum = 100000; 
 
             LoadMalzemeBilgileri();
         }
         private void LoadMalzemeBilgileri()
         {
-            // Malzeme ID'sine göre malzemeyi al
             List<Malzemeler> malzemeListesi = malzemeYardimcisi.GetMalzemeler();
             Malzemeler malzeme = malzemeListesi.Find(m => m.MalzemeID == malzemeID);
             comboBox1.Items.Add("gram");
@@ -51,17 +50,12 @@ namespace Yazlab_1
 
             if (malzeme != null)
             {
-                // Alanları doldur
-                // Alanları doldur
-                textBox1.Text = malzeme.MalzemeAdi; // Malzeme adını textbox'a ata
-                comboBox1.SelectedItem = malzeme.MalzemeBirim.ToString(); // Malzeme birimini combobox'a ata
+                textBox1.Text = malzeme.MalzemeAdi; 
+                comboBox1.SelectedItem = malzeme.MalzemeBirim.ToString();
 
-                // Birim fiyatını ve toplam miktarı numericUpDown kontrollerine ata
-                numericUpDown2.Value = malzeme.BirimFiyat; // Birim fiyatını ata
+                numericUpDown2.Value = malzeme.BirimFiyat; 
 
-                numericUpDown1.Value = Convert.ToDecimal(malzeme.ToplamMiktar); // Toplam miktarı decimal'e çevirip ata
-                                                                                // Toplam miktarını ata
-
+                numericUpDown1.Value = Convert.ToDecimal(malzeme.ToplamMiktar); 
 
             }
             else
@@ -83,17 +77,19 @@ namespace Yazlab_1
             int eklenenMiktar = (int)numericUpDown1.Value;
 
             malzemeYardimcisi.MalzemeGuncelle(malzemeID, malzemeAdi, eklenenMiktar.ToString(), malzemeBirim, birimFiyat);
-        
-            this.Close(); // Malzeme güncelleme formunu kapat
+
+            var depoFormu = Application.OpenForms.OfType<Malzeme_Deposu>().FirstOrDefault();
+            if (depoFormu != null)
+            {
+                depoFormu.LoadMalzemeler(); 
+            }
+           
+            this.Close(); 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-    
-            
             this.Close();
-
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)

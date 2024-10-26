@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Yazlab_1.Properties.Resources">
+    <Position X="14.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAABkAAAAQAAAIAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Ana_Sayfa">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgAIAAQAACAAgBAQAACASCASAgo4AJgQMHQAAABAAAA=</HashCode>
+      <FileName>Ana_Sayfa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Baslangıc">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAKAEAAAAAADAAAACAEAIAAAAAEAAAQAAAAA=</HashCode>
+      <FileName>Baslangıc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.DatabaseHelper">
+    <Position X="12.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>DatabaseHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Kullanilan_Malzeme">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABgAAAAQAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Kullanilan_Malzeme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.MaliyetHesaplama">
+    <Position X="2.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MaliyetHesaplama.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Malzeme_Deposu">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAQABCAAABAAAACAAAASAAgoAAgAEEAAAABAAAA=</HashCode>
+      <FileName>Malzeme_Deposu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Malzeme_Ekleme">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACEgABAYEACAkAASAAAYAAACEGAAAAgAAAA=</HashCode>
+      <FileName>Malzeme_Ekleme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Malzeme_Guncelleme">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACEgABAQAACAAAASgAAYAACCEGAAAAgAAAA=</HashCode>
+      <FileName>Malzeme_Guncelleme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.MalzemeEkleme2">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACEgABAYEACAEAASAAAYABACEGAAAAgAAAA=</HashCode>
+      <FileName>MalzemeEkleme2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Malzemeler">
+    <Position X="14.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAACAAAAAAAAAAAAAAAAAAAACAAAAAAIgAAAAAA=</HashCode>
+      <FileName>Malzemeler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.MalzemeMethodları">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAEAAAAAAAAAAAAQAAAAAAEAAICAQAAAAAAAAA=</HashCode>
+      <FileName>MalzemeMethodları.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Program">
+    <Position X="12.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Tarif_Detay_Formu">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAQBACEQABEoAASgAAASAEgoAAAAEHAYAAFAAAA=</HashCode>
+      <FileName>Tarif_Detay_Formu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Tarif_Ekleme">
+    <Position X="7.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAQAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tarif_Ekleme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Tarif_Ekleme_Formu">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAIARBACEgABEZEQSAAgASAIAIAAgQEGAQAAhAQCA=</HashCode>
+      <FileName>Tarif_Ekleme_Formu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Tarif_Guncelle">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACEgABEZAQSAAgASAIAICAAAEMAQAABAQSA=</HashCode>
+      <FileName>Tarif_Guncelle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.Tarifler">
+    <Position X="4" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAFAAAAAAABCAEAAAIAACAgABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tarifler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Yazlab_1.TarifMethodları">
+    <Position X="14.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQBAAAAAAQAAAAgAAAAAAAAAAAAAAACCA=</HashCode>
+      <FileName>TarifMethodları.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

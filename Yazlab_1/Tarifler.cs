@@ -20,9 +20,6 @@ namespace Yazlab_1
         public decimal EslestirmeYuzdesi { get; set; } 
         public string ResimDosyaYolu;
 
-
-
-
     }
 
 }

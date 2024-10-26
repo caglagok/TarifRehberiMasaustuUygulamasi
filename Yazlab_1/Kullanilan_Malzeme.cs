@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Yazlab_1
 {
-   
-        public class Kullanilan_Malzeme
-        {
-            public int MalzemeID { get; set; }
-            public float Miktar { get; set; }
-            private DatabaseHelper dbHelper;
+    public class Kullanilan_Malzeme
+    {
+        public int MalzemeID { get; set; }
+        public float Miktar { get; set; }
+        private DatabaseHelper dbHelper;
         public Kullanilan_Malzeme(int malzemeID, float miktar)
         {
             MalzemeID = malzemeID;
@@ -30,20 +29,21 @@ namespace Yazlab_1
                 foreach (int tarifID in tarifIDs)
                 {
                     string query = @"
-SELECT COUNT(*) 
-FROM TarifMalzeme 
-WHERE TarifID = @TarifID";
+                                SELECT COUNT(*) 
+                                FROM TarifMalzeme 
+                                WHERE TarifID = @TarifID";
 
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@TarifID", tarifID);
 
                     int malzemeSayisi = (int)command.ExecuteScalar();
-                    malzemeSayilariDict[tarifID] = malzemeSayisi; // Dictionary'e ekle
+                    malzemeSayilariDict[tarifID] = malzemeSayisi;
                 }
             }
 
             return malzemeSayilariDict;
         }
+
     }
 }
 

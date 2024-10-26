@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TreeNode treeNode27 = new TreeNode("Tatlı");
-            TreeNode treeNode28 = new TreeNode("Ana yemek");
-            TreeNode treeNode29 = new TreeNode("Çorba");
-            TreeNode treeNode30 = new TreeNode("Salata");
-            TreeNode treeNode31 = new TreeNode("Ara yemek");
-            TreeNode treeNode32 = new TreeNode("Kategori", new TreeNode[] { treeNode27, treeNode28, treeNode29, treeNode30, treeNode31 });
-            TreeNode treeNode33 = new TreeNode("0-5");
-            TreeNode treeNode34 = new TreeNode("5-10");
-            TreeNode treeNode35 = new TreeNode("Malzeme Sayısına Göre", new TreeNode[] { treeNode33, treeNode34 });
-            TreeNode treeNode36 = new TreeNode("0-100 TL");
-            TreeNode treeNode37 = new TreeNode("100-500 TL");
-            TreeNode treeNode38 = new TreeNode("500TL ve Üzeri");
-            TreeNode treeNode39 = new TreeNode("Maliyet Aralığı", new TreeNode[] { treeNode36, treeNode37, treeNode38 });
+            TreeNode treeNode1 = new TreeNode("Tatlı");
+            TreeNode treeNode2 = new TreeNode("Ana yemek");
+            TreeNode treeNode3 = new TreeNode("Çorba");
+            TreeNode treeNode4 = new TreeNode("Salata");
+            TreeNode treeNode5 = new TreeNode("Ara yemek");
+            TreeNode treeNode6 = new TreeNode("Kategori", new TreeNode[] { treeNode1, treeNode2, treeNode3, treeNode4, treeNode5 });
+            TreeNode treeNode7 = new TreeNode("0-5");
+            TreeNode treeNode8 = new TreeNode("5-10");
+            TreeNode treeNode9 = new TreeNode("Malzeme Sayısına Göre", new TreeNode[] { treeNode7, treeNode8 });
+            TreeNode treeNode10 = new TreeNode("0-100 TL");
+            TreeNode treeNode11 = new TreeNode("100-500 TL");
+            TreeNode treeNode12 = new TreeNode("500TL ve Üzeri");
+            TreeNode treeNode13 = new TreeNode("Maliyet Aralığı", new TreeNode[] { treeNode10, treeNode11, treeNode12 });
             tarif_ekle = new Button();
             button1 = new Button();
             dataGridView1 = new DataGridView();
@@ -83,10 +83,10 @@
             // 
             dataGridView1.BackgroundColor = Color.RosyBrown;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 121);
+            dataGridView1.Location = new Point(36, 121);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(735, 629);
+            dataGridView1.Size = new Size(708, 629);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -97,52 +97,52 @@
             treeView1.Font = new Font("Century", 9F);
             treeView1.Location = new Point(766, 163);
             treeView1.Name = "treeView1";
-            treeNode27.Name = "Tatli";
-            treeNode27.Text = "Tatlı";
-            treeNode28.Name = "AnaYemek";
-            treeNode28.Text = "Ana yemek";
-            treeNode29.Name = "Corba";
-            treeNode29.Text = "Çorba";
-            treeNode30.Name = "Salata";
-            treeNode30.Text = "Salata";
-            treeNode31.Name = "AraYemek";
-            treeNode31.Text = "Ara yemek";
-            treeNode32.Name = "Kategori";
-            treeNode32.Text = "Kategori";
-            treeNode33.Name = "m05";
-            treeNode33.Text = "0-5";
-            treeNode34.Name = "m510";
-            treeNode34.Text = "5-10";
-            treeNode35.Name = "MalzemeSayisi";
-            treeNode35.Text = "Malzeme Sayısına Göre";
-            treeNode36.Name = "maliyet0100";
-            treeNode36.Text = "0-100 TL";
-            treeNode37.Name = "maliyet100500";
-            treeNode37.Text = "100-500 TL";
-            treeNode38.Name = "maliyet200300";
-            treeNode38.Text = "500TL ve Üzeri";
-            treeNode39.Name = "MaliyetAralıgı";
-            treeNode39.Text = "Maliyet Aralığı";
-            treeView1.Nodes.AddRange(new TreeNode[] { treeNode32, treeNode35, treeNode39 });
+            treeNode1.Name = "Tatli";
+            treeNode1.Text = "Tatlı";
+            treeNode2.Name = "AnaYemek";
+            treeNode2.Text = "Ana yemek";
+            treeNode3.Name = "Corba";
+            treeNode3.Text = "Çorba";
+            treeNode4.Name = "Salata";
+            treeNode4.Text = "Salata";
+            treeNode5.Name = "AraYemek";
+            treeNode5.Text = "Ara yemek";
+            treeNode6.Name = "Kategori";
+            treeNode6.Text = "Kategori";
+            treeNode7.Name = "m05";
+            treeNode7.Text = "0-5";
+            treeNode8.Name = "m510";
+            treeNode8.Text = "5-10";
+            treeNode9.Name = "MalzemeSayisi";
+            treeNode9.Text = "Malzeme Sayısına Göre";
+            treeNode10.Name = "maliyet0100";
+            treeNode10.Text = "0-100 TL";
+            treeNode11.Name = "maliyet100500";
+            treeNode11.Text = "100-500 TL";
+            treeNode12.Name = "maliyet200300";
+            treeNode12.Text = "500TL ve Üzeri";
+            treeNode13.Name = "MaliyetAralıgı";
+            treeNode13.Text = "Maliyet Aralığı";
+            treeView1.Nodes.AddRange(new TreeNode[] { treeNode6, treeNode9, treeNode13 });
             treeView1.Size = new Size(257, 322);
             treeView1.TabIndex = 3;
-            //treeView1.AfterSelect += treeView1_AfterSelect;
             // 
             // textBox1
             // 
             textBox1.BackColor = Color.RosyBrown;
-            textBox1.Location = new Point(68, 56);
+            textBox1.Location = new Point(36, 68);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(322, 27);
+            textBox1.Size = new Size(512, 27);
             textBox1.TabIndex = 4;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // Ara
             // 
             Ara.BackColor = Color.IndianRed;
             Ara.Font = new Font("Century", 9F);
-            Ara.Location = new Point(414, 56);
+            Ara.Location = new Point(602, 66);
             Ara.Name = "Ara";
-            Ara.Size = new Size(127, 29);
+            Ara.Size = new Size(142, 39);
             Ara.TabIndex = 5;
             Ara.Text = "Ara";
             Ara.UseVisualStyleBackColor = false;
@@ -210,6 +210,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
+            BackgroundImage = Properties.Resources.Tatlı_Düşler_Mutfağı;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1258, 793);
             Controls.Add(checkedListBox1);
             Controls.Add(label2);
