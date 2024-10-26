@@ -132,7 +132,7 @@
             tarifekle.Name = "tarifekle";
             tarifekle.Size = new Size(124, 58);
             tarifekle.TabIndex = 20;
-            tarifekle.Text = "Tarifi Ekle";
+            tarifekle.Text = "Tarifi Güncelle";
             tarifekle.UseVisualStyleBackColor = false;
             tarifekle.Click += tarifekle_Click;
             // 

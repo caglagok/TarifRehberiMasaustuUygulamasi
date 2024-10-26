@@ -347,8 +347,6 @@ namespace Yazlab_1
                 }
             }
         }
-
-
         public static Tarifler GetTarifById(int tarifId)
         {
             Tarifler tarif = null;
@@ -359,8 +357,8 @@ namespace Yazlab_1
                 string query = @"SELECT t.TarifID, t.TarifAdi, t.HazirlamaSuresi, t.Talimatlar, 
                         t.Kategori, t.TarifGorseli, m.MalzemeID, m.MalzemeAdi, m.MalzemeBirim, tm.MalzemeMiktar
                         FROM Tarifler t
-                        JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
-                        JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
+                        LEFT JOIN TarifMalzeme tm ON t.TarifID = tm.TarifID
+                        LEFT JOIN Malzemeler m ON tm.MalzemeID = m.MalzemeID
                         WHERE t.TarifID = @TarifID";
 
                 SqlCommand command = new SqlCommand(query, connection);
@@ -384,15 +382,18 @@ namespace Yazlab_1
                         tarif.ResimDosyaYolu = reader.GetString(5);
                     }
 
-                    Malzemeler malzeme = new Malzemeler
+                    if (!reader.IsDBNull(6)) // Malzeme varsa listeye ekle
                     {
-                        MalzemeID = reader.GetInt32(6),
-                        MalzemeAdi = reader.GetString(7),
-                        MalzemeBirim = reader.GetString(8),
-                        ToplamMiktar = reader.GetDouble(9).ToString()
-                    };
+                        Malzemeler malzeme = new Malzemeler
+                        {
+                            MalzemeID = reader.GetInt32(6),
+                            MalzemeAdi = reader.GetString(7),
+                            MalzemeBirim = reader.GetString(8),
+                            ToplamMiktar = reader.GetDouble(9).ToString()
+                        };
 
-                    malzemelerListesi.Add(malzeme);
+                        malzemelerListesi.Add(malzeme);
+                    }
                 }
 
                 tarif.Malzemeler = malzemelerListesi;
