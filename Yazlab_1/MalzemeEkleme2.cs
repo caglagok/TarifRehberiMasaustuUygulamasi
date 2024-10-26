@@ -14,13 +14,16 @@ namespace Yazlab_1
     {
         private MalzemeMethodları malzeme;
         private Ana_Sayfa anaSayfaForm;
+        private Tarif_Guncelle tarifEklemeFormu;
 
-        public MalzemeEkleme2(Ana_Sayfa anaSayfa)
+        public MalzemeEkleme2(Ana_Sayfa anaSayfa, Tarif_Guncelle tarifEkleme)
         {
             InitializeComponent();
             malzeme = new MalzemeMethodları();
             anaSayfaForm = anaSayfa;
+            tarifEklemeFormu = tarifEkleme;
         }
+
         private void MalzemeEkleme2_Load(object sender, EventArgs e)
         {
             comboBox1.Items.Add("gram");
@@ -37,14 +40,16 @@ namespace Yazlab_1
             {
                 malzeme.MalzemeEkle(malzemeAdi, toplamMiktar, malzemeBirim, birimFiyat);
 
-                this.Close();
+                tarifEklemeFormu.MalzemeleriGuncelle();
 
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Lütfen malzeme adı ve birim seçin.");
             }
         }
+
 
         private void button2_Click_1(object sender, EventArgs e)
         {

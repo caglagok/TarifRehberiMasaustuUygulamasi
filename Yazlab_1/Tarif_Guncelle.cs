@@ -6,39 +6,42 @@ namespace Yazlab_1
 {
     public partial class Tarif_Guncelle : Form
     {
-        private int tarif_ID; 
-        private string resimDosyaYolu; 
+        private int tarif_ID;
+        private string resimDosyaYolu;
         private Ana_Sayfa anaSayfaForm;
 
         public Tarif_Guncelle(int Tarif_ID, Ana_Sayfa anaSayfaForm)
         {
-            tarif_ID = Tarif_ID; 
+            tarif_ID = Tarif_ID;
             InitializeComponent();
-          
+
             this.anaSayfaForm = anaSayfaForm;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
-      
+        public void MalzemeleriGuncelle()
+        {
+            Tarif_Guncelle_Load(this, EventArgs.Empty);
+        }
         private void Tarif_Guncelle_Load(object sender, EventArgs e)
         {
             Tarifler tarif = TarifMethodları.GetTarifById(tarif_ID);
@@ -53,7 +56,7 @@ namespace Yazlab_1
 
                 if (!string.IsNullOrEmpty(tarif.ResimDosyaYolu))
                 {
-                    resimDosyaYolu = tarif.ResimDosyaYolu; 
+                    resimDosyaYolu = tarif.ResimDosyaYolu;
                     pictureBox1.Image = Image.FromFile(resimDosyaYolu);
                 }
 
@@ -107,7 +110,7 @@ namespace Yazlab_1
                     flowLayoutPanel1.Controls.Add(malzemePanel);
                 }
 
-             
+
             }
         }
         private void tarifekle_Click(object sender, EventArgs e)
@@ -142,10 +145,10 @@ namespace Yazlab_1
 
             anaSayfaForm.LoadTarifler();
             anaSayfaForm.LoadMalzemeler();
-            
+
             if (Application.OpenForms.OfType<Tarif_Detay_Formu>().FirstOrDefault() is Tarif_Detay_Formu detayFormu)
             {
-                detayFormu.LoadData(); 
+                detayFormu.LoadData();
             }
 
             this.Close();
@@ -158,9 +161,9 @@ namespace Yazlab_1
 
         private void MalzemeEkleme_Click(object sender, EventArgs e)
         {
-            this.Close();
 
-            MalzemeEkleme2 malzemeEklemeForm = new MalzemeEkleme2(anaSayfaForm);
+
+            MalzemeEkleme2 malzemeEklemeForm = new MalzemeEkleme2(anaSayfaForm, this);
             malzemeEklemeForm.Show();
         }
 
@@ -177,11 +180,11 @@ namespace Yazlab_1
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Resim Dosyaları|*.jpg;*.jpeg;*.png;*.bmp"; 
+            openFileDialog.Filter = "Resim Dosyaları|.jpg;.jpeg;.png;.bmp";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                resimDosyaYolu = openFileDialog.FileName; 
+                resimDosyaYolu = openFileDialog.FileName;
                 pictureBox1.Image = Image.FromFile(resimDosyaYolu);
             }
         }
