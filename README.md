@@ -1,5 +1,5 @@
-# Tarif Rehberi Uygulaması
-Tarif Rehberi Uygulaması projesinde kullanıcının yemek tariflerini saklayabileceği ve eldeki mevcut malzemelerle hangi yemekleri yapabileceğini gösteren bir masaüstü uygulamasıdır.
+# Tarif Rehberi Masaüstü Uygulaması
+Tarif Rehberi Masaüstü Uygulaması projesinde kullanıcının yemek tariflerini saklayabileceği ve eldeki mevcut malzemelerle hangi yemekleri yapabileceğini gösteren bir masaüstü uygulamasıdır.
 Projede Visual Studio Windows Forms ve MsSQL kullanılarak yapılmıştır. C# ve SQL programlama dilleri kullanılmıştır. 
 Projemizin isterleri şu şekildedir: 
 - Veritabanı tasarımı 
